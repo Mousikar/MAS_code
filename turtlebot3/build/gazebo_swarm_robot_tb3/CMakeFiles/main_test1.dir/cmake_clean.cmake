@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/main_test1.dir/src/main_test1.cpp.o"
-  "/home/ren/code/tb/devel/lib/gazebo_swarm_robot_tb3/main_test1.pdb"
-  "/home/ren/code/tb/devel/lib/gazebo_swarm_robot_tb3/main_test1"
+  "/home/ren/code/MAS_code/turtlebot3/devel/lib/gazebo_swarm_robot_tb3/main_test1.pdb"
+  "/home/ren/code/MAS_code/turtlebot3/devel/lib/gazebo_swarm_robot_tb3/main_test1"
 )
 
 # Per-language clean rules from dependency scanning.

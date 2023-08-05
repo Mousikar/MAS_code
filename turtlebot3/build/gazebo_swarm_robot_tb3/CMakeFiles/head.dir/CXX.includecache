@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ren/code/tb/src/gazebo_swarm_robot_tb3/include/gazebo_swarm_robot_tb3/swarm_robot_control.h
+/home/ren/code/MAS_code/turtlebot3/src/gazebo_swarm_robot_tb3/include/gazebo_swarm_robot_tb3/swarm_robot_control.h
 ros/ros.h
 -
 tf/tf.h
@@ -30,7 +30,7 @@ string
 vector
 -
 
-/home/ren/code/tb/src/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp
+/home/ren/code/MAS_code/turtlebot3/src/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp
 gazebo_swarm_robot_tb3/swarm_robot_control.h
 -
 

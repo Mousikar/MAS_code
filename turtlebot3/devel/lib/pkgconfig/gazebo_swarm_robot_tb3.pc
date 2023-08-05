@@ -1,4 +1,4 @@
-prefix=/home/ren/code/tb/devel
+prefix=/home/ren/code/MAS_code/turtlebot3/devel
 
 Name: gazebo_swarm_robot_tb3
 Description: Description of gazebo_swarm_robot_tb3

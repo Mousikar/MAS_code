@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/main_angle.dir/src/main_angle.cpp.o"
-  "/home/ren/code/tb/devel/lib/gazebo_swarm_robot_tb3/main_angle.pdb"
-  "/home/ren/code/tb/devel/lib/gazebo_swarm_robot_tb3/main_angle"
+  "/home/ren/code/MAS_code/turtlebot3/devel/lib/gazebo_swarm_robot_tb3/main_angle.pdb"
+  "/home/ren/code/MAS_code/turtlebot3/devel/lib/gazebo_swarm_robot_tb3/main_angle"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/head.dir/src/swarm_robot_control.cpp.o"
-  "/home/ren/code/tb/devel/lib/libhead.pdb"
-  "/home/ren/code/tb/devel/lib/libhead.so"
+  "/home/ren/code/MAS_code/turtlebot3/devel/lib/libhead.pdb"
+  "/home/ren/code/MAS_code/turtlebot3/devel/lib/libhead.so"
 )
 
 # Per-language clean rules from dependency scanning.

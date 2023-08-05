@@ -1,4 +1,4 @@
-prefix=/home/ren/code/tb/devel
+prefix=/home/ren/code/MAS_code/turtlebot3/devel
 
 Name: turtlebot3_description
 Description: Description of turtlebot3_description

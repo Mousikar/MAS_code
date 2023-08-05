@@ -1,8 +1,8 @@
-# Install script for directory: /home/ren/code/tb/src/turtlebot3_description
+# Install script for directory: /home/ren/code/MAS_code/turtlebot3/src/turtlebot3_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ren/code/tb/install")
+  set(CMAKE_INSTALL_PREFIX "/home/ren/code/MAS_code/turtlebot3/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,25 +38,25 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ren/code/tb/build/turtlebot3_description/catkin_generated/installspace/turtlebot3_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ren/code/MAS_code/turtlebot3/build/turtlebot3_description/catkin_generated/installspace/turtlebot3_description.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/turtlebot3_description/cmake" TYPE FILE FILES
-    "/home/ren/code/tb/build/turtlebot3_description/catkin_generated/installspace/turtlebot3_descriptionConfig.cmake"
-    "/home/ren/code/tb/build/turtlebot3_description/catkin_generated/installspace/turtlebot3_descriptionConfig-version.cmake"
+    "/home/ren/code/MAS_code/turtlebot3/build/turtlebot3_description/catkin_generated/installspace/turtlebot3_descriptionConfig.cmake"
+    "/home/ren/code/MAS_code/turtlebot3/build/turtlebot3_description/catkin_generated/installspace/turtlebot3_descriptionConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/turtlebot3_description" TYPE FILE FILES "/home/ren/code/tb/src/turtlebot3_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/turtlebot3_description" TYPE FILE FILES "/home/ren/code/MAS_code/turtlebot3/src/turtlebot3_description/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/turtlebot3_description" TYPE DIRECTORY FILES
-    "/home/ren/code/tb/src/turtlebot3_description/meshes"
-    "/home/ren/code/tb/src/turtlebot3_description/rviz"
-    "/home/ren/code/tb/src/turtlebot3_description/urdf"
+    "/home/ren/code/MAS_code/turtlebot3/src/turtlebot3_description/meshes"
+    "/home/ren/code/MAS_code/turtlebot3/src/turtlebot3_description/rviz"
+    "/home/ren/code/MAS_code/turtlebot3/src/turtlebot3_description/urdf"
     )
 endif()
 

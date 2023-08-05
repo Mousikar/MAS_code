@@ -67,14 +67,14 @@ set(gazebo_swarm_robot_tb3_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(gazebo_swarm_robot_tb3_SOURCE_PREFIX /home/ren/code/tb/src/gazebo_swarm_robot_tb3)
-  set(gazebo_swarm_robot_tb3_DEVEL_PREFIX /home/ren/code/tb/devel)
+  set(gazebo_swarm_robot_tb3_SOURCE_PREFIX /home/ren/code/MAS_code/turtlebot3/src/gazebo_swarm_robot_tb3)
+  set(gazebo_swarm_robot_tb3_DEVEL_PREFIX /home/ren/code/MAS_code/turtlebot3/devel)
   set(gazebo_swarm_robot_tb3_INSTALL_PREFIX "")
   set(gazebo_swarm_robot_tb3_PREFIX ${gazebo_swarm_robot_tb3_DEVEL_PREFIX})
 else()
   set(gazebo_swarm_robot_tb3_SOURCE_PREFIX "")
   set(gazebo_swarm_robot_tb3_DEVEL_PREFIX "")
-  set(gazebo_swarm_robot_tb3_INSTALL_PREFIX /home/ren/code/tb/install)
+  set(gazebo_swarm_robot_tb3_INSTALL_PREFIX /home/ren/code/MAS_code/turtlebot3/install)
   set(gazebo_swarm_robot_tb3_PREFIX ${gazebo_swarm_robot_tb3_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/ren/code/tb/install/lib;/home/ren/code/jaka_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/ren/code/MAS_code/turtlebot3/install/lib;/home/ren/code/jaka_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
