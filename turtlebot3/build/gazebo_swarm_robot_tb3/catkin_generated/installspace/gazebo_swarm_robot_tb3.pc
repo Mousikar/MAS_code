@@ -1,0 +1,8 @@
+prefix=/home/ren/code/tb/install
+
+Name: gazebo_swarm_robot_tb3
+Description: Description of gazebo_swarm_robot_tb3
+Version: 1.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs sensor_msgs geometry_msgs nav_msgs tf gazebo_ros

@@ -1,0 +1,2 @@
+gazebo_swarm_robot_tb3:turtlebot3_description
+-DCATKIN_DEVEL_PREFIX=/home/ren/code/tb/devel -DCMAKE_INSTALL_PREFIX=/home/ren/code/tb/install -G Unix Makefiles
