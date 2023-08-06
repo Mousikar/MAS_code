@@ -9,11 +9,11 @@ def track_leader(leader_positions,t):
     temp=np.ones([num_leaders, 2])
     a = (10-np.max(leader_positions[:,0]))/t_sum
     # b = 0 #走直线
-    # b = (10-np.max(leader_positions[:,1]))/t_sum    # 走斜线
-    b = np.min(leader_positions[:,1])                 # 走sin线
+    b = (10-np.max(leader_positions[:,1]))/t_sum    # 走斜线
+    # b = np.min(leader_positions[:,1])                 # 走sin线
     temp[:,0]=a*t*np.ones([num_leaders])
-    # temp[:,1]=b*t*np.ones([num_leaders])    # 走直线 斜线
-    temp[:,1]=b*np.sin(2*t)*np.ones([num_leaders])    # 走sin线
+    temp[:,1]=b*t*np.ones([num_leaders])    # 走直线 斜线
+    # temp[:,1]=b*np.sin(2*t)*np.ones([num_leaders])    # 走sin线
     leader_positions_t = temp + leader_positions
     return leader_positions_t
 
@@ -105,7 +105,7 @@ follower_positions=np.array([[0, 6],
                             [0, 6],
                             [0, 6]]) + 4 * np.random.rand(num_leaders, 2)
 
-t_sum=5 # 秒
+t_sum=20 # 秒
 t_span = (0, t_sum)  # 时间范围
 t = np.linspace(0, t_sum, num_iterations)  # 用于绘制的时间点
 
