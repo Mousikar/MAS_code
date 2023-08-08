@@ -35,6 +35,7 @@ class LeaderAgent(Agent):
 def main():
     num_followers = 6
     num_leaders = 3
+    num_leaders = 6
     a = 1
     b = 1
     num_iterations = 200
@@ -42,19 +43,20 @@ def main():
     deltat = t_sum/num_iterations
 
     leader_positions = 0.5 * np.ones([num_leaders, 2]) + 4 * np.random.rand(num_leaders, 2)
-    follower_positions = 10 * np.random.rand(num_followers, 2)
-    # follower_positions=4*np.ones([num_leaders, 2]) + 6 * np.random.rand(num_leaders, 2)
-    follower_positions=np.array([[0, 6],
-                                [0, 6],
-                                [0, 6],
-                                [0, 6],
-                                [0, 6],
-                                [0, 6]]) + 4 * np.random.rand(num_leaders, 2)
+    # follower_positions = 10 * np.random.rand(num_followers, 2)
+    follower_positions=6*np.ones([num_followers, 2]) + 4 * np.random.rand(num_followers, 2)
+    # follower_positions=np.array([[0, 6],
+    #                             [0, 6],
+    #                             [0, 6],
+    #                             [0, 6],
+    #                             [0, 6],
+    #                             [0, 6]]) + 4 * np.random.rand(num_leaders, 2)
     print(follower_positions)
     print(leader_positions)
 
     follower_topology = {0: [1, 3], 1: [0, 2], 2: [1], 3: [0, 4], 4: [3, 5], 5: [4]}
     leader_topology = {0: [0], 1: [1], 2: [2], 3: [], 4: [], 5: []}
+    leader_topology = {0: [0], 1: [1], 2: [2], 3: [3], 4: [4], 5: [5]}
 
     follower_agents = []
     leader_agents = []
