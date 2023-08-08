@@ -33,12 +33,12 @@ class LeaderAgent(Agent):
         super().__init__(position)
     # 领导者轨迹
     def track_leader(self,iter):
-        aa = (10-np.max(leader_positions[:,0]))/t_sum   # 走直线 走斜线 走sin线
+        aa = 0
+        bb = 0  # 领导者不动
+        # aa = (10-np.max(leader_positions[:,0]))/t_sum   # 走直线 走斜线 走sin线
         # bb = 0 #走直线
         # bb = (10-np.max(leader_positions[:,1]))/t_sum    # 走斜线
-        bb = 2*self.position[1] *np.cos(2*iter/t_sum)                # 走sin线
-        # temp[:,1]=b*np.sin(2*t)*np.ones([num_leaders])    # 走sin线
-
+        # bb = 2*self.position[1] *np.cos(2*iter/t_sum)                # 走sin线
         self.velocity = np.array([aa, bb])
 
 num_followers = 6
@@ -47,7 +47,16 @@ num_leaders = 6
 a = 1
 b = 1
 num_iterations = 200
+num_iterations = 100    # 时间间隔0.1秒
+num_iterations = 50    # 时间间隔0.2秒
+num_iterations = 25    # 时间间隔0.4秒
+num_iterations = 20    # 时间间隔0.5秒
 t_sum = 10
+
+t_sum = 20
+num_iterations = 30    # 时间间隔0.66秒
+num_iterations = 25    # 时间间隔0.8秒
+num_iterations = 28    # 时间间隔0.8秒
 deltat = t_sum/num_iterations
 
 leader_positions = 0.5 * np.ones([num_leaders, 2]) + 4 * np.random.rand(num_leaders, 2)
