@@ -9,12 +9,14 @@ from geometry_msgs.msg import Twist
 from scipy.spatial.transform import Rotation as R
 
 class SwarmRobot(object):
+    # 初始化
     def __init__(self,swarm_robot_id):
         self.swarm_robot_id=swarm_robot_id
         self.robot_num=len(swarm_robot_id)
         # for i in range(10):
         #     vel_topic = "/robot_" + str(i+1) + "/cmd_vel"
         #     self.cmd_vel_pub_p[i] = rospy.Publisher(vel_topic, Twist, queue_size=10)
+    # 得到单个机器人的位姿
     def getRobotPose(self,index):
         robot_frame = 'robot_' + str(self.swarm_robot_id[index]) + '/base_footprint';
         base_marker = 'robot_' + str(self.swarm_robot_id[index]) + '/odom';
@@ -40,3 +42,11 @@ class SwarmRobot(object):
                       transform[1],
                       euler[2]]
         return getRobotPose
+    # 得到所有机器人的位姿
+    def getAllRobotPose(self):
+        current_robot_pose = []
+        for i in range(self.robot_num):
+            current_robot_pose.append(self.getRobotPose(i))
+        rospy.loginfo("Succeed getting all robot pose!")
+        
+        return current_robot_pose
