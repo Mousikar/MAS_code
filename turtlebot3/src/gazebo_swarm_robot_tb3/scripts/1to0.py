@@ -15,13 +15,13 @@ if __name__ == "__main__":
     # 4.处理订阅到的 TF
     rate = rospy.Rate(10)
     # 创建速度发布对象
-    pub = rospy.Publisher("/robot_2/cmd_vel",Twist,queue_size=1000)
+    pub = rospy.Publisher("/robot_1/cmd_vel",Twist,queue_size=1000)
     while not rospy.is_shutdown():
 
         rate.sleep()
         try:
             #def lookup_transform(self, target_frame, source_frame, time, timeout=rospy.Duration(0.0)):
-            trans = buffer.lookup_transform("robot_2/odom","robot_2/base_footprint",rospy.Time(0))
+            trans = buffer.lookup_transform("robot_1/odom","robot_1/base_footprint",rospy.Time(0))
             rospy.loginfo("相对坐标:(%.2f,%.2f,%.2f)",
                         trans.transform.translation.x,
                         trans.transform.translation.y,
@@ -30,9 +30,10 @@ if __name__ == "__main__":
             # 根据转变后的坐标计算出速度和角速度信息
             twist = Twist()
             # 间距 = x^2 + y^2  然后开方
-            twist.linear.x = 5 * math.sqrt(math.pow(trans.transform.translation.x,2) + math.pow(trans.transform.translation.y,2))
-            twist.angular.z = 1 * math.atan2(trans.transform.translation.y, trans.transform.translation.x)
-
+            twist.linear.x = 0 * math.sqrt(math.pow(trans.transform.translation.x,2) + math.pow(trans.transform.translation.y,2))
+            twist.angular.z = 0.00000000000 * math.atan2(trans.transform.translation.y, trans.transform.translation.x)
+            print(twist.linear.x)
+            print(twist.angular.z)
             pub.publish(twist)
 
         except Exception as e:
