@@ -10,7 +10,7 @@ class SwarmRobot:
         self.robot_num = len(swarm_robot_id)        
         self.cmd_vel_pub = [rospy.Publisher("/robot_{}/cmd_vel".format(i+1), Twist, queue_size=1) for i in range(self.robot_num)]
         self.tf_listener = tf.TransformListener()
-        self.rate = rospy.Rate(50)
+        self.rate = rospy.Rate(100)
 
     def get_robot_pose(self, index):
         pose_cur = [0.0, 0.0, 0.0]
@@ -56,9 +56,9 @@ class SwarmRobot:
         vel_msg = Twist()
         vel_msg.linear.x = v
         vel_msg.angular.z = w
-        for i in range(20):
-            self.cmd_vel_pub[index].publish(vel_msg)
-            self.rate.sleep()
+        # for i in range(20):
+        self.rate.sleep()
+        self.cmd_vel_pub[index].publish(vel_msg)
         rospy.loginfo("Move robot_{} with v={} w={}".format(
             self.swarm_robot_id[index],
             v,
@@ -80,8 +80,10 @@ class SwarmRobot:
         vel_msg = Twist()
         vel_msg.linear.x = 0.0
         vel_msg.angular.z = 0.0
-        self.cmd_vel_pub[self.swarm_robot_id[index] - 1].publish(vel_msg)
-        # rospy.loginfo(f"Stop robot_{self.swarm_robot_id[index]}")
+        # for i in range(20):
+        self.rate.sleep()
+        self.cmd_vel_pub[index].publish(vel_msg)
+        rospy.loginfo("Stop robot_{}".format(self.swarm_robot_id[index]))
         return True
 
     def stop_robots(self):
@@ -89,7 +91,7 @@ class SwarmRobot:
         vel_msg.linear.x = 0.0
         vel_msg.angular.z = 0.0
         for i in range(self.robot_num):
-            self.cmd_vel_pub[self.swarm_robot_id[i] - 1].publish(vel_msg)
+            self.cmd_vel_pub[i].publish(vel_msg)
         rospy.loginfo("Stop all robots.")
         return True
 
