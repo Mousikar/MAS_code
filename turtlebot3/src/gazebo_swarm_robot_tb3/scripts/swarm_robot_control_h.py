@@ -13,7 +13,7 @@ class SwarmRobot(object):
     def __init__(self,swarm_robot_id):
         self.swarm_robot_id=swarm_robot_id
         self.robot_num=len(swarm_robot_id)
-        # for i in range(10):
+        # for i in range(self.robot_num):
         #     vel_topic = "/robot_" + str(i+1) + "/cmd_vel"
         #     self.cmd_vel_pub_p[i] = rospy.Publisher(vel_topic, Twist, queue_size=10)
     # 得到单个机器人的位姿
@@ -50,3 +50,7 @@ class SwarmRobot(object):
         rospy.loginfo("Succeed getting all robot pose!")
         
         return current_robot_pose
+    # 移动机器人:v是速度，omega是角速度
+    def moveRobot(self,index,v,omega):
+        pass
+
