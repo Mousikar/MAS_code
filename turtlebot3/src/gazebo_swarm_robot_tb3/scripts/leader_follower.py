@@ -71,97 +71,122 @@ def main():
     # Convergence sign
     is_conv = False
 
-    # While loop
-    v_lim=np.ones(swarm_robot.robot_num)
-    k = 0.008 * np.ones(swarm_robot.robot_num)
-    MAX_W = 1       # Maximum angle velocity (rad/s)
-    MIN_W = 0.00000000000000000005    # Minimum angle velocity(rad/s)
-    MAX_V = 0.2     # Maximum linear velocity(m/s)
-    MIN_V = 0.00000000000001    # Minimum linear velocity(m/s)
-    # for i in range(200):
-    while not is_conv:
-        print('----------------------------------------------')
-        current_robot_pose = swarm_robot.get_robot_poses()
-        cur_pos = np.array(current_robot_pose)
-        dotx = np.dot(L1+A0,leader_robot_pose[:,0]-cur_pos[:,0])
-        doty = np.dot(L1+A0,leader_robot_pose[:,1]-cur_pos[:,1])
-        print("sum:",np.sum(np.abs(leader_robot_pose[:,:2]-cur_pos[:,:2])))
-        # 移动所有机器人
-        speed = []
-        for i in range(swarm_robot.robot_num):
-            print(k[i])
-            v=math.sqrt(math.pow(k[i] * dotx[i],2)+math.pow(k[i] * doty[i],2))
-            v = swarm_robot.check_vel(v, MAX_V, MIN_V)
-            w = math.atan2(doty[i], dotx[i]) - current_robot_pose[i][2]
-            # w = swarm_robot.check_vel(w, MAX_W, MIN_W)
-            for item in follower_topology.get(i, []):
-                # 计算两个向量的夹角（弧度）
-                angle_radians = np.arccos(np.dot(cur_pos[item,:2]-cur_pos[i,:2], cur_pos[i,:2]) / (np.linalg.norm(cur_pos[item,:2]-cur_pos[i,:2]) * np.linalg.norm(cur_pos[i,:2])))
-                # print('',np.linalg.norm(cur_pos[item,:2]-cur_pos[i,:2]))
-                # print(np.linalg.norm(cur_pos[item,:2]-cur_pos[i,:2]) < 0.21 and np.abs(angle_radians)<1.57)
-                if np.linalg.norm(cur_pos[item,:2]-cur_pos[i,:2]) < 0.21 and np.abs(angle_radians)<1.57:
-                    v= MAX_V * np.random.rand(1)
-                    w= MAX_W * np.random.rand(1)
-            speed.append([v,w])
-            if v<=0.02:
-                k[i]=0.05
-                v_lim[i]=0
-                if np.max(v_lim)==0 and np.sum(np.abs(leader_robot_pose[:,:2]-cur_pos[:,:2]))<0.3:
-                    is_conv = True
-            else:
-                v_lim[i]=1
-                k[i] = 0.005 * np.sum(np.abs(leader_robot_pose[i,:2]-cur_pos[i,:2]))
-                # k[i]=0.008
-        rate.sleep()
-        swarm_robot.move_robots(speed)
-    # 角度一致
+    # 指定保存的文件名
+    file_name = "leader_follower_points.txt"
 
-    # Convergence threshold
-    conv_th = 0.05  # Threshold of angle, in rad
+    # 将测试点保存到文本文件中
+    with open(file_name, "w") as file:
+        # While loop
+        v_lim=np.ones(swarm_robot.robot_num)
+        k = 0.008 * np.ones(swarm_robot.robot_num)
+        MAX_W = 1       # Maximum angle velocity (rad/s)
+        MIN_W = 0.00000000000000000005    # Minimum angle velocity(rad/s)
+        MAX_V = 0.2     # Maximum linear velocity(m/s)
+        MIN_V = 0.00000000000001    # Minimum linear velocity(m/s)
+        # for i in range(200):
+        iter_pos = 0
+        while not is_conv:
+            print('----------------------------------------------')
+            current_robot_pose = swarm_robot.get_robot_poses()
+            cur_pos = np.array(current_robot_pose)
+            dotx = np.dot(L1+A0,leader_robot_pose[:,0]-cur_pos[:,0])
+            doty = np.dot(L1+A0,leader_robot_pose[:,1]-cur_pos[:,1])
+            print("sum:",np.sum(np.abs(leader_robot_pose[:,:2]-cur_pos[:,:2])))
+            # 移动所有机器人
+            speed = []
+            for i in range(swarm_robot.robot_num):
+                print(k[i])
+                v=math.sqrt(math.pow(k[i] * dotx[i],2)+math.pow(k[i] * doty[i],2))
+                v = swarm_robot.check_vel(v, MAX_V, MIN_V)
+                w = math.atan2(doty[i], dotx[i]) - current_robot_pose[i][2]
+                # w = swarm_robot.check_vel(w, MAX_W, MIN_W)
+                for item in follower_topology.get(i, []):
+                    # 计算两个向量的夹角（弧度）
+                    angle_radians = np.arccos(np.dot(cur_pos[item,:2]-cur_pos[i,:2], cur_pos[i,:2]) / (np.linalg.norm(cur_pos[item,:2]-cur_pos[i,:2]) * np.linalg.norm(cur_pos[i,:2])))
+                    # print('',np.linalg.norm(cur_pos[item,:2]-cur_pos[i,:2]))
+                    # print(np.linalg.norm(cur_pos[item,:2]-cur_pos[i,:2]) < 0.21 and np.abs(angle_radians)<1.57)
+                    if np.linalg.norm(cur_pos[item,:2]-cur_pos[i,:2]) < 0.21 and np.abs(angle_radians)<1.57:
+                        v= MAX_V * np.random.rand(1)
+                        w= MAX_W * np.random.rand(1)
+                if v<=0.02:
+                    k[i]=0.08
+                    v_lim[i]=0
+                    if np.max(v_lim)==0 and np.sum(np.abs(leader_robot_pose[:,:2]-cur_pos[:,:2]))<0.4:
+                        is_conv = True
+                    if v<=0.002:
+                        k[i]=0.8
+                else:
+                    v_lim[i]=1
+                    k[i] = 0.005 * np.sum(np.abs(leader_robot_pose[i,:2]-cur_pos[i,:2]))
+                    # k[i]=0.008
+                speed.append([v,w])
+                file.write("%.12f, %.12f, %.12f, %.12f, %.12f, " % (current_robot_pose[i][0], current_robot_pose[i][1], current_robot_pose[i][2], v, w))
+            file.write("\n")
 
-    # threshold
-    k_w = 0.1       # Scale of angle velocity
-    k_v = 0.1       # Scale of linear velocity
+            rate.sleep()
+            swarm_robot.move_robots(speed)
+            iter_pos += 1
 
-    # Mobile robot poses and for next poses
-    cur_theta = np.zeros(len(swarm_robot_id))
-    del_theta = np.zeros(len(swarm_robot_id))
+        file.write("\n")
 
-    # Get swarm robot poses firstly
-    current_robot_pose = swarm_robot.get_robot_poses()
+        # 角度一致
+        iter_ang = 0
+        # Convergence threshold
+        conv_th = 0.1  # Threshold of angle, in rad
 
-    for i in range(len(swarm_robot_id)):
-        cur_theta[i] = current_robot_pose[i][2]
+        # threshold
+        k_w = 0.1       # Scale of angle velocity
+        k_v = 0.1       # Scale of linear velocity
 
-    # Convergence sign
-    is_conv = False
+        # Mobile robot poses and for next poses
+        cur_theta = np.zeros(len(swarm_robot_id))
+        del_theta = np.zeros(len(swarm_robot_id))
 
-    # While loop
-    while not is_conv:
-
-        # Judge whether reached
-        del_theta = -np.dot(L1, cur_theta)
-        is_conv = all(np.abs(del_theta) <= conv_th)
-
-        # Swarm robot move
-        for i in range(len(swarm_robot_id)):
-            w = del_theta[i] * k_w
-            w = swarm_robot.check_vel(w, MAX_W, MIN_W)
-            swarm_robot.move_robot(i, 0.0, w)
-
-        # Time sleep for robot move
-        rospy.sleep(0.01)
-
-        # Get swarm robot poses
+        # Get swarm robot poses firstly
         current_robot_pose = swarm_robot.get_robot_poses()
 
         for i in range(len(swarm_robot_id)):
             cur_theta[i] = current_robot_pose[i][2]
 
+        # Convergence sign
+        is_conv = False
+
+        # While loop
+        while not is_conv:
+
+            # Judge whether reached
+            del_theta = -np.dot(L1, cur_theta)
+            is_conv = all(np.abs(del_theta) <= conv_th)
+
+            # Swarm robot move
+            w_his = []
+            for i in range(len(swarm_robot_id)):
+                w = del_theta[i] * k_w
+                w = swarm_robot.check_vel(w, MAX_W, MIN_W)
+                swarm_robot.move_robot(i, 0.0, w)
+                w_his.append(w)
+
+
+            # Time sleep for robot move
+            rospy.sleep(0.01)
+
+            # Get swarm robot poses
+            current_robot_pose = swarm_robot.get_robot_poses()
+
+            for i in range(len(swarm_robot_id)):
+                cur_theta[i] = current_robot_pose[i][2]
+                # file.write(f"{current_robot_pose[i][0]}, {current_robot_pose[i][1]}, {current_robot_pose[i][2]}, 0.0, {w_his[i]}, ")
+                file.write("%.12f, %.12f, %.12f, 0.0, %.12f" % (current_robot_pose[i][0], current_robot_pose[i][1], current_robot_pose[i][2], w_his[i]))
+            file.write("\n")
+            iter_ang += 1
+
 
     # Stop all robots
     swarm_robot.stop_robots()
-
+    print("位置迭代：")
+    print(iter_pos)
+    print("角度迭代：")
+    print(iter_ang)
     rospy.loginfo("Succeed!")
 
 if __name__ == "__main__":
