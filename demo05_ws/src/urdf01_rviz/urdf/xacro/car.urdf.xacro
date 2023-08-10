@@ -1,0 +1,7 @@
+<!-- 组合小车底盘与摄像头与雷达 -->
+<robot name="my_car_camera" xmlns:xacro="http://wiki.ros.org/xacro">
+    <!-- 包含底盘、摄像头与雷达的xacro的文件 -->
+    <xacro:include filename="demo05_car_base.urdf.xacro" />
+    <xacro:include filename="demo06_car_camera.urdf.xacro" />
+    <xacro:include filename="demo07_car_laser.urdf.xacro" />
+</robot>

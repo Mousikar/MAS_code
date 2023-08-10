@@ -1,0 +1,10 @@
+<launch>
+    <!-- 添加坐标变换，添加点云坐标系Kinect连杆坐标系的变换 -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="static_transform_publisher" args="0 0 0 -1.57 0 -1.57 /support /support_depth" />
+    <!-- 2. 启动rviz -->
+    <node pkg="rviz" name="rviz" type="rviz" args="-d $(find urdf01_rviz)/config/show_mycar.rviz" />
+    <!-- 3. 添加关节状态发布节点 -->
+    <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher" />
+    <!-- 4. 添加机器人状态发布节点 -->
+    <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" />
+</launch>

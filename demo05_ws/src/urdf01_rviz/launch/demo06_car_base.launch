@@ -1,0 +1,13 @@
+<launch>
+    <!-- 1. 在参数服务器中载入URDF -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find urdf01_rviz)/urdf/xacro/demo05_car_base.urdf.xacro" />
+    <!-- <param name="robot_description" textfile="$(find urdf01_rviz)/urdf/xacro/demo05_car_base.urdf" /> -->
+    <!-- 2. 启动rviz -->
+    <node pkg="rviz" name="rviz" type="rviz" args="-d $(find urdf01_rviz)/config/show_mycar.rviz" />
+    <!-- 3. 添加关节状态发布节点 -->
+    <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher" />
+    <!-- 4. 添加机器人状态发布节点 -->
+    <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" />
+    <!-- 5. 添加关节控制运动节点 -->
+    <node pkg="joint_state_publisher_gui" name="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+</launch>
