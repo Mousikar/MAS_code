@@ -67,14 +67,14 @@ set(urdf02_gazebo_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(urdf02_gazebo_SOURCE_PREFIX /home/ren/Documents/urdfdemo/demo05_ws/src/urdf02_gazebo)
-  set(urdf02_gazebo_DEVEL_PREFIX /home/ren/Documents/urdfdemo/demo05_ws/devel)
+  set(urdf02_gazebo_SOURCE_PREFIX /home/ren/code/MAS_code/demo05_ws/src/urdf02_gazebo)
+  set(urdf02_gazebo_DEVEL_PREFIX /home/ren/code/MAS_code/demo05_ws/devel)
   set(urdf02_gazebo_INSTALL_PREFIX "")
   set(urdf02_gazebo_PREFIX ${urdf02_gazebo_DEVEL_PREFIX})
 else()
   set(urdf02_gazebo_SOURCE_PREFIX "")
   set(urdf02_gazebo_DEVEL_PREFIX "")
-  set(urdf02_gazebo_INSTALL_PREFIX /home/ren/Documents/urdfdemo/demo05_ws/install)
+  set(urdf02_gazebo_INSTALL_PREFIX /home/ren/code/MAS_code/demo05_ws/install)
   set(urdf02_gazebo_PREFIX ${urdf02_gazebo_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/ren/Documents/urdfdemo/demo05_ws/install/lib;/home/ren/code/jaka_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/ren/code/MAS_code/demo05_ws/install/lib;/home/ren/code/jaka_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

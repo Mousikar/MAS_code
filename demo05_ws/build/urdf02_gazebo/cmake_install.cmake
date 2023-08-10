@@ -1,8 +1,8 @@
-# Install script for directory: /home/ren/Documents/urdfdemo/demo05_ws/src/urdf02_gazebo
+# Install script for directory: /home/ren/code/MAS_code/demo05_ws/src/urdf02_gazebo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ren/Documents/urdfdemo/demo05_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/ren/code/MAS_code/demo05_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ren/Documents/urdfdemo/demo05_ws/build/urdf02_gazebo/catkin_generated/installspace/urdf02_gazebo.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ren/code/MAS_code/demo05_ws/build/urdf02_gazebo/catkin_generated/installspace/urdf02_gazebo.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urdf02_gazebo/cmake" TYPE FILE FILES
-    "/home/ren/Documents/urdfdemo/demo05_ws/build/urdf02_gazebo/catkin_generated/installspace/urdf02_gazeboConfig.cmake"
-    "/home/ren/Documents/urdfdemo/demo05_ws/build/urdf02_gazebo/catkin_generated/installspace/urdf02_gazeboConfig-version.cmake"
+    "/home/ren/code/MAS_code/demo05_ws/build/urdf02_gazebo/catkin_generated/installspace/urdf02_gazeboConfig.cmake"
+    "/home/ren/code/MAS_code/demo05_ws/build/urdf02_gazebo/catkin_generated/installspace/urdf02_gazeboConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urdf02_gazebo" TYPE FILE FILES "/home/ren/Documents/urdfdemo/demo05_ws/src/urdf02_gazebo/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urdf02_gazebo" TYPE FILE FILES "/home/ren/code/MAS_code/demo05_ws/src/urdf02_gazebo/package.xml")
 endif()
 

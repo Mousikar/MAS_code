@@ -1,4 +1,4 @@
-prefix=/home/ren/Documents/urdfdemo/demo05_ws/install
+prefix=/home/ren/code/MAS_code/demo05_ws/install
 
 Name: urdf02_gazebo
 Description: Description of urdf02_gazebo
