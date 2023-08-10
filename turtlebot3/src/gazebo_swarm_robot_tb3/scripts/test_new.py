@@ -27,8 +27,8 @@ SwarmRobot = swarm_robot_control_new.SwarmRobot(index)
 # 获取所有机器人的姿态
 getAllRobotPose = SwarmRobot.get_robot_poses() # 获取所有机器人的姿态
 print(getAllRobotPose)# 获取到的姿态
-v=0
-w=1
+v=0.5
+w=0.5
 # 移动单个机器人
 rate.sleep()
 flag = SwarmRobot.move_robot(3, v, w)

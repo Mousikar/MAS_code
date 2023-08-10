@@ -50,7 +50,7 @@ def main():
     hull = ConvexHull(points)
 
     # Convergence threshold
-    num_iterations = 1000
+    num_iterations = 100
     t_sum = 10
     deltat = t_sum/num_iterations
 
