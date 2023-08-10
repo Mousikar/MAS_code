@@ -1,47 +1,34 @@
 <launch>
   <arg name="model" default="burger"/>
-
-  <!-- Set name -->
   
   <arg name="robot_1_name"  default="robot_1"/>
   <arg name="robot_2_name"  default="robot_2"/>
   <arg name="robot_3_name"  default="robot_3"/>
   <arg name="robot_4_name"  default="robot_4"/>
-  <arg name="robot_5_name"  default="robot_5"/>
-  <arg name="robot_6_name"  default="robot_6"/>
 
   <!-- Set Pose -->
 
   <arg name="robot_1_x_pos" default="-1.0"/>
-  <arg name="robot_1_y_pos" default=" 4.0"/>
+  <arg name="robot_1_y_pos" default=" 0.0"/>
   <arg name="robot_1_z_pos" default=" 0.0"/>
   <arg name="robot_1_yaw"   default=" 1.57"/>
 
-  <arg name="robot_2_x_pos" default=" 1.0"/>
-  <arg name="robot_2_y_pos" default=" 6.0"/>
+  <arg name="robot_2_x_pos" default=" 0.0"/>
+  <arg name="robot_2_y_pos" default="-1.0"/>
   <arg name="robot_2_z_pos" default=" 0.0"/>
   <arg name="robot_2_yaw"   default=" 1.57"/>
 
-  <arg name="robot_3_x_pos" default=" 4.0"/>
-  <arg name="robot_3_y_pos" default=" 2.0"/>
+  <arg name="robot_3_x_pos" default=" 1.0"/>
+  <arg name="robot_3_y_pos" default=" 0.0"/>
   <arg name="robot_3_z_pos" default=" 0.0"/>
   <arg name="robot_3_yaw"   default=" 0.0"/>
 
 
-  <arg name="robot_4_x_pos" default=" -4.0"/>
-  <arg name="robot_4_y_pos" default=" -2.0"/>
+  <arg name="robot_4_x_pos" default=" 0.0"/>
+  <arg name="robot_4_y_pos" default=" 1.0"/>
   <arg name="robot_4_z_pos" default=" 0.0"/>
   <arg name="robot_4_yaw"   default=" 1.57"/>
 
-  <arg name="robot_5_x_pos" default=" 0.0"/>
-  <arg name="robot_5_y_pos" default=" -6.0"/>
-  <arg name="robot_5_z_pos" default=" 0.0"/>
-  <arg name="robot_5_yaw"   default=" 0.0"/>
-
-  <arg name="robot_6_x_pos" default=" 4.5"/>
-  <arg name="robot_6_y_pos" default=" -4.0"/>
-  <arg name="robot_6_z_pos" default=" 0.0"/>
-  <arg name="robot_6_yaw"   default=" 0.0"/>
 
 
 
@@ -100,31 +87,6 @@
     </node>
     
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg robot_4_name) -x $(arg robot_4_x_pos) -y $(arg robot_4_y_pos) -z $(arg robot_4_z_pos) -Y $(arg robot_4_yaw) -param robot_description" />
- 
-  </group>
-
-
-  <group ns = "$(arg robot_5_name)">
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
-
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
-      <param name="publish_frequency" type="double" value="50.0" />
-      <param name="tf_prefix" value="$(arg robot_5_name)" />
-    </node>
-    
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg robot_5_name) -x $(arg robot_5_x_pos) -y $(arg robot_5_y_pos) -z $(arg robot_5_z_pos) -Y $(arg robot_5_yaw) -param robot_description" />
- 
-  </group>
-
-  <group ns = "$(arg robot_6_name)">
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
-
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
-      <param name="publish_frequency" type="double" value="50.0" />
-      <param name="tf_prefix" value="$(arg robot_6_name)" />
-    </node>
-    
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg robot_6_name) -x $(arg robot_6_x_pos) -y $(arg robot_6_y_pos) -z $(arg robot_6_z_pos) -Y $(arg robot_6_yaw) -param robot_description" />
  
   </group>
 

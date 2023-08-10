@@ -40,16 +40,24 @@ def main():
     # follower_topology = {0: [1], 1: [0]}
     # leader_topology = {0: [], 1: []}
     # 三个机器人
-    swarm_robot_id = [1, 2, 3]
-    follower_topology = {0: [1, 2], 1: [0], 2: [0]}
-    leader_topology = {0: [], 1: [], 2: []}
+    # swarm_robot_id = [1, 2, 3]
+    # follower_topology = {0: [1, 2], 1: [0,2], 2: [0,1]}
+    # leader_topology = {0: [], 1: [], 2: []} # 一致性
+    # leader_topology = {0: [1], 1: [2], 2: [3]} # 合围
+    # 4个机器人
+    swarm_robot_id = [1, 2, 3, 4]
+    follower_topology = {0: [1, 2], 1: [0, 3], 2: [0, 3], 3: [1, 2]}
+    # leader_topology = {0: [], 1: [], 2: [], 3: []} # 一致性
+    leader_topology = {0: [0], 1: [1], 2: [2], 3: [3]} # 合围
 
     # Initialize swarm robot
     swarm_robot = SwarmRobot(swarm_robot_id)
-    leader_robot_pose = [[-5, 5, -0.1], 
-                    [-5, -5, 0.1], 
-                    [5, -5, -0.1],
-                    [5, 5, 0.1]]
+    leader_robot_pose = [[-1, 1, -0.1], 
+                    [-1, -1, 0.1], 
+                    [1, -1, -0.1],
+                    [1, 1, 0.1],
+                    [2, 1, 0.1],
+                    [2, 2, 0.1]]
     points = [x[0:2] for x in leader_robot_pose]
     hull = ConvexHull(points)
 
@@ -79,7 +87,7 @@ def main():
     is_conv = False
 
     # While loop
-    v_lim=np.ones(3)
+    v_lim=np.ones(swarm_robot.robot_num)
     while not is_conv:
     # for i in range(num_iterations):
         for i in range(swarm_robot.robot_num):
@@ -141,6 +149,8 @@ def main():
                 v_lim[i]=0
                 if np.max(v_lim):
                     is_conv = True
+            else:
+                v_lim[i]=1
 
             # 移动单个机器人
             # rate.sleep()
