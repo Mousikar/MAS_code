@@ -27,7 +27,7 @@ def T_inv(T):
     return T_inv
 
 def main():
-    rospy.init_node("containment_robot_control_formation")
+    rospy.init_node("ramdon")
     rate = rospy.Rate(50)
 
     # Set ids of swarm robot based on Aruco marker
@@ -117,21 +117,21 @@ def main():
 
             # 之前的速度
             # use position get velocity
-            # print([x * len(leaders) for x in current_robot_pose[i]])
-            # print(np.sum(neighbor_positions, axis=0))
-            # velocity = - ([x * len(neighbors) for x in current_robot_pose[i]] - np.sum(neighbor_positions, axis=0)) 
-            # velocity = velocity - ([x * len(leaders) for x in current_robot_pose[i]] - np.sum(leader_positions, axis=0))
-            # print(velocity)
-            # v=k_v*math.sqrt(math.pow(velocity[0],2)+math.pow(velocity[1],2))
-            # w=k_w*math.atan2(velocity[1], velocity[0])
-
-            # 角度相减去 
+            print([x * len(leaders) for x in current_robot_pose[i]])
+            print(np.sum(neighbor_positions, axis=0))
             velocity = - ([x * len(neighbors) for x in current_robot_pose[i]] - np.sum(neighbor_positions, axis=0)) 
             velocity = velocity - ([x * len(leaders) for x in current_robot_pose[i]] - np.sum(leader_positions, axis=0))
             print(velocity)
-            k = 0.2
-            v=math.sqrt(math.pow(k*velocity[0],2)+math.pow(k*velocity[1],2))
-            w=math.atan2(velocity[1], velocity[0])-current_robot_pose[i][2]
+            v=k_v*math.sqrt(math.pow(velocity[0],2)+math.pow(velocity[1],2))
+            w=k_w*math.atan2(velocity[1], velocity[0])
+
+            # # 角度相减去 
+            # velocity = - ([x * len(neighbors) for x in current_robot_pose[i]] - np.sum(neighbor_positions, axis=0)) 
+            # velocity = velocity - ([x * len(leaders) for x in current_robot_pose[i]] - np.sum(leader_positions, axis=0))
+            # print(velocity)
+            # k = 0.2
+            # v=math.sqrt(math.pow(k*velocity[0],2)+math.pow(k*velocity[1],2))
+            # w=math.atan2(velocity[1], velocity[0])-current_robot_pose[i][2]
 
             # 移动单个机器人
             # rate.sleep()
