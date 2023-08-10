@@ -20,7 +20,7 @@
             </geometry>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <material name="baselink_color">
-                <color rgba="1.0 0.5 0.2 0.5" />
+                <color rgba="0.2 0.2 0.2 0.5" />
             </material>
         </visual>
         <collision>
@@ -33,7 +33,7 @@
         <xacro:cylinder_inertial_matrix m="${base_mass}" r="${base_radius}" h="${base_length}" />
     </link>
     <gazebo reference="base_link">
-        <material>Gazebo/Yellow</material>
+        <material>Gazebo/Grey</material>
     </gazebo>
     <joint name="link2footprint" type="fixed">
         <parent link="base_footprint" />
@@ -68,7 +68,7 @@
             <xacro:cylinder_inertial_matrix m="${wheel_mass}" r="${wheel_radius}" h="${wheel_length}" />
         </link>
         <gazebo reference="${wheel_name}_wheel">
-            <material>Gazebo/Red</material>
+            <material>Gazebo/Grey</material>
         </gazebo>
         
         <joint name="${wheel_name}2link" type="continuous">
@@ -109,7 +109,7 @@
             <xacro:sphere_inertial_matrix m="${small_body_mass}" r="${small_wheel_radius}" />
         </link>
         <gazebo reference="${small_wheel_name}_wheel">
-            <material>Gazebo/Red</material>
+            <material>Gazebo/Grey</material>
         </gazebo>
         
         <joint name="${small_wheel_name}2link" type="continuous">

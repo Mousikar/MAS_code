@@ -27,7 +27,7 @@
         <xacro:Box_inertial_matrix m="${camera_mass}" l="${camera_length}" w="${camera_width}" h="${camera_height}" />
     </link>
     <gazebo reference="camera">
-        <material>Gazebo/Blue</material>
+        <material>Gazebo/Grey</material>
     </gazebo>
     <joint name="camera2base" type="fixed">
         <parent link="base_link" />
