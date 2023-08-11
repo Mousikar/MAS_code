@@ -42,7 +42,7 @@ function sys=mdlOutputs(t,x,u,pa)
 
 xd = 5;
 yd= 10;
-thetad = pi/2;
+thetad = 2*pi/3;
 sys = [xd;yd;thetad];
 
 function sys=mdlGetTimeOfNextVarHit(t,x,u)

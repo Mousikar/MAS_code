@@ -53,18 +53,25 @@ e1=xe*cos(theta)+ye*sin(theta);
 e2=-xe*sin(theta)+ye*cos(theta);
 e3=thetae;
 
-k=0.1;
-% 1 
-w=k*e2/e1;
-% v=e2*w+k*e1;
-v=k*e3*e2+k*e1;
+k=0.2;
+% 1 自适应
+% w=k*e3;
+% w=k*e2/e1;
+% v=k*e3*e2+k*e1;
+% v=k*e2/e1*e2+k*e1;
 
-% % 2
-% xdot=k*xe;
-% ydot=k*ye;
-% v=sqrt(xdot^2+ydot^2);
-% w=atan2(ydot,xdot)-theta;
+% 2 加权平均 相乘
+% w=k*e2*e3;
+% v=k*e3*e2+k*e1;
 
+% 3 还没找到解释v=xdot^2+ydot^2;
+xdot=k*xe;
+ydot=k*ye;
+v=sqrt(xdot^2+ydot^2);
+w=atan2(ydot,xdot)-theta;
+
+% 滑模
+% 继续写
 
 sys = [v;w];
 
