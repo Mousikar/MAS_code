@@ -120,7 +120,7 @@ def main():
                     k[i] = 0.005 * np.sum(np.abs(leader_robot_pose[i,:2]-cur_pos[i,:2]))
                     # k[i]=0.008
                 speed.append([v,w])
-                file.write("%.12f, %.12f, %.12f, %.12f, %.12f" % (current_robot_pose[i][0], current_robot_pose[i][1], current_robot_pose[i][2], v, w))
+                file.write("%.12f, %.12f, %.12f, %.12f, %.12f, " % (current_robot_pose[i][0], current_robot_pose[i][1], current_robot_pose[i][2], v, w))
             file.write("\n")
 
             rate.sleep()
@@ -176,7 +176,7 @@ def main():
             for i in range(len(swarm_robot_id)):
                 cur_theta[i] = current_robot_pose[i][2]
                 # file.write(f"{current_robot_pose[i][0]}, {current_robot_pose[i][1]}, {current_robot_pose[i][2]}, 0.0, {w_his[i]}, ")
-                file.write("%.12f, %.12f, %.12f, 0.0, %.12f" % (current_robot_pose[i][0], current_robot_pose[i][1], current_robot_pose[i][2], w_his[i]))
+                file.write("%.12f, %.12f, %.12f, 0.0, %.12f, " % (current_robot_pose[i][0], current_robot_pose[i][1], current_robot_pose[i][2], w_his[i]))
             file.write("\n")
             iter_ang += 1
 
