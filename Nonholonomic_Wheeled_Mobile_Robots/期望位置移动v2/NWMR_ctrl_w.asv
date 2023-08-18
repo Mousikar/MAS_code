@@ -45,13 +45,12 @@ theta = u(6);
 thetae = thetad - theta;
 k3 = 0.5;
 % 饱和函数
-delta=0.1;
-if abs(thetae)>delta
+if abs(thetae)>0.1
     sats=sign(thetae);
 else
-    sats=1/delta * thetae;
-end
-w = dtheta + k3 * thetae + 0.5*sats;
+    sats=k3 * thetae
+
+w = dtheta + k3 * thetae;
 
 sys = [v;w];
 
