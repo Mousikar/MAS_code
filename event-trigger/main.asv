@@ -11,18 +11,18 @@ L = [3 0 0 -1 -1 -1;
 dt = 0.01;
 Ts = 0:dt:10;
 xhat = x;
-x1 = [];    % 记录所有的正常状态
-x1hat = []; % 记录所有的经过触发之后的状态
+x1 = [];    % 储存状态
+x1hat = []; % 触发之后的状态
 s = 1;
-E = [];     % 记录所有的误差
+E = [];     % 误差
 alpha = 0.9;
 c1 = 1.1;
-ef = [];    % 记录所有的fi
-M = [];     % 记录每次的m = c1 * exp(-alpha * t)
-U = [];     % 记录每次的控制输入
-T1 = [];    % 记录事件出发的时刻
+ef = [];    % 
+M = [];     % 
+U = [];     % 
+T1 = [];    %
 for t = 0:dt:10
-    ef1 = [];% 记录一次的fi
+    ef1 = [];% 
     % 储存数据
     x1 = [x1;x];
     x1hat = [x1hat;xhat];
@@ -63,7 +63,7 @@ plot(x1,'r-.','LineWidth',2)
 title('状态变量')
 
 subplot(312)
-plot(U,'LineWidth',2)
+plot(U,LineWidth',2)
 title('控制输入')
 
 subplot(313)
