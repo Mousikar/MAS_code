@@ -1,0 +1,438 @@
+Containment control;multi-agent systems;fully distributed control;external disturbances
+Takagi-Sugeno fuzzy systems;Nonlinear systems;Stochastic Uncertainty;Multi-agent systems (MASs)
+Actuator faults;adaptive bipartite containment control;nonlinear multi-agent systems;predefined-time
+Multi-agent systems;fixed-time control;external disturbances;containment control;sliding mode control
+Containment control;Multi-agent system;General second-order dynamics
+Multi-agent systems;formation control;containment control
+Bipartite containment control;fixed-time control;high-order multi-agent systems
+Multi-agent system;formation-containment;motion planning
+Heterogeneous fractional-order multi-agent systems (HFOMASs);finite-time control;bipartite containment control
+multi-agent systems;containment control;self-feedback;aperiodic sampled-data
+Specified time;Containment control;Multi-agent system;High-order linear system
+Distributed containment;Markov jump multi-agent systems;asynchronous communications
+multi-agent systems;containment control;multiple stationary leaders;communication time-delays
+Multi-agent systems;output containment control;output regulation;low gain feedback;actuator saturation
+Containment control;nonlinear multi-agent system;neural networks
+Finite-time;containment control;multi-agent systems;time-varying gain
+Specified-time containment;Sampling measurement;Multi-agent system;Optimal control
+Multi-agent systems;event-triggered;sampled data;containment control
+delay margin;multi-agent systems;P-type containment protocol;P D-type containment protocol
+Multi-agent Systems;High-order Nonlinear Systems;Event-triggered Control;Containment Control;Zeno Behavior
+nonlinear multi-agent system;containment;distributed controller
+Terminal sliding mode;Multi-agent systems;Finite-time containment control;Finite-time disturbance observer;Mismatched disturbance
+Containment control;Lipschitz nonlinearity;multi-agent system;reduced-order observer design
+Containment Control;Multi-agent Systems;Intermittent Sampled Data
+Containment control;Multi-agent systems;External disturbance;Lyapunov theory
+Multi-agent systems;containment control;input saturation;directed networks
+Predefined-time control;Containment control;Multi-agent systems;External disturbances;Sliding mode control
+Multi-agent systems;Containment control;Asynchronous;Sampled-data;Switching topologies
+Multi-leader multi-agent system;non-cooperative edge;containment control;reduced-order controller
+Multi-agent systems (MASs);nonuniform time delays;containment control;fixed topology
+containment;linear multi-agent system;output feedback control;adaptive control
+Containment tracking;Multi-agent systems;Markovian switching;Measurement noise
+Multi-agent systems;containment control;unknown control direction;output regulation problem
+Multi-agent systems;containment control;sampled position data;Second-order dynamics
+frequency-domain;containment control;general linear multi-agent systems;time delay
+singular multi-agent system;multiple leaders;iterative learning control;containment errors
+observer;containment control;Lipschitz;delay;stability
+Nonlinear systems;Takagi-Sugeno (T-S) fuzzy models;Multi-agent systems (MASs);Cooperative control;Linear matrix inequalities (LMIs)
+containment control;heterogeneous multi-agent system;time-delay;directed graph;laplacian transform
+Differential privacy;Containment control;Multi-agent systems
+Consensualization;Multi-agent Singular Systems;Track;Containment
+formation-containment control;second-order multi-agent systems;time-varying delay
+Containment control;Cooperative control;Second-order multi-agent systems
+containment control;event-triggered control;multi-agent systems
+Multi-agent systems;Finite-time containment;Switching topology
+containment-rendezvous problem;first-order multi-agent system;PI coordination control;symmetric topology
+containment control;distributed;event-triggered;finite-time;multi-agent systems
+Containment control;fractional-order;multiagent systems;time delays
+Containment Control;Impulsive Algorithm;Multi-Agent System
+Markovian switching interconnection topologies;containment control;H鈭?performance;linear or linearized dynamics
+Containment control;Multi-agent systems;Broadcast gossip algorithm;First-order dynamics
+Containment control;Exogenous disturbances;Disturbance observer
+Multi-agent System;Containment;Event-triggered Control;Relative-state Feedback
+bipartite containment;convex hull;antagonistic interaction;multiple leaders
+Containment control;high-order multiagent systems;communication delays
+Adaptive control;finite-time output containment;nonlinear multi-agent system;distributed state observer
+Containment control;finite-time control;multiagent system;terminal sliding-model control
+Multi-agent systems;consensus;cooperative control;tracking control;containment control
+Asynchronous system;Multi-agent system;Multiple leaders;Containment Control
+Multi-agent systems;containment control;low gain feedback;low-and-high gain feedback;saturation;dead zone
+Set tracking control;Multi-agent Systems;Changing communication Networks
+Adaptive neural network (NN) control;bipartite containment;finite-time control;fractional-order system;multi-agent system.
+Consensus;containment control;cooperative control;Lagrangian systems;multiagent systems;nonlinear system.;Consensus;containment control;cooperative control;Lagrangian systems;multiagent systems;nonlinear system
+Multi-agent systems (MASs);bipartite containment observer;dynamic gain compensator;time-varying powers
+Containment control;Second-order;Nonlinear multi-agent system;Time-delay
+
+Multi-agent system;consensus;containment control;adaptive control
+Formation-containment control;second-order agents;sampled data;intermittent communication.
+Containment-rendezvous control problem;second-order multi-agent systems
+Neural state observer;command filtered backstepping;finite-time control;nonlinear multi-agent systems;containment control
+Multi-agent system;structurally balanced graph;bipartite containment;signed graph
+Networked system;multi-leader system;containment control;observer-type protocol;multi-vehicle system;communication;Communication;containment control;multi-leader system;multi-vehicle system;networked system;observer-type protocol
+Fixed time;First-order;Multi-agent;Formation-containment
+finite-time;adaptive fuzzy control;sensor faults;tracking differentiator
+
+Non-fragile containment control;multi-agent systems;switching topologies;disturbance rejection;nonlinear dynamics
+Containment control;Sampled-data control;Second-order dynamics
+Multi-agent systems;bipartite containment;finite-time control;antagonistic interactions
+Fixed-time consensus;Second-order multi-agent systems;Leader-following consensus;Containment control;Nonlinear systems
+Containment control;High-order dynamics;Multi-agent systems;Time-varying delays
+Containment control;multi-agent systems;actuator saturation;rate saturation
+Consensus;Decentralized Event-triggering;Multi-Agent System;General linear dynamics;Finite-time
+
+Multi-agent systems;containment control;cooperative control;aperiodic sampling;robustness
+Consensus Control;Observer-Based Controller;Lipschitz;Nonlinear System
+containment control;multi-agent systems;input saturation
+Containment control;event-triggered control;practical fixed time;stochastic multi-agent systems
+Second-order multi-agent system;formation tracking;containment;sampling period
+multi-agent systems;prescribed-time consensus;event-triggered control;directed graphs
+Active Disturbance Rejection Control;Containment Control;Stochastic Nonaffine Multiagent Systems
+Adaptive fault-tolerant control;containment control;distributed control;fuzzy logic systems (FLSs);heterogeneous multiagent systems (MASs)
+Containment control;directed topology;finite-time control;nonlinear second-order multiagent system (MAS)
+Multi-agent systems;controlled followers selection;stabilization;bipartite containment control
+Average dwell time;containment;jointly connected topologies;nonlinear multiagent systems (MASs);pure-feedback systems
+
+
+Adaptive Containment Control;Command Filtered Backstepping;Stochastic Disturbances;Multi-Agent Systems
+Distributed $L_{2}-L_{\infty}$;Multi agent;Containment control
+
+Multi-agent systems;containment control;packet dropouts;resilient control
+Containment control;heterogeneous multi-agent systems (MASs);internal model principle;output-feedback;state-feedback
+Nonlinear multi-agent systems(MASs);containment control;neural networks(NNs);unmanned surface vessels(USVs)
+
+containment control;multi-agent system;self-feedback;impulsive control
+nonlinear multi-agent systems;fuzzy logic systems;fault-tolerant control;dynamic surface control
+Multi-agent systems;containment control;Lyapunov-Krasovskii functional;time-varying delay
+Multi-agent systems;periodic disturbances;event-triggered control;adaptive containment control
+
+
+Adaptive fuzzy containment control;fixed-time control;integral-type Lyapunov functions;nonlinear multiagent systems
+Adaptive fault-tolerant control;cooperative control;fuzzy logic systems (FLSs);hierarchical control;multiagent systems (MASs)
+mean square containment control;second-order multi-agent systems;jointly-connected;communication noise
+Containment control;filter-driven-approximation (FDA);multi-input鈥搈ulti-output (MIMO) pure-feedback multiagent systems;unknown nonlinearities
+Formation-containment control;general linear multi-agent systems;time-varying delays;switching topologies
+
+Heterogeneous multi-agent systems;Lyapunov method;Markovian switching topologies;output containment control;time delays
+
+Bipartite containment;singular MASs;signed digraphs;observer-based output feedback
+adaptive control;Lagrangian multi-agent system;containment control
+consensus tracking;containment control;ISM;multi-agent system
+Adaptive fault-tolerant control;directed network topology;distributed control;hierarchical control;multi-agent systems (MASs)
+Containment control;communication delays;multi-agent systems;fractional-order systems
+Containment control;directed graph;distributed controller;input saturation;networked multiagent system
+Formation-containment;High-order;Multi-agent system
+Distributed Containment Control;Fractional-order;Multi-agent Systems;Projection Algorithm
+Adaptive backstepping control;command filter;fractional-order multi-agent system;time-varying parameters
+Containment control;cooperative control;semi-Markovian multiagent systems;semi-Markovian switching topologies
+Containment control;fixed topology;second-order multi-agent systems;L鈧?L鈭?performance index
+Containment maneuvering;echo state network (ESN);finite-time nonlinear tracking differentiator;multiple-input multiple-output (MIMO) nonlinear systems;small-gain theorem
+finite time;containment control;multi-agent network;nonlinear perturbation
+Communication delay;containment control;multiagent systems;nonlinear control;switching topologies
+multi-agent systems;directed topology;input saturation;intermittent communication;semi-global containment control
+Distributed control;Containment control;Finite-time tracking;Multi-agent system;Dynamic leader
+Containment control;Output regulation;Event-triggered;Singular systems;Heterogeneous
+Multi-Agent System;Distributed Control;Containment Control;Finite-Time Control;Observer-Type Protocol
+Formation control;containment control;underactuated surface vessels
+Containment control;event-triggered control;iterative learning control (ILC);model-free system;multiagent systems (MASs)
+Time-varying Formation;Containment Problem;Marching Control;Multi-agent Systems;Unicycle-type Robots
+Containment control;dynamic surface control (DSC);nonlinear gains;sliding-mode control;state observer
+
+Containment control;event-triggered control;multiagent systems;neural networks (NNs);nonlinear system
+
+Adaptive fuzzy finite-time control;backstepping technique;containment control;fuzzy state observer;input delay;multiagent systems (MASs)
+Multi-agent systems;asymmetric data packet dropout;containment tracking control;disturbance observer
+
+Cooperative control;formation-containment control;multiagent system;unmanned aerial vehicle (UAV)
+Multi-agent systems;adaptive control;actuator failures;containment control
+Adaptive fuzzy containment control;full state constraints;multiagent systems (MAS);transformation function
+Communication topology;containment control;distributed adaptive control;networking agent system;neural network (NN) approximation
+Containment control;event-triggering control;multi-agent systems;sampled-data control
+Containment control;Linear system;Multi-agent systems;Output regulation
+Adaptive fuzzy control;containment control;fuzzy logic system (FLS);Lyapunov sense;nonaffine nonlinear pure-feedback systems
+Bipartite containment control;error compensation method;event-triggered control;stochastic nonlinear multiagent systems (MASs)
+Multi-agent system;Observer-based Containment Control;Consensus
+Containment control;model-free adaptive control (MFAC);multi-input multi-output (MIMO) nonlinear systems;multi-agent systems (MASs);output saturation
+fuzzy containment;fuzzy number;heterogeneous multi-agent systems;uncertainty
+
+Robust adaptive control;fractional-order multiagent systems;containment control;external disturbances
+Bipartite containment control;fixed-time conver-gence;external disturbances;cooperative-antagonistic networks
+Active disturbance rejection;backstepping;containment control;multiagent systems (MASs)
+Barrier Lyapunov function;containment control;full state constraints;fuzzy logic system (FLS);sliding-mode estimator
+Distributed containment control;fractional-order multi-agent systems;unknown persistent disturbances;multilayer networks
+Euler-Lagrange systems;distributed control;containment control;leader-folllowing control;finite-time control
+Containment control;event-triggered control;multiagent systems (MASs)
+Adaptive fuzzy control;constrained multiagent systems (MASs);containment control;uncertain leader
+Multi-agent Systems;Self-triggered control;Containment Control;Nonlinear Systems
+Containment control;multi-agent system;input saturation;input additive disturbance
+Nonlinear systems;HOFA-MASs;containment control;neural networks;adaptive control
+Multi-agent systems;Kalman-Bucy filtering;Containment control;Measured noise
+multi-agent systems;finite-time containment consensus;integral sliding mode;disturbance
+Bipartite containment control;Second-order multi-agent systems;Switching signed networks
+Multi-agent systems;Containment control;Distributed control;Nonlinear system
+Distributed model predictive control (DMPC);dynamic leaders;full containment;multiagent systems;output feedback control
+Adaptive fuzzy control;distributed containment tracking control;performance constraint;quantized input;stochastic pure-feedback nonlinear multiagent systems
+containment control;multi-agent systems;directed network topology;switching topology;cooperative control
+Multi-agent systems;adaptive control;containment control
+Containment control;directed spanning forest;general second-order dynamics;switched multiagent systems
+Aperiodic sampled-data;containment control;network system;pull-based event-triggered
+Group-consensus behavior;hierarchical containment control;linear multi-agent systems;three-layer topology
+Cooperative systems;delay systems;distributed control;nonlinear systems;robustness
+Multi-agent systems;containment control;event-triggered;off-policy reinforcement learning;actor-critic
+Adaptive fuzzy control;bipartite containment control;Bouc鈥揥en hysteresis;fixed-time control;multiagent systems
+Nonuniform time-varying communication delays;multi-agent systems;containment control
+Adaptive fuzzy control;containment control;command filter;fuzzy state observer
+Containment control;formation tracking;group division;linear dynamics;multiagent systems
+Multi-agent systems;cooperative control;fast terminal sliding mode;containment control;exponential finite time
+Containment control;multi-agent systems;delay-induced;intermittent communication;sampled position data
+Formation containment;multiagent systems (MAS);output-feedback (OPFB);target enclosing;time-varying formation
+Multi-agent system;containment control;consensus;nonsmooth analysis;parameter uncertainty
+Adaptive control;bipartite control;fixed-time control;heterogeneous multiagent systems;time-varying output formation-containment
+Bipartite containment control;singular multiagent systems;signed digraphs
+Containment control;multi-agent systems;velocity constraint;acceleration constraint;switched topology.
+Event-triggered protocol;H鈭?containment control;multiagent systems (MASs);state observer
+Adaptive control;containment control;multiagent systems;neural networks;quantization
+Iterative Learning Control;Containment Control;Fading Channels
+containment control;high gain observer;fuzzy control;sliding mode surface
+Containment control;dead-zone output;prescribed performance;unknown disturbance
+
+Fixed-time bipartite containment;multi-agent systems;disturbance
+Multi-agent systems;Containment control;Jointly connected topologies;Fault-tolerant control
+Containment control;distributed protocols;dynamic compensators;stochastic multiagent systems
+Actuator faults;denial-of-service (DoS) attacks;fuzzy dynamic containment control;interval type-2 (IT2) Takagi鈥揝ugeno (T鈥揝) fuzzy approach;switched systems
+muti agent;Avian Influenza;model;epidemic;Containment Strategy
+Actuator failures;adaptive containment control;adding a power integrator;disturbance observer;nonlinear multiagent systems (MASs)
+Containment control;internal model principle;multi-agent systems;observer technique;output regulation
+Aperiodic sampling;containment control;distributed control;measurement size reduction;switched linear systems
+Containment control;convex position constraints;nonconvex control input constraints;nonconvex velocity constraints;switching topologies
+Bipartite containment control;command filter;event-triggered mechanism;fixed-time control;stochastic multiagent systems (MASs)
+
+Containment control;event-triggered control;multiagent systems;stochastic disturbances;Zeno behavior
+Containment control;event-triggered control;fuzzy logic system;strict-feedback system
+Adaptive Fuzzy Control;Containment Control;Observer;Output Feedback
+Formation-containment tracking;heterogeneous;multiagent systems (MASs);transmission delays;unbounded distributed delays
+Multi-agent systems;Target capturing;Distributed model predictive control;Synchronization
+Containment control;distributed control;finite-time control;multiagent systems;second-order systems;Containment control;distributed control;finite-time control;multiagent systems;second-order systems
+Euler-Lagrange systems;distributed adaptive control;unknown nonlinear
+Actuator faults;bipartite output containment;dual-terminal dynamic event-triggered mechanisms (ETMs);fully distributed control;heterogeneous linear multiagent systems (HLMASs)
+Finite-time containment control;fraction dynamic surface;multiagent system (MAS);nonaffine pure-feedback form
+Multi-agent systems;hierarchical topology reconfiguration;general noise;containment control
+Multi-agent Systems;Cooperative Control;Distributed Control;Containment Control;Nonlinear Systems
+Discrete-time systems;distributed formation-containment (FC) control;dynamic event-triggered (DET) protocol;multiagent systems (MASs)
+
+Active leader;containment control;distributed observer;heterogeneous systems;model free;reinforcement learning (RL)
+Containment control;multiagent systems;relative outputs
+Containment control;multiagent systems;nonconvex states constraints;nonuniform time delays;switching directed networks
+Adaptive fuzzy control;containment control;event-triggered control;Euler鈥揕agrange (EL) systems
+
+descriptor multi-agent systems;low gain;input saturation;aperiodic intermittent control
+output feedback control;containment control;Euler-Lagrange systems;finite-time observer;adaptive control
+Containment control (CC);event-triggered control (ETC);multiagent systems
+
+Heterogeneous systems;integral reinforcement learning (RL);internal model principle;optimal robust output containment;output-feedback
+Fractional-order multi-agent systems;robust containment control;Lyapunov function;neural network
+Containment control;multi-agent systems;communication delays;intermittent communication;directed graphs;second-order systems
+
+Dynamic network topology;heterogeneous linear systems;optimal control;output containment control
+
+
+Bipartite containment control;multiagent systems;Markovian switching topologies;impulsive attacks;Razumikhin method
+Active disturbance rejection control (ADRC);backstepping technique;containment control;noise immunity;output-feedback
+Containment control;cooperative adaptive learning control;cooperative finite-time excitation
+Containment control;event-triggered;reinforcement learning;nonlinear multiagent systems
+Battery Energy Storage System;Battery Control;Reinforcement Learning;multi-agent;SWARM
+
+Discrete-time;global containment control;input saturation;multiagent systems (MASs);<italic xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Q</italic>-learning (QL) algorithm
+Containment control;human-in-the-loop (HiTL);input saturation;multiagent systems (MASs);unknown time-varying parameters
+Formation-containment control;high-order multiagent systems (MASs);observer-type protocols;time-varying formation configuration
+constrained containment problem;multi-agent systems(MASs);velocity constraints;position constraints;time delay
+Prescribed-instant control;Multiagent systems containment;Directed communication topology
+Fault-tolerant containment control;multi-agent systems;process faults;output regulation
+Containment control;intermittent control;multiagent systems;output regulation problem;time scale
+
+Containment control;heterogeneous multi-agent systems;non-autonomous leader;fully distributed observer;optimal model reference approach;model-free reinforcement learning
+
+Multi-agent systems;H鈭?leader-following tracking;Containment control;Output-feedback
+Containment control;fractional order;multiagent system (MAS);sampled data
+Additive noises;consensus control;containment control;group hybrid coordination control;multi-agent systems (MASs);time-delays
+Game algebraic Riccati equation (GARE);H鈭?intermittent containment control;multiagent systems (MASs)
+fault-tolerant control;heterogeneous multiagent systems;containment control
+Adaptive distributed observer;containment control;cooperative control;external disturbance
+Containment control;discrete-time;input saturation;multi-agent systems;low gain feedback;distributed observers
+Containment control;flexible manipulator;fuzzy logic systems (FLSs);Lyapunov function;model uncertainties
+Containment control;finite-time formation;multiagent system;switching topology;two-layer network.;Containment control;finite-time formation;multiagent system;switching topology;two-layer network
+Formation-containment control;second-order dynamics;multi-agent systems;time-varying delays
+Distributed Containment Control;Nonlinear Multi-agent Systems;Switching Topology;Pure-feedback System;Command Filtered Control;Singular Perturbation Analysis
+heterogeneous systems;optimal control;reinforcement learning;adaptive observer
+Containment control;multiagent system (MAS);PI $^{{n}}$ -type algorithm;polynomial trajectory
+Actuator nonlinearity;containment control;distributed observer;predictor
+Sampled-data control;Event-triggering control;Containment control;Multi-agent systems
+Containment maneuvering;Event-triggered mechanism;Modular neural network control;Multi-agent systems
+Bipartite containment control;multiagent systems (MASs);event-triggered mechanism;input quantization;unmeasurable states
+
+Bipartite control;formation containment;fully distributed event/self-triggered control;multiagent systems (MASs).
+Adaptive fuzzy control;containment control;event-triggered control;unknown Bouc鈥揥en hysteresis
+Containment control;control input constraints;multiagent systems;switching topologies
+Adaptive distributed observer;Euler鈥揕agrange systems;formation-containment (FC) control;multiagent systems;nonautonomous leaders
+
+Containment control;denial-of-service (DoS) attacks;event-triggered mechanism;multiagent systems (MASs)
+Containment control;heterogeneous multiagent systems;observer-type protocol;output regulation;time-varying formation (TVF) tracking
+Sampled-data containment control;Second-order dynamics;Communication delays
+Multi-agent Networks;Finite Time;Containment Control;Nonlinear Perturbation
+Containment control;heterogeneous;multiagent systems (MASs);unbounded distributed delays
+Adaptive distributed observer;bipartite containment;multiagent systems;structurally balanced graph
+Containment control;cyber attacks;unmanned aerial vehicle system;publish-subscribe middleware
+Containment control;Nonconvex velocity constraints;Nonconvex control input constraints;Switching topologies
+cooperative control;multi-agent systems;consensus;containment control
+Arbitrary network topology;asynchronous setting;containment control;linear multiagent systems (MASs)
+
+multi-agent systems;integral sliding mode;finite-time tracking consensus;finite-time containment consensus
+Tube-based model predictive control;Containment control;Additive state decomposition;Multi-agent system
+Containment problems;decentralized control;graph theory;leader-following;multi-agent systems;partial difference equations
+Distributed coordination control;signed digraph;containment control;reduced-order observer
+Distributed containment control;fixed-time convergence;event-triggered control;networked nonlinear systems;directed graphs
+Consensus;Containment control;cooperative control;multi-agent systems
+Containment control;double-integrator agents;heterogeneous networks
+Directive network topology;nonlinear systems;second-order moment processes
+event-triggered control;state-dependent switching topology;two-time-scale controller
+Communication delays;containment control;multiagent systems;nonconvex constraints
+Time-varying formation control;formation feasibility;linear multi-agent system;time-varying delay;switching directed topology
+Consensus problem;containment control;networks;state constraint;tracking
+
+Actuator faults;adaptive control;containment control;multi-agent systems;output-feedback
+Euler鈥揕agrange system (ELS);formation-containment;neural networks (NNs);output feedback control
+Fixed-time consensus;multi-agent systems;directed topology;prescribed-time;sliding-mode control
+
+
+discrete-time multi-agent systems;signed digraph;(interval) bipartite consensus;bipartite containment
+containment control;nonlinear constrains;agents network;bounded delays;switching topologies
+Adaptive control;consensus control;disturbance rejection;multiagent systems
+
+Containment control;distributed observer;incomplete state measurements;multi-agent system
+
+
+Formation-Containment control;Multi-agent systems;Adaptive Sliding Mode Control;Micro Air Vehicles
+Finite-time control;multiagent systems (MASs);polar coordinate;rotating formation-containment
+
+Containment control;distributed control;multiagent systems (MASs);output feedback
+
+Formation-containment control;multi-agents;nonautonomous leaders;switching topology
+Containment control problem (CCP);cooperative output regulation;heterogeneous leaders
+Multi-agent systems;containment;group dispersion;distributed control;experimental platform
+  $H_\infty$   optimal control;Bounded   $L_{2}$   gain;differential game;linear-quadratic game;unmanned aerial vehicle (UAVs)
+Attack compensation;containment control;multiagent systems (MASs);observer-based fully distributed control
+Containment problem;event-triggered control;multiagent systems (MASs)
+graphical games;multi-agent networks;integral reinforcement learning;containment control
+Agents-based systems;Cooperative control
+Adaptive control;event-triggered mechanism;linear heterogeneous multiagent systems;signed digraph.
+Containment control;Heterogeneous systems;Active Leader;Distributed observer;Reinforcement learning;Model-free
+Containment control;collision avoidance;nonholonomic mobile robots;optimal backstepping technique;reinforcement learning
+
+Adaptive event-triggered control;bipartite containment control;nonzero leaders' inputs;signed digraphs
+Containment control;fractional-order systems;multiple leaders;convex hull
+Containment;directed topology;networked multiple systems;prescribed-time consensus
+
+Containment control;distributed algorithms;large-scale networks;multirobot systems (MRSs);resilient protocols
+
+Heterogeneous systems;distributed observer;algebraic riccati equations (AREs);reinforcement learning;H鈭?control
+Bipartite consensus;event-triggered control;intermittent communication;intermittent controller updates;linear multiagent systems (MASs);output feedback control
+bipartite containment control;multiagent systems;signed network;DoS attacks
+Adaptive fuzzy control;containment control;high gain observer;prescribed performance
+Event-triggered control;adaptive control;neural network control;fully distributed control;Euler-Lagrange system
+Consensus;containment;dynamic eventtriggered control;Euler鈥揕agrange system;multiagent systems (MASs)
+Multi-agent systems;containment control;nonlinear system;neural networks
+Containment control;directed communication graph;limited communication data rate;sampled control
+Harmonic oscillators;Containment control;Oscillatory leaders
+
+Agent networks;containment control;switching topologies;information delays;sampled-data
+USV;cluster cooperative control;multi-agent system;communication technology
+Impulsive control;containment control;networked harmonic oscillators;directed networks
+Directed graphs;Fault-tolerant control;Formation-containment;Multi-agent systems;Prescribed-time consensus
+Distributed model predictive control (DMPC);event-triggered control;logarithm quantization;multiagent systems and containment control
+Collision-avoidance;consensus;multi-agent systems;preset-time control
+Demand Response (DR);Virtual Power Plant (VPP);Distributed Power Generation (DG);Ancillary Services;Frequency Controlled Reserves;Under Frequency Load Shedding (UFLS);Frequency Containment Reserve (FCR);Power System Reliability;Power System Stability
+Adaptive control;containment control;distributed control;heterogeneous multiagent systems (MASs);hierarchical control
+
+
+distributed control;multiagent system;neural network approximation;directed topology
+Adaptive control;containment control;directed topology;reaction-diffusion neural network
+Event-triggered control;distributed containment control;stochastic nonlinear multi-agent systems;DoS cyber attacks
+Adversaries;attacks;heterogeneous multigroup system;resilience;sensor fault
+Containment control;distributed control;leader-follower;average consensus;distributed optimization;ADMM;directed graphs
+Human-in-the-loop;multiagent systems;formation tracking;containment control;unknown input reconstruction
+Distributed control;multiagent systems;stability and performance analysis
+
+Command filter;containment control;event-triggered control;finite-time control;fractional-order multiagent system (FOMAS)
+Bipartite containment fluctuation;cooperative鈥揳ntagonistic network (CAN);extended leader鈥揻ollower (ELF) framework;modulus consensus;time-varying topology
+Data-driven control (DDC);deception attacks;distributed model-free adaptive control (DMFAC);multiple-input and multiple-output (MIMO);nonlinear multiagent systems (MASs)
+
+Bipartite containment control;disturbance observer;heterogeneous nonlinear exosystems;feedback control
+Asynchronous communication;error analysis;multiagent system;unique stationary solution
+Containment control;event-triggered strategy;model free adaptive control (MFAC);multiagent systems
+Multiagent systems;signed networks;asynchronous updates;limited communication resources
+distributed sensors;sensor scheduling;system control;dynamic game theory
+Cooperative guidance and control framework;formation-containment tracking;terminal slide mode guidance law;genetic algorithm;disturbance observer
+Bipartite coordination;signed graph;M-matrix
+Event-triggered mechanism;finite-time;fuzzy state observer;containment control;input saturation
+Containment control;multiagent systems;reduced-order protocol;Sylvester equations
+
+Bearing-defined formation;cooperative control;finite-time control;tracking control
+Multi-agent coordination;average consensus;containment control;switched systems
+Containment control;directed network;distributed fixed-time control;Euler鈥揕agrange system;leadless synchronization control
+
+Adaptive distributed observer;adaptive neural networks (NNs);external disturbances;heterogeneous nonlinear multiagent systems (MASs);practical output containment
+Multi-agent systems;target capturing;distributed model predictive control
+
+
+Bipartite containment tracking;directed topology;dynamic signed network;frequency-domain approach
+Containment control;distributed control;double-integrator dynamics;multi-agent systems
+Directed topology;fixed-time consensus;multiagent systems (MASs);neural networks;sliding-mode control
+Denial-of-service (DoS) attacks;distributed model-free adaptive control (DMFAC);learning-based;nonlinear multiagent systems (MASs)
+Attention mechanism;deep reinforcement learning (DRL);graph convolutional networks;multi agent systems.
+COVID 19 spread;Compartmental models;Ordinary Differential Equations;Multi-agents simulation
+Coordinated transportation;Polynomial trajectory;Containment control;Multi-agent system
+
+Linear MASs;collective behavior;arbitrary network topology;Arbitrary network topology;collective behavior;coordination control;linear multiagent systems (MASs)
+dynamics analysis;fractional differential equations;Brownian motion
+heterogeneous multi-agent systems;parameter consensus;distributed control;Euler-Lagrange systems
+
+
+Event-triggered control (ETC);fault-tolerant control (FTC);finite-time output constraint;nonlinear multiagent systems (MASs);observer-based containment control (CC)
+Autonomous agents;cooperative control;distributed control;graph connectivity
+Directed topology;ISS;locally lipschitz continue;multiagent coordination;second-order nonlinear dynamics;Directed topology;ISS;locally lipschitz continue;multiagent coordination;second-order nonlinear dynamics
+Continuum deformation;local communication;multiquadcopter system;nonlinear control
+
+
+
+Collision avoidance;constraint-following control;formation-containment control;satellite formation flying;uncertainty
+
+
+Consensus;distributed adaptive control;neural networks (NNs);nonlinear multiagent system (MAS)
+Differential games;graph theory;multiagent systems;pursuit-evasion games
+
+optimal rigid graph;pinning control algorithm;community division;swarm control;H-index centrality;Local modularity
+
+Cooperative control;multiagent system;optimal control;quadrotor;reinforcement learning (RL)
+
+Asynchronous sampling;containment control;harmonic oscillators;heterogeneous networks;leader-following control
+
+
+Distributed control law;multiagent system;target capturing;target enclosing;target surrounding
+
+
+Ground Control Station;Adaptive Graphics User Interface;Mental Workload;Complexity;Transparency
+
+Target capturing;target enclosing;target surrounding;multi-agent system;distributed control law
+Health care cost containment;dynamic home healthcare resources assignment;simulation
+Bipartite containment tracking;convergence behavior;extended leader鈥揻ollower framework;mixed static and dynamic protocol;signed network
+
+Health care cost containment;home health care resources assignment;game theory;iterative bidding
+Continuum deformation;decentralized control;local communication;physics-based methods;resilient multiagent coordination
+Correlated attacks;inverters;microgrids;resilient control;synchronization
+
+Graph theory;macroscopic coordination;microscopic coordination;multi-agent coordination;UAS traffic management
+Micro traffic;unpredictable disturbance;agent based modeling;cellular automata
+
+Hypernetwork dismantling;deep reinforcement learning;graph combinatorial optimization
+AC/DC DISTRIBUTION NETWORK;COMMUNICATIONS NETWORK;PHYSICAL NETWORK;REAL-TIME OPTIMIZATION DISPATCHING;DISTRIBUTED ALGORITHM
+
