@@ -42,10 +42,10 @@ class LeaderAgent(Agent):
         self.index = index
     # 领导者轨迹
     def track_leader(self,iter):
-        aa = 0
-        bb = 0  # 领导者不动
-        # aa = (10-np.max(leader_positions[:,0]))/t_sum   # 走直线 走斜线 走sin线
-        # bb = 0 #走直线
+        # aa = 0
+        # bb = 0  # 领导者不动
+        aa = (10-np.max(leader_positions[:,0]))/t_sum   # 走直线 走斜线 走sin线
+        bb = 0 #走直线
         # bb = (10-np.max(leader_positions[:,1]))/t_sum    # 走斜线
         # bb = 2*self.position[1] *np.cos(2*iter/t_sum)                # 走sin线
         self.velocity = np.array([aa, bb])
@@ -57,13 +57,13 @@ a = 1
 b = 1
 
 t_sum = 20
-num_iterations = 800
+num_iterations = 100
 deltat = t_sum/num_iterations
 t_delay = 0.35
-linjie = 4*int(np.floor(t_delay/deltat))
+linjie = 8*int(np.floor(t_delay/deltat))+1
 # 每个机器人时滞的步长
 tau_follower = [linjie, linjie, linjie, linjie, linjie, linjie]
-tau_leader = [0,0,0,0,0,0]
+tau_leader =  [1,1,1,1,1,1]
 # [1,2,3,4,1,2] [5,5,5,5,5,5] [4,4,4,4,4,4] [3,3,3,3,3,3] [2,2,2,2,2,2] [1,1,1,1,1,1] 
 # [1,2,3,1,1,2]
 
@@ -182,35 +182,35 @@ plt.title('Agent Trajectories')
 plt.legend()
 plt.grid()
 plt.savefig('agent_trajectories.png')
-plt.show()
+# plt.show()
 
-# # 制作动画
-# def update(frame):
-#     follower_positions=follower_positions_history[frame].reshape([num_followers, 2])
-#     leader_positions=leader_positions_history[frame].reshape([num_leaders, 2])
+# 制作动画
+def update(frame):
+    follower_positions=follower_positions_history[frame].reshape([num_followers, 2])
+    leader_positions=leader_positions_history[frame].reshape([num_leaders, 2])
 
-#     leader_scatter.set_offsets(leader_positions)
-#     follower_scatter.set_offsets(follower_positions)
+    leader_scatter.set_offsets(leader_positions)
+    follower_scatter.set_offsets(follower_positions)
 
-#     # Update labels
-#     for i in range(num_leaders):
-#         leader_labels[i].set_position((leader_positions[i, 0] + 0.8, leader_positions[i, 1] + 0.1))
-#     for i in range(num_followers):
-#         follower_labels[i].set_position((follower_positions[i, 0] + 0.8, follower_positions[i, 1] + 0.1))
+    # Update labels
+    for i in range(num_leaders):
+        leader_labels[i].set_position((leader_positions[i, 0] + 0.8, leader_positions[i, 1] + 0.1))
+    for i in range(num_followers):
+        follower_labels[i].set_position((follower_positions[i, 0] + 0.8, follower_positions[i, 1] + 0.1))
 
-#     # Calculate the convex hull for leaders only
-#     hull = ConvexHull(leader_positions)
-#     hull_vertices = np.append(hull.vertices, hull.vertices[0])  # Closing the hull by connecting the first vertex again
-#     hull_line.set_xdata(leader_positions[hull_vertices, 0])
-#     hull_line.set_ydata(leader_positions[hull_vertices, 1])
+    # Calculate the convex hull for leaders only
+    hull = ConvexHull(leader_positions)
+    hull_vertices = np.append(hull.vertices, hull.vertices[0])  # Closing the hull by connecting the first vertex again
+    hull_line.set_xdata(leader_positions[hull_vertices, 0])
+    hull_line.set_ydata(leader_positions[hull_vertices, 1])
 
-#     return leader_scatter, follower_scatter, hull_line, *leader_labels, *follower_labels
+    return leader_scatter, follower_scatter, hull_line, *leader_labels, *follower_labels
 
-# # Create the animation
-# ani = animation.FuncAnimation(fig, update, frames=num_iterations, interval=0.5*t_sum/num_iterations, blit=True)
+# Create the animation
+ani = animation.FuncAnimation(fig, update, frames=num_iterations, interval=0.5*t_sum/num_iterations, blit=True)
 
-# # Save the animation as a gif
-# ani.save('agent_trajectories.gif', writer='pillow')
+# Save the animation as a gif
+ani.save('agent_trajectories.gif', writer='pillow')
 
 
 
