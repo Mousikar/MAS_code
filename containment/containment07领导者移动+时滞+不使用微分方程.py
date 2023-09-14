@@ -34,6 +34,9 @@ class FollowerAgent(Agent):
         
         self.velocity = - a * (len(self.neighbors) * self.position - np.sum(neighbor_positions, axis=0)) 
         self.velocity = self.velocity - b * (len(self.leader_indices) * self.position - np.sum(leader_positions, axis=0))
+
+        leader_velocity = [leader_agents[i].velocity for i in self.leader_indices]
+        self.velocity = self.velocity +  np.sum(leader_velocity, axis=0)
         # return leader_positions
 
 class LeaderAgent(Agent):
