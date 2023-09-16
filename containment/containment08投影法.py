@@ -42,12 +42,18 @@ class FollowerAgent(Agent):
 
     def update_velocity(self, a, b, agents, leader_agents):
         neighbor_positions = [agents[i].delayposition for i in self.neighbors]
-        leader_positions = [leader_agents[i].delayposition for i in self.leader_indices]
-        polygon = [leader_agents[i].delayposition for i in range(num_leaders)]
+        polygon1 = [leader_agents[i].delayposition for i in self.leader_indices]
+        if len(polygon1) < 3:
+            polygon1 = [leader_agents[i].delayposition for i in range(num_leaders)]
+        polygon = [tuple(row) for row in polygon1]
+        point= self.position
         distance, closest_point = shortest_distance_to_polygon_edge(point, polygon)
-
+        closest_point = np.array(closest_point)
+        # print(point)
+        # print(polygon)
+        # print(closest_point)
         self.velocity = - a * (len(self.neighbors) * self.position - np.sum(neighbor_positions, axis=0)) 
-        self.velocity = self.velocity - b * (len(self.leader_indices) * self.position - np.sum(closest_point, axis=0))
+        self.velocity = self.velocity - b * len(self.leader_indices) *  (self.position - closest_point)
 
         leader_velocity = [leader_agents[i].velocity for i in self.leader_indices]
         self.velocity = self.velocity + 1 * np.sum(leader_velocity, axis=0)
@@ -59,21 +65,21 @@ class LeaderAgent(Agent):
         self.index = index
     # 领导者轨迹
     def track_leader(self,iter):
-        # aa = 0
-        # bb = 0  # 领导者不动
-        aa = (10-np.max(leader_positions[:,0]))/t_sum   # 走直线 走斜线 走sin线
-        bb = 0 #走直线
+        aa = 0
+        bb = 0  # 领导者不动
+        # aa = (10-np.max(leader_positions[:,0]))/t_sum   # 走直线 走斜线 走sin线
+        # bb = 0 #走直线
         # bb = (10-np.max(leader_positions[:,1]))/t_sum    # 走斜线
         # bb = 2*self.position[1] *np.cos(2*iter/t_sum)                # 走sin线
         self.velocity = np.array([aa, bb])
 
 num_followers = 6
-num_leaders = 4
+num_leaders = 6
 # num_leaders = 6
 a = 1
 b = 1
 follower_topology = {0: [1, 3], 1: [0, 2], 2: [1], 3: [0, 4], 4: [3, 5], 5: [4]}
-leader_topology = {0: [0], 1: [2], 2: [5], 3: [3], 4: [], 5: []}
+leader_topology = {0: [2], 1: [2], 2: [2], 3: [5], 4: [5], 5: [5]}
 # leader_topology = {0: [0], 1: [1], 2: [2], 3: [3], 4: [4], 5: [5]}
 
 t_sum = 20
@@ -82,13 +88,19 @@ deltat = t_sum/num_iterations
 t_delay = 0.35
 linjie = 8*int(np.floor(t_delay/deltat))+1
 # 每个机器人时滞的步长
-tau_follower = [linjie, linjie, linjie, linjie, linjie, linjie]
+tau_follower =  [linjie, linjie, linjie, linjie, linjie, linjie]
 tau_leader =  [1,1,1,1,1,1]
 # [1,2,3,4,1,2] [5,5,5,5,5,5] [4,4,4,4,4,4] [3,3,3,3,3,3] [2,2,2,2,2,2] [1,1,1,1,1,1] # 
 # [1,2,3,1,1,2]
 
 
 leader_positions = 0.5 * np.ones([num_leaders, 2]) + 4 * np.random.rand(num_leaders, 2)
+leader_positions = np.array([[8.0, 7.0],
+                            [7.0, 5.0],
+                            [8.0, 6.0],
+                            [9.0, 1.0],
+                            [10.0, 1.0],
+                            [10.0, 2.0]])
 # follower_positions = 10 * np.random.rand(num_followers, 2)
 # follower_positions=6*np.ones([num_followers, 2]) + 4 * np.random.rand(num_followers, 2)
 follower_positions=np.array([[0, 6],
