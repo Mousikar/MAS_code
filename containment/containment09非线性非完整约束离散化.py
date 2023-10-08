@@ -1,19 +1,39 @@
 import numpy as np
+import random
+
+# 随机种子
+random.seed(12345)
 
 # 迭代设置
 iter = 1000
 T = 0.02
 
 # 初值
-import numpy as np
-rd = np.random.RandomState(888) # 随机种子
-follower_positions=np.array([[0, 6],
-                            [0, 6],
-                            [0, 6],
-                            [0, 6],
-                            [0, 6],
-                            [0, 6]]) + 4 * rd.random((6,2))
+x=[0+4*random.random(),
+   0+4*random.random(),
+   0+4*random.random(),
+   0+4*random.random(),
+   0+4*random.random(),
+   0+4*random.random()]
+y=[6+4*random.random(),
+   6+4*random.random(),
+   6+4*random.random(),
+   6+4*random.random(),
+   6+4*random.random(),
+   6+4*random.random()]
+theta=[-3.14+6.28*random.random(),
+       -3.14+6.28*random.random(),
+       -3.14+6.28*random.random(),
+       -3.14+6.28*random.random(),
+       -3.14+6.28*random.random(),
+       -3.14+6.28*random.random()]
+hat_theta_d=[0,0,0,0,0,0]
 
+# 系数
+k1=0.2
+k2=0.2
+k3=0.3
+R=100
 
 for i in range(iter):
 	# 控制方程
