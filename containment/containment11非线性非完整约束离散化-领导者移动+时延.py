@@ -229,7 +229,7 @@ plt.plot(omega_history, lw=2)
 plt.title('turtlebot angular')    # 设置图形标题和坐标轴标签
 plt.xlabel('t/(s)')
 plt.ylabel('omega/(rad/s)')
-plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual} position and pose.png")
+plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual} k={[k1,k2,k3]} position and pose.png")
 plt.show()    # 显示图形
 
 # -------------------------------------------------------------------------------------------
@@ -274,7 +274,7 @@ for fr in range(iter):             # 绘制箭头
 plt.title(f'turtlebot position and pose T={T}, iter={iter}')    # 设置图形标题和坐标轴标签
 plt.xlabel('X/(m)')
 plt.ylabel('Y/(m)')
-plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual}.png")
+plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual} k={[k1,k2,k3]}.png")
 plt.show()    # 显示图形
 
 # -------------------------------------------------制作动画-------------------------------------------
@@ -332,4 +332,4 @@ def update(frame):
 
 ani = animation.FuncAnimation(fig, update, frames=int(np.floor(iter/slice)), interval=1000*slice*T, blit=True)    # Create the animation
 
-ani.save(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual}.gif", writer='pillow')    # f"turtlebot_trajectories T={T}, iter={iter}.gif"  'turtlebot_trajectories.gif'
+ani.save(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual} k={[k1,k2,k3]}.gif", writer='pillow')    # f"turtlebot_trajectories T={T}, iter={iter}.gif"  'turtlebot_trajectories.gif'
