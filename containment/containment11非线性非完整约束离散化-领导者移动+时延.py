@@ -12,7 +12,7 @@ random.seed(88)
 
 # 迭代设置
 t_sum = 10
-T = 0.009
+T = 0.001
 iter = int(np.floor(t_sum/T))
 num_follower = 6
 num_leader = 4
@@ -75,7 +75,21 @@ A_LF = np.array([[1,0,0,0],
                  [0,1,0,0],
                  [0,0,0,0]])    # 领导者和跟随者的耦合邻接矩阵
 
-# 先写没有时延的版本
+# 再写有时延的版本，稍后把时变的时延加到循环中
+tau = np.array([[0.009, 0.010, 0.002, 0.004, 0.002, 0.009],
+              [0.009, 0.010, 0.002, 0.004, 0.002, 0.009],
+              [0.009, 0.010, 0.002, 0.004, 0.002, 0.009],
+              [0.009, 0.010, 0.002, 0.004, 0.002, 0.009],
+              [0.009, 0.010, 0.002, 0.004, 0.002, 0.009],
+              [0.009, 0.010, 0.002, 0.004, 0.002, 0.009]])  # 初始化时延
+d = np.floor(tau/0.001).astype(int)
+
+non_zero_indices = A_F != 0    # 找到 A 中不等于0的元素的位置
+# ------------------------------主要修改这里--------------------------------
+tau_actual = [2460, 2461, 2462, 2463, 2464, 2465]
+d[non_zero_indices] = tau_actual    # 使用布尔索引将新值赋予 d 矩阵
+
+dmax = np.max(d)
 
 # 初始化变量
 ux = [0,0,0,0,0,0]
@@ -96,6 +110,14 @@ kk = [0,0,0,0,0,0]
 rx_history = []
 ry_history = []
 
+for i in range(dmax):
+    x_history.append(x)
+    y_history.append(y)
+    theta_history.append(theta)
+    # rx_history.append(rx)
+    # ry_history.append(ry)
+    
+
 for k in range(iter):
     hat_ex = [0,0,0,0,0,0]
     hat_ey = [0,0,0,0,0,0]
@@ -104,8 +126,8 @@ for k in range(iter):
     # 控制方程
     for i in range(num_follower):
         for j in range(num_follower):
-            hat_ex[i] = hat_ex[i] - A_F[i][j] * (x[i] - x[j])
-            hat_ey[i] = hat_ey[i] - A_F[i][j] * (y[i] - y[j])
+            hat_ex[i] = hat_ex[i] - A_F[i][j] * (x[i] - x_history[-d[i][j]][j])
+            hat_ey[i] = hat_ey[i] - A_F[i][j] * (y[i] - y_history[-d[i][j]][j])
         for j in range(num_leader):
             hat_ex[i] = hat_ex[i] - A_LF[i][j] * (x[i] - rx[j])
             hat_ey[i] = hat_ey[i] - A_LF[i][j] * (y[i] - ry[j])
@@ -176,6 +198,7 @@ v_history = np.array(v_history)
 omega_history = np.array(omega_history)
 # --------------------------------------------------------------------------------------------
 plt.subplots(figsize=(10, 12))
+plt.title(f"turtlebot position and pose T={T}, iter={iter}, delay={tau_actual}")
 plt.subplot(2, 2, 1)
 plt.grid()
 for k in range(num_follower):   # 绘制轨迹和速度向量
@@ -206,7 +229,7 @@ plt.plot(omega_history, lw=2)
 plt.title('turtlebot angular')    # 设置图形标题和坐标轴标签
 plt.xlabel('t/(s)')
 plt.ylabel('omega/(rad/s)')
-plt.savefig(f"turtlebot_trajectories T={T}, iter={iter} position and pose.png")
+plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual} position and pose.png")
 plt.show()    # 显示图形
 
 # -------------------------------------------------------------------------------------------
@@ -248,10 +271,10 @@ for fr in range(iter):             # 绘制箭头
             ax.scatter(x_history[fr,i], y_history[fr,i], c='b', marker='.', label='Followers', alpha=0.3)
 
 
-plt.title('turtlebot position and pose')    # 设置图形标题和坐标轴标签
+plt.title(f'turtlebot position and pose T={T}, iter={iter}')    # 设置图形标题和坐标轴标签
 plt.xlabel('X/(m)')
 plt.ylabel('Y/(m)')
-plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}.png")
+plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual}.png")
 plt.show()    # 显示图形
 
 # -------------------------------------------------制作动画-------------------------------------------
@@ -276,6 +299,7 @@ for i in range(len(x)):             # 绘制箭头
     dy = 0.5 * np.sin(theta[i])     # 计算箭头的y方向分量
     plt.arrow(x[i], y[i], dx, dy, head_width=0.1, head_length=0.2, fc='black', ec='black')
 plt.plot(x_history, y_history, lw=2)
+plt.title(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual}")
 
 slic = 100
 slice = int(np.floor(iter/slic))
@@ -308,4 +332,4 @@ def update(frame):
 
 ani = animation.FuncAnimation(fig, update, frames=int(np.floor(iter/slice)), interval=1000*slice*T, blit=True)    # Create the animation
 
-ani.save(f"turtlebot_trajectories T={T}, iter={iter}.gif", writer='pillow')    # f"turtlebot_trajectories T={T}, iter={iter}.gif"  'turtlebot_trajectories.gif'
+ani.save(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual}.gif", writer='pillow')    # f"turtlebot_trajectories T={T}, iter={iter}.gif"  'turtlebot_trajectories.gif'
