@@ -3,6 +3,9 @@ import random
 import matplotlib.pyplot as plt
 import math
 from scipy.spatial import ConvexHull
+import matplotlib.animation as animation
+from shapely.geometry import Point, Polygon
+from tqdm import tqdm
 
 # 随机种子
 random.seed(88)
@@ -171,6 +174,7 @@ theta_history = np.array(theta_history)
 v_history = np.array(v_history)
 omega_history = np.array(omega_history)
 # --------------------------------------------------------------------------------------------
+plt.subplots(figsize=(10, 12))
 plt.subplot(2, 2, 1)
 plt.grid()
 for k in range(num_follower):   # 绘制轨迹和速度向量
@@ -201,6 +205,7 @@ plt.plot(omega_history, lw=2)
 plt.title('turtlebot angular')    # 设置图形标题和坐标轴标签
 plt.xlabel('t/(s)')
 plt.ylabel('omega/(rad/s)')
+plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}.png")
 plt.show()    # 显示图形
 
 # -------------------------------------------------------------------------------------------
@@ -246,3 +251,59 @@ plt.title('turtlebot position and pose')    # 设置图形标题和坐标轴标�
 plt.xlabel('X/(m)')
 plt.ylabel('Y/(m)')
 plt.show()    # 显示图形
+
+# -------------------------------------------------制作动画-------------------------------------------
+fig, ax  = plt.subplots(figsize=(8, 8))     # 可视化初值
+ax.set_xlim(-1, 10)
+ax.set_ylim(-1, 10)
+plt.grid()
+# ----
+leader_scatter = ax.scatter(rx, ry, c='r', marker='o', label='Leaders')
+follower_scatter = ax.scatter(x, y, c='b', marker='o', label='Followers')
+hull_line, = ax.plot([], [], c='r', linewidth=2)
+
+leader_labels = []
+follower_labels = []
+for i in range(num_leader):
+    leader_labels.append(ax.text(rx[i], ry[i], f"Leader {i+1}", ha='center', va='center', color='r', fontsize=8, fontweight='bold', alpha=0.3))
+for i in range(num_follower):
+    follower_labels.append(ax.text(x[i], y[i], f"Follower {i+1}", ha='center', va='center', color='b', fontsize=8, fontweight='bold', alpha=0.3))
+
+for i in range(len(x)):             # 绘制箭头
+    dx = 0.5 * np.cos(theta[i])     # 计算箭头的x方向分量
+    dy = 0.5 * np.sin(theta[i])     # 计算箭头的y方向分量
+    plt.arrow(x[i], y[i], dx, dy, head_width=0.1, head_length=0.2, fc='black', ec='black')
+plt.plot(x_history, y_history, lw=2)
+
+
+slice = 100
+follower_positions=np.zeros([num_follower, 2])
+leader_positions=np.zeros([num_leader, 2])
+
+def update(frame):
+    # if frame % slice == 0:
+    follower_positions[:,0]=x_history[frame*slice,:]
+    follower_positions[:,1]=y_history[frame*slice,:]
+    follower_scatter.set_offsets(follower_positions[:,:])
+    
+    # ---------------------------------------------
+    leader_positions[:,0]=rx_history[frame*slice,:]
+    leader_positions[:,1]=ry_history[frame*slice,:]
+    leader_scatter.set_offsets(leader_positions)
+
+    for i in range(num_leader):
+        leader_labels[i].set_position((leader_positions[i,0] + 0.8, leader_positions[i,1] + 0.1))
+    for i in range(num_follower):
+        follower_labels[i].set_position((follower_positions[i, 0] + 0.8, follower_positions[i, 1] + 0.1))
+
+    # Calculate the convex hull for leaders only
+    hull = ConvexHull(leader_positions)
+    hull_vertices = np.append(hull.vertices, hull.vertices[0])  # Closing the hull by connecting the first vertex again
+    hull_line.set_xdata(leader_positions[hull_vertices, 0])
+    hull_line.set_ydata(leader_positions[hull_vertices, 1])
+    print(frame)
+    return follower_scatter, leader_scatter, hull_line
+
+ani = animation.FuncAnimation(fig, update, frames=int(np.floor(iter/slice)), interval=3*T, blit=True)    # Create the animation
+
+ani.save(f"turtlebot_trajectories T={T}, iter={iter}.gif", writer='pillow')    # f"turtlebot_trajectories T={T}, iter={iter}.gif"  'turtlebot_trajectories.gif'
