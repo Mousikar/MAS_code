@@ -30,6 +30,7 @@ rostopic pub -r 10 /robot_3/cmd_vel geometry_msgs/Twist '{linear: {x: -0.2, y: 0
 - 时滞
 - 使用微分方程与不适用微分方程
 - 生成拓扑图
+- 非线性非完整约束系统的离散化
 
 ## demo05_ws
 自己写的独轮车文件
