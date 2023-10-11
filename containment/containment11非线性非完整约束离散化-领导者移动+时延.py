@@ -38,14 +38,14 @@ theta = [-3.14 + 6.28 * random.random(),
          -3.14 + 6.28 * random.random()]
 hat_theta_d = [0,0,0,0,0,0]
 dot_hat_theta_d = [0,0,0,0,0,0]
-rx = [1 + 4 * random.random(),
-     1 + 4 * random.random(),
-     1 + 4 * random.random(),
-     1 + 4 * random.random()]
-ry = [1 + 4 * random.random(),
-     1 + 4 * random.random(),
-     1 + 4 * random.random(),
-     1 + 4 * random.random()]
+rx = [1 + 2 * random.random(),
+     1 + 2 * random.random(),
+     1 + 2 * random.random(),
+     1 + 2 * random.random()]
+ry = [1 + 2 * random.random(),
+     1 + 2 * random.random(),
+     1 + 2 * random.random(),
+     1 + 2 * random.random()]
 dot_rx = [5/T/iter,5/T/iter,5/T/iter,5/T/iter]
 dot_ry = [5/T/iter,5/T/iter,5/T/iter,5/T/iter]
 
