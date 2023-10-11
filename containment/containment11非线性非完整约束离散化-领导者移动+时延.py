@@ -11,7 +11,7 @@ from tqdm import tqdm
 random.seed(88)
 
 # 迭代设置
-t_sum = 10
+t_sum = 100
 T = 0.001
 iter = int(np.floor(t_sum/T))
 num_follower = 6
@@ -50,9 +50,9 @@ dot_rx = [5/T/iter,5/T/iter,5/T/iter,5/T/iter]
 dot_ry = [5/T/iter,5/T/iter,5/T/iter,5/T/iter]
 
 # 系数
-k1 = 1
-k2 = 1
-k3 = 2
+k1 = 0.051
+k2 = 0.051
+k3 = 0.12
 R = 100
 
 # 网络拓扑
@@ -144,8 +144,8 @@ for i in range(dmax):
     x_history.append(x)
     y_history.append(y)
     theta_history.append(theta)
-    # rx_history.append(rx)
-    # ry_history.append(ry)
+    rx_history.append(rx)
+    ry_history.append(ry)
     
 
 for k in range(iter):
@@ -163,6 +163,8 @@ for k in range(iter):
         for j in range(num_leader):
             hat_ex[i] = hat_ex[i] - A_LF[i][j] * (x[i] - rx[j])
             hat_ey[i] = hat_ey[i] - A_LF[i][j] * (y[i] - ry[j])
+            # hat_ex[i] = hat_ex[i] - A_LF[i][j] * (x[i] - rx_history[-d[i][j]][j])
+            # hat_ey[i] = hat_ey[i] - A_LF[i][j] * (y[i] - ry_history[-d[i][j]][j])
             # dot_dx[i] = dot_dx[i] + A_LF[i][j] * dot_rx[j]
             # dot_dy[i] = dot_dy[i] + A_LF[i][j] * dot_ry[j]
         dot_dx[i] = dot_rx[1]
@@ -192,18 +194,18 @@ for k in range(iter):
         dot_hat_theta_d[i] = dot_hat_theta_d[i] + ddot_hat_theta_d[i] * T
         hat_theta_d[i] = hat_theta_d[i] + dot_hat_theta_d[i] * T
         
-        # omega[i] = dot_hat_theta_d[i] + k3 * (theta_d[i] - theta[i])      # 暂时不加上饱和函数
-        # --------------------------------加上饱和函数-----------------------------------------
-        de = 0.05
-        kkk = 1/de
-        xites = 0.95
-        if np.abs(theta_d[i] - theta[i])>de:
-            sats = np.sign(theta_d[i] - theta[i])
-            omega[i] = dot_hat_theta_d[i] + k3 * (theta_d[i] - theta[i]) + xites * sats      # 加上饱和函数
-        else:
-            sats = 5 * (theta_d[i] - theta[i])
-            omega[i] = dot_hat_theta_d[i] + xites * sats      # 加上饱和函数
-        # --------------------------------加上饱和函数-----------------------------------------
+        omega[i] = dot_hat_theta_d[i] + k3 * (theta_d[i] - theta[i])      # 暂时不加上饱和函数
+        # # --------------------------------加上饱和函数-----------------------------------------
+        # de = 0.05
+        # kkk = 1/de
+        # xites = 0.95
+        # if np.abs(theta_d[i] - theta[i])>de:
+        #     sats = np.sign(theta_d[i] - theta[i])
+        #     omega[i] = dot_hat_theta_d[i] + k3 * (theta_d[i] - theta[i]) + xites * sats      # 加上饱和函数
+        # else:
+        #     sats = 5 * (theta_d[i] - theta[i])
+        #     omega[i] = dot_hat_theta_d[i] + xites * sats      # 加上饱和函数
+        # # --------------------------------加上饱和函数-----------------------------------------
 
 
     # 系统方程
@@ -233,6 +235,14 @@ for k in range(iter):
     erry_actual_history.append([erry_actual[0],erry_actual[1],erry_actual[2],erry_actual[3],erry_actual[4],erry_actual[5]])
     hat_evx_history.append([hat_evx[0],hat_evx[1],hat_evx[2],hat_evx[3],hat_evx[4],hat_evx[5]])
     hat_evy_history.append([hat_evy[0],hat_evy[1],hat_evy[2],hat_evy[3],hat_evy[4],hat_evy[5]])
+
+# 指定保存的文件名
+file_name = "containment_l.txt"
+
+# 将测试点保存到文本文件中
+with open(file_name, "w") as file:
+    for i in range(iter):
+        file.write("%.50f\n" % (errx_actual_history[i][0]))
 
 x_history = np.array(x_history)
 y_history = np.array(y_history)
