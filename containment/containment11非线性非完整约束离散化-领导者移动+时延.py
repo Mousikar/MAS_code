@@ -62,18 +62,24 @@ A_F = np.array([[0,1,0,0,0,0],
                 [0,1,0,0,0,0],
                 [1,0,0,0,0,1],
                 [0,0,1,0,1,0]])   # 跟随者邻接矩阵
+L = - A_F
+for i in range(num_follower):
+    L[i,i] = np.sum(A_F[i,:])
 B = np.array([[1,0,0,0,0,0],
               [0,2,0,0,0,0],
               [0,0,1,0,0,0],
               [0,0,0,1,0,0],
               [0,0,0,0,1,0],
               [0,0,0,0,0,0]])   # 跟随者能接受到的领导者信息总和
+L1 = L + B
 A_LF = np.array([[1,0,0,0],
                  [0,1,1,0],
                  [0,0,0,1],
                  [1,0,0,0],
                  [0,1,0,0],
                  [0,0,0,0]])    # 领导者和跟随者的耦合邻接矩阵
+L2 = - A_LF
+xishu = np.dot(np.linalg.inv(L1), L2)
 
 # 再写有时延的版本，稍后把时变的时延加到循环中
 tau = np.array([[0.009, 0.010, 0.002, 0.004, 0.002, 0.009],
@@ -111,6 +117,8 @@ rx_history = []
 ry_history = []
 hat_ex_history = []
 hat_ey_history = []
+errx_actual_history = []
+erry_actual_history = []
 
 for i in range(dmax):
     x_history.append(x)
@@ -180,6 +188,9 @@ for k in range(iter):
     for i in range(num_leader):
         rx[i] = rx[i] + dot_rx[i] * T
         ry[i] = ry[i] + dot_ry[i] * T
+
+    errx_actual = x + np.dot(xishu, rx)
+    erry_actual = y + np.dot(xishu, ry)
     
     # print(x)
     # print(x, '\n', y, '\n', theta)
@@ -192,6 +203,8 @@ for k in range(iter):
     ry_history.append([ry[0],ry[1],ry[2],ry[3]])
     hat_ex_history.append([-hat_ex[0],-hat_ex[1],-hat_ex[2],-hat_ex[3],-hat_ex[4],-hat_ex[5]])
     hat_ey_history.append([-hat_ey[0],-hat_ey[1],-hat_ey[2],-hat_ey[3],-hat_ey[4],-hat_ey[5]])
+    errx_actual_history.append([errx_actual[0],errx_actual[1],errx_actual[2],errx_actual[3],errx_actual[4],errx_actual[5]])
+    erry_actual_history.append([erry_actual[0],erry_actual[1],erry_actual[2],erry_actual[3],erry_actual[4],erry_actual[5]])
 
 x_history = np.array(x_history)
 y_history = np.array(y_history)
@@ -202,10 +215,12 @@ v_history = np.array(v_history)
 omega_history = np.array(omega_history)
 hat_ex_history = np.array(hat_ex_history)
 hat_ey_history = np.array(hat_ey_history)
+errx_actual_history = np.array(errx_actual_history)
+erry_actual_history = np.array(erry_actual_history)
 
 # --------------------------------------------------------------------------------------------
 plt.subplots(figsize=(16, 12))
-plt.subplot(2, 3, 1)
+plt.subplot(2, 4, 1)
 plt.grid()
 for k in range(num_follower):   # 绘制轨迹和速度向量
     plt.plot(x_history[:,k], lw=2)
@@ -214,7 +229,7 @@ plt.title('turtlebot position')    # 设置图形标题和坐标轴标签
 plt.xlabel('t/(ms)')
 plt.ylabel('X/(m)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 3, 4)
+plt.subplot(2, 4, 5)
 plt.grid()
 for k in range(num_follower):   # 绘制轨迹和速度向量
     plt.plot(theta_history[:,k], lw=2)
@@ -222,21 +237,21 @@ plt.title('turtlebot pose')    # 设置图形标题和坐标轴标签
 plt.xlabel('t/(ms)')
 plt.ylabel('theta/(rad)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 3, 2)
+plt.subplot(2, 4, 2)
 plt.grid()
 plt.plot(v_history, lw=2)
 plt.title('turtlebot velocity')    # 设置图形标题和坐标轴标签
 plt.xlabel('t/(ms)')
 plt.ylabel('v/(m/s)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 3, 5)
+plt.subplot(2, 4, 6)
 plt.grid()
 plt.plot(omega_history, lw=2)
 plt.title('turtlebot angular')    # 设置图形标题和坐标轴标签
 plt.xlabel('t/(ms)')
 plt.ylabel('omega/(rad/s)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 3, 3)
+plt.subplot(2, 4, 3)
 plt.grid()
 for i in range(num_follower):
     plt.plot(hat_ex_history[:,i], lw=2, label=f"follower{i}")
@@ -245,10 +260,28 @@ plt.title('turtlebot x error')    # 设置图形标题和坐标轴标签
 plt.xlabel('t/(ms)')
 plt.ylabel('X/(m)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 3, 6)
+plt.subplot(2, 4, 7)
 plt.grid()
 for i in range(num_follower):
     plt.plot(hat_ey_history[:,i], lw=2, label=f"follower{i}")
+plt.legend()# 添加图例
+plt.title('turtlebot y error')    # 设置图形标题和坐标轴标签
+plt.xlabel('t/(ms)')
+plt.ylabel('X/(m)')
+# --------------------------------------------------------------------------------------------
+plt.subplot(2, 4, 4)
+plt.grid()
+for i in range(num_follower):
+    plt.plot(errx_actual_history[:,i], lw=2, label=f"follower{i}")
+plt.legend()# 添加图例
+plt.title('turtlebot x error')    # 设置图形标题和坐标轴标签
+plt.xlabel('t/(ms)')
+plt.ylabel('X/(m)')
+# --------------------------------------------------------------------------------------------
+plt.subplot(2, 4, 8)
+plt.grid()
+for i in range(num_follower):
+    plt.plot(erry_actual_history[:,i], lw=2, label=f"follower{i}")
 plt.legend()# 添加图例
 plt.title('turtlebot y error')    # 设置图形标题和坐标轴标签
 plt.xlabel('t/(ms)')
