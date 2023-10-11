@@ -86,7 +86,7 @@ d = np.floor(tau/0.001).astype(int)
 
 non_zero_indices = A_F != 0    # 找到 A 中不等于0的元素的位置
 # ------------------------------主要修改这里--------------------------------
-tau_actual = [2460, 2461, 2462, 2463, 2464, 2465]
+tau_actual = [460, 461, 462, 463, 464, 465]
 d[non_zero_indices] = tau_actual    # 使用布尔索引将新值赋予 d 矩阵
 
 dmax = np.max(d)
@@ -109,6 +109,8 @@ theta_d1 = [0,0,0,0,0,0]
 kk = [0,0,0,0,0,0]
 rx_history = []
 ry_history = []
+hat_ex_history = []
+hat_ey_history = []
 
 for i in range(dmax):
     x_history.append(x)
@@ -188,6 +190,8 @@ for k in range(iter):
     omega_history.append([omega[0],omega[1],omega[2],omega[3],omega[4],omega[5]])
     rx_history.append([rx[0],rx[1],rx[2],rx[3]])
     ry_history.append([ry[0],ry[1],ry[2],ry[3]])
+    hat_ex_history.append([-hat_ex[0],-hat_ex[1],-hat_ex[2],-hat_ex[3],-hat_ex[4],-hat_ex[5]])
+    hat_ey_history.append([-hat_ey[0],-hat_ey[1],-hat_ey[2],-hat_ey[3],-hat_ey[4],-hat_ey[5]])
 
 x_history = np.array(x_history)
 y_history = np.array(y_history)
@@ -196,40 +200,60 @@ ry_history = np.array(ry_history)
 theta_history = np.array(theta_history)
 v_history = np.array(v_history)
 omega_history = np.array(omega_history)
+hat_ex_history = np.array(hat_ex_history)
+hat_ey_history = np.array(hat_ey_history)
+
 # --------------------------------------------------------------------------------------------
-plt.subplots(figsize=(10, 12))
-plt.title(f"turtlebot position and pose T={T}, iter={iter}, delay={tau_actual}")
-plt.subplot(2, 2, 1)
+plt.subplots(figsize=(16, 12))
+plt.subplot(2, 3, 1)
 plt.grid()
 for k in range(num_follower):   # 绘制轨迹和速度向量
     plt.plot(x_history[:,k], lw=2)
     plt.plot(y_history[:,k], lw=2)
 plt.title('turtlebot position')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('X/(m)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 2, 2)
+plt.subplot(2, 3, 4)
 plt.grid()
 for k in range(num_follower):   # 绘制轨迹和速度向量
     plt.plot(theta_history[:,k], lw=2)
 plt.title('turtlebot pose')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('theta/(rad)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 2, 3)
+plt.subplot(2, 3, 2)
 plt.grid()
 plt.plot(v_history, lw=2)
 plt.title('turtlebot velocity')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('v/(m/s)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 2, 4)
+plt.subplot(2, 3, 5)
 plt.grid()
 plt.plot(omega_history, lw=2)
 plt.title('turtlebot angular')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('omega/(rad/s)')
-plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual} k={[k1,k2,k3]} position and pose.png")
+# --------------------------------------------------------------------------------------------
+plt.subplot(2, 3, 3)
+plt.grid()
+for i in range(num_follower):
+    plt.plot(hat_ex_history[:,i], lw=2, label=f"follower{i}")
+plt.legend()# 添加图例
+plt.title('turtlebot x error')    # 设置图形标题和坐标轴标签
+plt.xlabel('t/(ms)')
+plt.ylabel('X/(m)')
+# --------------------------------------------------------------------------------------------
+plt.subplot(2, 3, 6)
+plt.grid()
+for i in range(num_follower):
+    plt.plot(hat_ey_history[:,i], lw=2, label=f"follower{i}")
+plt.legend()# 添加图例
+plt.title('turtlebot y error')    # 设置图形标题和坐标轴标签
+plt.xlabel('t/(ms)')
+plt.ylabel('X/(m)')
+plt.savefig(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual} k={[k1,k2,k3]} error.png")
 plt.show()    # 显示图形
 
 # -------------------------------------------------------------------------------------------
@@ -244,7 +268,7 @@ for i in range(num_leader):
 for i in range(num_follower):
     follower_labels.append(ax.text(x_history[0, i], y_history[0, i], f"Follower {i+1}", ha='center', va='center', color='b', fontsize=8, fontweight='bold', alpha=0.3))
 
-ax.scatter(x, y, c='b', marker='o', label='Leaders')      # 绘制点
+ax.scatter(x, y, c='b', marker='o', label='Followers')      # 绘制点
 leader_scatter = ax.scatter(rx, ry, c='r', marker='o', label='Leaders')      # 绘制点
 leader_positions=np.zeros([num_leader, 2])
 leader_positions[:,0]=rx
@@ -258,7 +282,7 @@ hull_vertices = np.append(hull.vertices, hull.vertices[0])  # Closing the hull b
 hull_line.set_xdata(leader_positions[hull_vertices, 0])
 hull_line.set_ydata(leader_positions[hull_vertices, 1])
 
-plt.plot(x_history, y_history, lw=2, alpha=0.3)
+plt.plot(x_history[dmax:,:], y_history[dmax:,:], lw=2, alpha=0.3)
 slice = np.floor(iter/20)
 
 for fr in range(iter):             # 绘制箭头
@@ -298,7 +322,7 @@ for i in range(len(x)):             # 绘制箭头
     dx = 0.5 * np.cos(theta[i])     # 计算箭头的x方向分量
     dy = 0.5 * np.sin(theta[i])     # 计算箭头的y方向分量
     plt.arrow(x[i], y[i], dx, dy, head_width=0.1, head_length=0.2, fc='black', ec='black')
-plt.plot(x_history, y_history, lw=2)
+plt.plot(x_history[dmax:,:], y_history[dmax:,:], lw=2, alpha=0.3)
 plt.title(f"turtlebot_trajectories T={T}, iter={iter}, delay={tau_actual}")
 
 slic = 100

@@ -200,7 +200,7 @@ for k in range(num_follower):   # 绘制轨迹和速度向量
     plt.plot(x_history[:,k], lw=2)
     plt.plot(y_history[:,k], lw=2)
 plt.title('turtlebot position')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('X/(m)')
 # --------------------------------------------------------------------------------------------
 plt.subplot(2, 2, 2)
@@ -208,21 +208,21 @@ plt.grid()
 for k in range(num_follower):   # 绘制轨迹和速度向量
     plt.plot(theta_history[:,k], lw=2)
 plt.title('turtlebot pose')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('theta/(rad)')
 # --------------------------------------------------------------------------------------------
 plt.subplot(2, 2, 3)
 plt.grid()
 plt.plot(v_history, lw=2)
 plt.title('turtlebot velocity')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('v/(m/s)')
 # --------------------------------------------------------------------------------------------
 plt.subplot(2, 2, 4)
 plt.grid()
 plt.plot(omega_history, lw=2)
 plt.title('turtlebot angular')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('omega/(rad/s)')
 plt.show()    # 显示图形
 

@@ -12,7 +12,7 @@ random.seed(88)
 
 # 迭代设置
 t_sum = 10
-T = 0.009
+T = 0.001
 iter = int(np.floor(t_sum/T))
 num_follower = 6
 num_leader = 4
@@ -50,9 +50,9 @@ dot_rx = [5/T/iter,5/T/iter,5/T/iter,5/T/iter]
 dot_ry = [5/T/iter,5/T/iter,5/T/iter,5/T/iter]
 
 # 系数
-k1 = 0.1
-k2 = 0.1
-k3 = 0.2
+k1 = 1
+k2 = 1
+k3 = 2
 R = 100
 
 # 网络拓扑
@@ -95,6 +95,8 @@ theta_d1 = [0,0,0,0,0,0]
 kk = [0,0,0,0,0,0]
 rx_history = []
 ry_history = []
+hat_ex_history = []
+hat_ey_history = []
 
 for k in range(iter):
     hat_ex = [0,0,0,0,0,0]
@@ -166,6 +168,9 @@ for k in range(iter):
     omega_history.append([omega[0],omega[1],omega[2],omega[3],omega[4],omega[5]])
     rx_history.append([rx[0],rx[1],rx[2],rx[3]])
     ry_history.append([ry[0],ry[1],ry[2],ry[3]])
+    hat_ex_history.append([-hat_ex[0],-hat_ex[1],-hat_ex[2],-hat_ex[3],-hat_ex[4],-hat_ex[5]])
+    hat_ey_history.append([-hat_ey[0],-hat_ey[1],-hat_ey[2],-hat_ey[3],-hat_ey[4],-hat_ey[5]])
+
 
 x_history = np.array(x_history)
 y_history = np.array(y_history)
@@ -175,40 +180,54 @@ theta_history = np.array(theta_history)
 v_history = np.array(v_history)
 omega_history = np.array(omega_history)
 # --------------------------------------------------------------------------------------------
-plt.subplots(figsize=(10, 12))
-plt.subplot(2, 2, 1)
+plt.subplots(figsize=(16, 12))
+plt.subplot(2, 3, 1)
 plt.grid()
 for k in range(num_follower):   # 绘制轨迹和速度向量
     plt.plot(x_history[:,k], lw=2)
     plt.plot(y_history[:,k], lw=2)
 plt.title('turtlebot position')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('X/(m)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 2, 2)
+plt.subplot(2, 3, 4)
 plt.grid()
 for k in range(num_follower):   # 绘制轨迹和速度向量
     plt.plot(theta_history[:,k], lw=2)
 plt.title('turtlebot pose')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('theta/(rad)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 2, 3)
+plt.subplot(2, 3, 2)
 plt.grid()
 plt.plot(v_history, lw=2)
 plt.title('turtlebot velocity')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('v/(m/s)')
 # --------------------------------------------------------------------------------------------
-plt.subplot(2, 2, 4)
+plt.subplot(2, 3, 5)
 plt.grid()
 plt.plot(omega_history, lw=2)
 plt.title('turtlebot angular')    # 设置图形标题和坐标轴标签
-plt.xlabel('t/(s)')
+plt.xlabel('t/(ms)')
 plt.ylabel('omega/(rad/s)')
-plt.savefig(f"turtlebot_trajectories T={T}, iter={iter} k={[k1,k2,k3]} position and pose.png")
-plt.show()    # 显示图形
+# --------------------------------------------------------------------------------------------
+plt.subplot(2, 3, 3)
+plt.grid()
+plt.plot(hat_ex_history, lw=2)
+plt.title('turtlebot x error')    # 设置图形标题和坐标轴标签
+plt.xlabel('t/(ms)')
+plt.ylabel('X/(m)')
+# --------------------------------------------------------------------------------------------
+plt.subplot(2, 3, 6)
+plt.grid()
+plt.plot(hat_ey_history, lw=2)
+plt.title('turtlebot y error')    # 设置图形标题和坐标轴标签
+plt.xlabel('t/(ms)')
+plt.ylabel('X/(m)')
 
+plt.savefig(f"turtlebot_trajectories T={T}, iter={iter} k={[k1,k2,k3]} position velocity error.png")
+plt.show()    # 显示图形
 # -------------------------------------------------------------------------------------------
 fig, ax  = plt.subplots(figsize=(10, 10))     # 可视化初值
 ax.set_xlim(-1, 11)
