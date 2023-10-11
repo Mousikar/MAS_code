@@ -119,6 +119,8 @@ hat_ex_history = []
 hat_ey_history = []
 errx_actual_history = []
 erry_actual_history = []
+hat_evx_history = []
+hat_evy_history = []
 
 for i in range(dmax):
     x_history.append(x)
@@ -133,6 +135,8 @@ for k in range(iter):
     hat_ey = [0,0,0,0,0,0]
     dot_dx = [0,0,0,0,0,0]
     dot_dy = [0,0,0,0,0,0]
+    hat_evx = [0,0,0,0,0,0]
+    hat_evy = [0,0,0,0,0,0]
     # 控制方程
     for i in range(num_follower):
         for j in range(num_follower):
@@ -141,8 +145,12 @@ for k in range(iter):
         for j in range(num_leader):
             hat_ex[i] = hat_ex[i] - A_LF[i][j] * (x[i] - rx[j])
             hat_ey[i] = hat_ey[i] - A_LF[i][j] * (y[i] - ry[j])
-            dot_dx[i] = dot_dx[i] + A_LF[i][j] * dot_rx[j]
-            dot_dy[i] = dot_dy[i] + A_LF[i][j] * dot_ry[j]
+            # dot_dx[i] = dot_dx[i] + A_LF[i][j] * dot_rx[j]
+            # dot_dy[i] = dot_dy[i] + A_LF[i][j] * dot_ry[j]
+        dot_dx[i] = dot_rx[1]
+        dot_dy[i] = dot_ry[1]
+        hat_evx[i] = dot_rx[1] - v[i] * np.sin(theta[i])
+        hat_evy[i] = dot_ry[1] - v[i] * np.cos(theta[i])
         ux[i] = dot_dx[i] + k1 * hat_ex[i]
         uy[i] = dot_dy[i] + k2 * hat_ey[i]
         theta_d[i] = math.atan2(uy[i], ux[i])
@@ -205,6 +213,8 @@ for k in range(iter):
     hat_ey_history.append([-hat_ey[0],-hat_ey[1],-hat_ey[2],-hat_ey[3],-hat_ey[4],-hat_ey[5]])
     errx_actual_history.append([errx_actual[0],errx_actual[1],errx_actual[2],errx_actual[3],errx_actual[4],errx_actual[5]])
     erry_actual_history.append([erry_actual[0],erry_actual[1],erry_actual[2],erry_actual[3],erry_actual[4],erry_actual[5]])
+    hat_evx_history.append([hat_evx[0],hat_evx[1],hat_evx[2],hat_evx[3],hat_evx[4],hat_evx[5]])
+    hat_evy_history.append([hat_evy[0],hat_evy[1],hat_evy[2],hat_evy[3],hat_evy[4],hat_evy[5]])
 
 x_history = np.array(x_history)
 y_history = np.array(y_history)
@@ -217,7 +227,27 @@ hat_ex_history = np.array(hat_ex_history)
 hat_ey_history = np.array(hat_ey_history)
 errx_actual_history = np.array(errx_actual_history)
 erry_actual_history = np.array(erry_actual_history)
+hat_evx_history = np.array(hat_ex_history)
+hat_evy_history = np.array(hat_ey_history)
 
+plt.subplot(2, 1, 1)
+plt.grid()
+for i in range(num_follower):
+    plt.plot(hat_evx_history[:,i], lw=2, label=f"follower{i}")
+plt.legend()# 添加图例
+plt.title('turtlebot vx error')    # 设置图形标题和坐标轴标签
+plt.xlabel('t/(ms)')
+plt.ylabel('X/(m/s)')
+# --------------------------------------------------------------------------------------------
+plt.subplot(2, 1, 2)
+plt.grid()
+for i in range(num_follower):
+    plt.plot(hat_evy_history[:,i], lw=2, label=f"follower{i}")
+plt.legend()# 添加图例
+plt.title('turtlebot vy error')    # 设置图形标题和坐标轴标签
+plt.xlabel('t/(ms)')
+plt.ylabel('X/(m/s)')
+plt.show()
 # --------------------------------------------------------------------------------------------
 plt.subplots(figsize=(16, 12))
 plt.subplot(2, 4, 1)
@@ -365,8 +395,8 @@ leader_positions=np.zeros([num_leader, 2])
 
 def update(frame):
     # if frame % slice == 0:
-    follower_positions[:,0]=x_history[frame*slice,:]
-    follower_positions[:,1]=y_history[frame*slice,:]
+    follower_positions[:,0]=x_history[frame*slice+dmax,:]
+    follower_positions[:,1]=y_history[frame*slice+dmax,:]
     follower_scatter.set_offsets(follower_positions[:,:])
     
     # ---------------------------------------------

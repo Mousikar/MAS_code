@@ -30,12 +30,12 @@ y = [0 + 2 * random.random(),
      0 + 2 * random.random(),
      0 + 2 * random.random(),
      0 + 2 * random.random()]
-theta = [-3.14 + 6.28 * random.random(),
-         -3.14 + 6.28 * random.random(),
-         -3.14 + 6.28 * random.random(),
-         -3.14 + 6.28 * random.random(),
-         -3.14 + 6.28 * random.random(),
-         -3.14 + 6.28 * random.random()]
+theta = [0 + 0.28 * random.random(),
+         0 + 0.28 * random.random(),
+         0 + 0.28 * random.random(),
+         0 + 0.28 * random.random(),
+         0 + 0.28 * random.random(),
+         0 + 0.28 * random.random()]
 hat_theta_d = [0,0,0,0,0,0]
 dot_hat_theta_d = [0,0,0,0,0,0]
 rx = [1 + 2 * random.random(),
@@ -52,8 +52,8 @@ ddot_rx = [0,0,0,0]
 ddot_ry = [0,0,0,0]
 
 # 系数
-k1 = 1
-k2 = 1
+k1 = 0.2
+k2 = 0.2
 k3 = 2
 R = 100
 
@@ -94,7 +94,7 @@ d = np.floor(tau/0.001).astype(int)
 
 non_zero_indices = A_F != 0    # 找到 A 中不等于0的元素的位置
 # ------------------------------主要修改这里--------------------------------
-tau_actual = [460, 461, 462, 463, 464, 465]
+tau_actual = [1, 1, 1, 1, 1, 1]
 d[non_zero_indices] = tau_actual    # 使用布尔索引将新值赋予 d 矩阵
 
 dmax = np.max(d)
@@ -143,13 +143,16 @@ for k in range(iter):
         for j in range(num_leader):
             hat_ex[i] = hat_ex[i] - A_LF[i][j] * (x[i] - rx[j])
             hat_ey[i] = hat_ey[i] - A_LF[i][j] * (y[i] - ry[j])
-            dot_dx[i] = dot_dx[i] + A_LF[i][j] * dot_rx[j]
-            dot_dy[i] = dot_dy[i] + A_LF[i][j] * dot_ry[j]
+            # dot_dx[i] = dot_dx[i] + A_LF[i][j] * dot_rx[j]
+            # dot_dy[i] = dot_dy[i] + A_LF[i][j] * dot_ry[j]
+            dot_dx[i] = dot_rx[0]
+            dot_dy[i] = dot_ry[0]
         ux[i] = (k1 + 1) * dot_dx[i] + k1 * hat_ex[i]
         uy[i] = (k2 + 1) * dot_dy[i] + k2 * hat_ey[i]
 
-        v[i] = math.sqrt(uy[i]**2 + ux[i]**2)        
-        omega[i] = dot_hat_theta_d[i] + k3 * (theta_d[i] - theta[i])      # 暂时不加上饱和函数
+        v[i] = 1/(k1+1)*(ux[i]*np.cos(theta[i])+uy[i]*np.sin(theta[i]))
+        # v[i] = np.sign(v[i])*v[i]
+        omega[i] = 1/v[i]*(-ux[i]*np.sin(theta[i])+uy[i]*np.cos(theta[i]))      # 暂时不加上饱和函数
         # # --------------------------------加上饱和函数-----------------------------------------
         # de = 0.05
         # kkk = 1/de
@@ -348,8 +351,8 @@ leader_positions=np.zeros([num_leader, 2])
 
 def update(frame):
     # if frame % slice == 0:
-    follower_positions[:,0]=x_history[frame*slice,:]
-    follower_positions[:,1]=y_history[frame*slice,:]
+    follower_positions[:,0]=x_history[frame*slice+dmax,:]
+    follower_positions[:,1]=y_history[frame*slice+dmax,:]
     follower_scatter.set_offsets(follower_positions[:,:])
     
     # ---------------------------------------------
