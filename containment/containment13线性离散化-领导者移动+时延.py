@@ -176,10 +176,10 @@ for k in range(iter):
     # 控制方程
     for i in range(num_follower):
         for j in range(num_follower):
-            hat_ex[i] = hat_ex[i] - A_F[i][j] * (x[i] - x[j])
-            hat_ey[i] = hat_ey[i] - A_F[i][j] * (y[i] - y[j])
-            # hat_ex[i] = hat_ex[i] - A_F[i][j] * (x[i] - x_history[-d[i][j]][j])
-            # hat_ey[i] = hat_ey[i] - A_F[i][j] * (y[i] - y_history[-d[i][j]][j])
+            # hat_ex[i] = hat_ex[i] - A_F[i][j] * (x[i] - x[j])
+            # hat_ey[i] = hat_ey[i] - A_F[i][j] * (y[i] - y[j])
+            hat_ex[i] = hat_ex[i] - A_F[i][j] * (x[i] - x_history[-d[i][j]][j])
+            hat_ey[i] = hat_ey[i] - A_F[i][j] * (y[i] - y_history[-d[i][j]][j])
         for j in range(num_leader):
             hat_ex[i] = hat_ex[i] - A_LF[i][j] * (x[i] - rx[j])
             hat_ey[i] = hat_ey[i] - A_LF[i][j] * (y[i] - ry[j])
