@@ -172,28 +172,19 @@ plot(x_history,y_history)
 saveas(gcf, ['turtlebot_trajectories_T' num2str(T) '_iter' num2str(iter) '_delay' num2str(tau_actual) '_k' num2str(k1) num2str(k2) num2str(k3) '.png']);
 
 %% 制作动画
-figure;
-ax = gca;
-set(ax, 'XLim', [-1 11], 'YLim', [-1 11]);
-grid on;
-hold on;
-leader_scatter = scatter(rx, ry, 50, 'r', 'filled', 'DisplayName', 'Leaders');
-follower_scatter = scatter(x, y, 50, 'b', 'filled', 'DisplayName', 'Followers');
-hull_line = plot(rx(hull), ry(hull), 'r', 'LineWidth', 2, 'DisplayName', 'Convex Hull');
-title(['turtlebot trajectories T=' num2str(T) ', iter=' num2str(iter) ', delay=' num2str(tau_actual)]);
-xlabel('X/(m)');
-ylabel('Y/(m)');
-legend('show');
-hold off;
+figure;clc
+set(gcf,'Position',[100,100,1000,1000]); % 设置图形大小
+
+vidObj = VideoWriter('turtlebot_trajectories.avi');
+open(vidObj);
 
 slic = 100;
 slice = floor(iter / slic);
 follower_positions = zeros(num_follower, 2);
 leader_positions = zeros(num_leader, 2);
 
-
 ani = animatedline;
-figure;
+% figure;
 axis tight manual;
 ax = gca;
 ax.XLim = [-1 11];
@@ -201,18 +192,32 @@ ax.YLim = [-1 11];
 grid on;
 set(gca, 'nextplot', 'replacechildren');
 set(gcf, 'Renderer', 'zbuffer');
+frame = getframe(gcf);
+writeVideo(vidObj, frame);
 
 for fr = 1:iter
     if mod(fr, slice) == 0
+        set(ax, 'XLim', [-1 11], 'YLim', [-1 11]);
         for i = 1:num_follower
-            dx = 0.5 * v_history(fr, i) * cos(theta_history(fr, i));
-            dy = 0.5 * v_history(fr, i) * sin(theta_history(fr, i));
+            dx = 0.5 * cos(theta_history(fr, i));
+            dy = 0.5 * sin(theta_history(fr, i));
             quiver(x_history(fr,i), y_history(fr,i), dx, dy, 'AutoScale', 'on', 'MaxHeadSize', 0.1, 'LineWidth', 1, 'Color', 'k', 'MaxHeadSize', 0.2);
             hold on;
             scatter(x_history(fr,i), y_history(fr,i), 20, 'b', 'filled', 'DisplayName', ['Follower ' num2str(i)], 'MarkerEdgeColor', 'k');
         end
-        hull = convhull(x_history(fr,:), y_history(fr,:));
-        plot(x_history(fr,hull), y_history(fr,hull), 'r', 'LineWidth', 2, 'DisplayName', 'Convex Hull');
+        plot(x_history, y_history, 'r', 'LineWidth', 2, 'DisplayName', 'Convex Hull');
+
+        leader_scatter = scatter(rx, ry, 50, 'r', 'filled', 'DisplayName', 'Leaders');
+        follower_scatter = scatter(x, y, 50, 'b', 'filled', 'DisplayName', 'Followers');
+        hull = convhull(rx, ry);
+        hull_line = plot(rx(hull), ry(hull), 'r', 'LineWidth', 2, 'DisplayName', 'Convex Hull');
+
+        grid on;
+        title(['turtlebot trajectories T=' num2str(T) ', iter=' num2str(iter) ', delay=' num2str(tau_actual)]);
+        xlabel('X/(m)');
+        ylabel('Y/(m)');
+        axis tight manual;
+        
         hold off;
         frame = getframe(gcf);
         writeVideo(vidObj, frame);
