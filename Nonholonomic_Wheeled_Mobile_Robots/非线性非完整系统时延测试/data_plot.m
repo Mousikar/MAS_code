@@ -64,6 +64,7 @@ subplot(2, 5, 7);
 grid on;
 for k = 1:num_follower
     plot(theta_history(:,k), 'LineWidth', 2, 'DisplayName', ['theta' num2str(k)]);
+    hold on;
 end
 legend('show');
 title('turtlebot pose');

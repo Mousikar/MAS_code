@@ -111,20 +111,29 @@ for k = 1:iter
         for j = 1:num_follower
             % hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x(j));
             % hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y(j));
-            hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j));
-            hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j));
+            % hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j));
+            % hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j));
+            % 都有时延，包括自身
+            hat_ex(i) = hat_ex(i) - A_F(i, j) * (x_history(end - d(i, j) + 1, i) - x_history(end - d(i, j) + 1, j));
+            hat_ey(i) = hat_ey(i) - A_F(i, j) * (y_history(end - d(i, j) + 1, i) - y_history(end - d(i, j) + 1, j));
             % 用计算的位置来代替现在的位置
-            hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j) - ...
-                v_history(end - d(i, j) + 1, j) * cos(theta_history(end - d(i, j) + 1, j)) * d(i, j) * T);
-            hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j) - ...
-                v_history(end - d(i, j) + 1, j) * sin(theta_history(end - d(i, j) + 1, j)) * d(i, j) * T);
+            % hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j) - ...
+            %     v_history(end - d(i, j) + 1, j) * cos(theta_history(end - d(i, j) + 1, j)) * d(i, j) * T);
+            % hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j) - ...
+            %     v_history(end - d(i, j) + 1, j) * sin(theta_history(end - d(i, j) + 1, j)) * d(i, j) * T);
 
         end
         for j = 1:num_leader
             % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx(j));
             % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry(j));
-            hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j) - dot_rx(j) * d(i, j) * T);
-            hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j) - dot_ry(j) * d(i, j) * T);
+            % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j));
+            % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j));
+            % 都有时延，包括自身
+            hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x_history(end - d(i, j) + 1, i) - rx_history(end - d(i, j) + 1, j));
+            hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y_history(end - d(i, j) + 1, i) - ry_history(end - d(i, j) + 1, j));
+            % 用计算的位置来代替现在的位置
+            % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j) - dot_rx(j) * d(i, j) * T);
+            % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j) - dot_ry(j) * d(i, j) * T);
         end
         dot_dx(i) = dot_rx(1);
         dot_dy(i) = dot_ry(1);
@@ -188,7 +197,7 @@ for k = 1:iter
     hat_ex_history = [hat_ex_history; -hat_ex];
     hat_ey_history = [hat_ey_history; -hat_ey];
     errx_actual_history = [errx_actual_history; errx_actual'];
-    erry_actual = [erry_actual_history; erry_actual'];
+    erry_actual_history = [erry_actual_history; erry_actual'];
     hat_evx_history = [hat_evx_history; hat_evx];
     hat_evy_history = [hat_evy_history; hat_evy];
 
