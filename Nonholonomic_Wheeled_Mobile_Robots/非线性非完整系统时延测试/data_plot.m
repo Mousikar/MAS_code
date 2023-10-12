@@ -24,7 +24,8 @@ hat_evx_history = double(hat_ex_history);
 hat_evy_history = double(hat_ey_history);
 
 figure;
-subplot(2, 1, 1);
+set(gcf,'Position',[100,100,2000,1200]); % 设置图形大小
+subplot(2, 5, 1);
 grid on;
 for i = 1:num_follower
     plot(hat_evx_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);
@@ -35,7 +36,7 @@ title('turtlebot vx error');
 xlabel('t/(ms)');
 ylabel('X/(m/s)');
 
-subplot(2, 1, 2);
+subplot(2, 5, 6);
 grid on;
 for i = 1:num_follower
     plot(hat_evy_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);
@@ -47,9 +48,7 @@ xlabel('t/(ms)');
 ylabel('Y/(m/s)');
 hold off;
 
-figure;
-set(gcf,'Position',[100,100,1600,1200]); % 设置图形大小
-subplot(2, 4, 1);
+subplot(2, 5, 2);
 grid on;
 for k = 1:num_follower
     plot(x_history(:,k), 'LineWidth', 2, 'DisplayName', ['x' num2str(k)]);
@@ -61,7 +60,7 @@ title('turtlebot position');
 xlabel('t/(ms)');
 ylabel('X/(m)');
 
-subplot(2, 4, 5);
+subplot(2, 5, 7);
 grid on;
 for k = 1:num_follower
     plot(theta_history(:,k), 'LineWidth', 2, 'DisplayName', ['theta' num2str(k)]);
@@ -71,43 +70,43 @@ title('turtlebot pose');
 xlabel('t/(ms)');
 ylabel('theta/(rad)');
 
-subplot(2, 4, 2);
+subplot(2, 5, 3);
 grid on;
 plot(v_history, 'LineWidth', 2);
 title('turtlebot velocity');
 xlabel('t/(ms)');
 ylabel('v/(m/s)');
 
-subplot(2, 4, 6);
+subplot(2, 5, 8);
 grid on;
 plot(omega_history, 'LineWidth', 2);
 title('turtlebot angular');
 xlabel('t/(ms)');
 ylabel('omega/(rad/s)');
 
-subplot(2, 4, 3);
+subplot(2, 5, 4);
 grid on;
 for i = 1:num_follower
     plot(hat_ex_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);
     hold on;
 end
 legend('show');
-title('turtlebot x error');
+title('turtlebot consensus x error');
 xlabel('t/(ms)');
 ylabel('X/(m)');
 
-subplot(2, 4, 7);
+subplot(2, 5, 9);
 grid on;
 for i = 1:num_follower
     plot(hat_ey_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);
     hold on;
 end
 legend('show');
-title('turtlebot y error');
+title('turtlebot consensus y error');
 xlabel('t/(ms)');
 ylabel('Y/(m)');
 
-subplot(2, 4, 4);
+subplot(2, 5, 5);
 grid on;
 for i = 1:num_follower
     plot(errx_actual_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);
@@ -118,7 +117,7 @@ title('turtlebot x error');
 xlabel('t/(ms)');
 ylabel('X/(m)');
 
-subplot(2, 4, 8);
+subplot(2, 5, 10);
 grid on;
 for i = 1:num_follower
     plot(erry_actual_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);

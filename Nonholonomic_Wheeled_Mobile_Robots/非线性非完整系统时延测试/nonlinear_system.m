@@ -60,7 +60,7 @@ L2 = -A_LF;
 xishu = inv(L1) * L2;
 
 % 时延设置
-tau_actual = [1, 1, 2, 1, 1, 1]; % 根据实际情况填充
+tau_actual = [1, 1, 2, 3, 4, 5]; % 根据实际情况填充
 tau = repmat(tau_actual, num_follower, 1) / 1000; % 初始化时延
 d = floor(tau / T);
 dmax = max(max(d));
@@ -109,16 +109,22 @@ for k = 1:iter
     % 控制方程
     for i = 1:num_follower
         for j = 1:num_follower
-            hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x(j));
-            hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y(j));
-            % hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j));
-            % hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j));
+            % hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x(j));
+            % hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y(j));
+            hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j));
+            hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j));
+            % 用计算的位置来代替现在的位置
+            hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j) - ...
+                v_history(end - d(i, j) + 1, j) * cos(theta_history(end - d(i, j) + 1, j)) * d(i, j) * T);
+            hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j) - ...
+                v_history(end - d(i, j) + 1, j) * sin(theta_history(end - d(i, j) + 1, j)) * d(i, j) * T);
+
         end
         for j = 1:num_leader
-            hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx(j));
-            hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry(j));
-            % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j));
-            % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j));
+            % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx(j));
+            % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry(j));
+            hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j) - dot_rx(j) * d(i, j) * T);
+            hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j) - dot_ry(j) * d(i, j) * T);
         end
         dot_dx(i) = dot_rx(1);
         dot_dy(i) = dot_ry(1);
