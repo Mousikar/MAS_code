@@ -25,30 +25,8 @@ hat_evy_history = double(hat_ey_history);
 
 figure;
 set(gcf,'Position',[100,100,2000,1200]); % 设置图形大小
+
 subplot(2, 5, 1);
-grid on;
-for i = 1:num_follower
-    plot(hat_evx_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);
-    hold on;
-end
-legend('show');
-title('turtlebot vx error');
-xlabel('t/(ms)');
-ylabel('X/(m/s)');
-
-subplot(2, 5, 6);
-grid on;
-for i = 1:num_follower
-    plot(hat_evy_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);
-    hold on;
-end
-legend('show');
-title('turtlebot vy error');
-xlabel('t/(ms)');
-ylabel('Y/(m/s)');
-hold off;
-
-subplot(2, 5, 2);
 grid on;
 for k = 1:num_follower
     plot(x_history(:,k), 'LineWidth', 2, 'DisplayName', ['x' num2str(k)]);
@@ -60,7 +38,7 @@ title('turtlebot position');
 xlabel('t/(ms)');
 ylabel('X/(m)');
 
-subplot(2, 5, 7);
+subplot(2, 5, 6);
 grid on;
 for k = 1:num_follower
     plot(theta_history(:,k), 'LineWidth', 2, 'DisplayName', ['theta' num2str(k)]);
@@ -71,19 +49,42 @@ title('turtlebot pose');
 xlabel('t/(ms)');
 ylabel('theta/(rad)');
 
-subplot(2, 5, 3);
+subplot(2, 5, 2);
 grid on;
 plot(v_history, 'LineWidth', 2);
 title('turtlebot velocity');
 xlabel('t/(ms)');
 ylabel('v/(m/s)');
 
-subplot(2, 5, 8);
+subplot(2, 5, 7);
 grid on;
 plot(omega_history, 'LineWidth', 2);
 title('turtlebot angular');
 xlabel('t/(ms)');
 ylabel('omega/(rad/s)');
+
+subplot(2, 5, 3);
+grid on;
+for i = 1:num_follower
+    plot(hat_evx_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);
+    hold on;
+end
+legend('show');
+title('turtlebot vx error');
+xlabel('t/(ms)');
+ylabel('X/(m/s)');
+
+subplot(2, 5, 8);
+grid on;
+for i = 1:num_follower
+    plot(hat_evy_history(:,i), 'LineWidth', 2, 'DisplayName', ['follower' num2str(i)]);
+    hold on;
+end
+legend('show');
+title('turtlebot vy error');
+xlabel('t/(ms)');
+ylabel('Y/(m/s)');
+hold off;
 
 subplot(2, 5, 4);
 grid on;
