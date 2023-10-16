@@ -8,8 +8,8 @@ t_sum = 10;
 T = 0.001;
 iter = floor(t_sum / T);
 num_follower = 6;
-% num_leader = 4;
-num_leader = 6;
+num_leader = 4;
+% num_leader = 6;
 
 % 初值
 x = zeros(1, num_follower) + 2 * rand(1, num_follower);
@@ -30,26 +30,26 @@ k3 = 2;
 R = 100;
 
 % % 网络拓扑
-% A_F = [0,1,0,0,0,0;
-%        0,0,0,0,0,0;
-%        0,0,0,0,0,0;
-%        0,1,0,0,0,0;
-%        1,0,0,0,0,1;
-%        0,0,1,0,1,0]; % 跟随者邻接矩阵
-% 
-% B = [1,0,0,0,0,0;
-%      0,2,0,0,0,0;
-%      0,0,1,0,0,0;
-%      0,0,0,1,0,0;
-%      0,0,0,0,1,0;
-%      0,0,0,0,0,0]; % 跟随者能接受到的领导者信息总和
-% 
-% A_LF = [1,0,0,0;
-%          0,1,1,0;
-%          0,0,0,1;
-%          1,0,0,0;
-%          0,1,0,0;
-%          0,0,0,0]; % 领导者和跟随者的耦合邻接矩阵
+A_F = [0,1,0,0,0,0;
+       0,0,0,0,0,0;
+       0,0,0,0,0,0;
+       0,1,0,0,0,0;
+       1,0,0,0,0,1;
+       0,0,1,0,1,0]; % 跟随者邻接矩阵
+
+B = [1,0,0,0,0,0;
+     0,2,0,0,0,0;
+     0,0,1,0,0,0;
+     0,0,0,1,0,0;
+     0,0,0,0,1,0;
+     0,0,0,0,0,0]; % 跟随者能接受到的领导者信息总和
+
+A_LF = [1,0,0,0;
+         0,1,1,0;
+         0,0,0,1;
+         1,0,0,0;
+         0,1,0,0;
+         0,0,0,0]; % 领导者和跟随者的耦合邻接矩阵
 % 网络拓扑
 % A_F = [0,1,0,1,0,0;
 %        1,0,1,0,0,0;
@@ -72,26 +72,26 @@ R = 100;
 %          0,0,0,0,1,0;
 %          0,0,0,0,0,1]; % 领导者和跟随者的耦合邻接矩阵
 
-A_F = [0,1,0,1,0,0;
-       1,0,1,0,0,0;
-       0,1,0,0,0,0;
-       1,0,0,0,1,0;
-       0,0,0,1,0,1;
-       0,0,0,0,1,0]; % 跟随者邻接矩阵
-
-B = [0,0,0,0,0,0;
-     0,1,0,0,0,0;
-     0,0,1,0,0,0;
-     0,0,0,2,0,0;
-     0,0,0,0,1,0;
-     0,0,0,0,0,1]; % 跟随者能接受到的领导者信息总和
-
-A_LF = [0,0,0,0,0,0;
-         0,1,0,0,0,0;
-         0,0,1,0,0,0;
-         1,0,0,1,0,0;
-         0,0,0,0,1,0;
-         0,0,0,0,0,1]; % 领导者和跟随者的耦合邻接矩阵
+% A_F = [0,1,0,1,0,0;
+%        1,0,1,0,0,0;
+%        0,1,0,0,0,0;
+%        1,0,0,0,1,0;
+%        0,0,0,1,0,1;
+%        0,0,0,0,1,0]; % 跟随者邻接矩阵
+% 
+% B = [0,0,0,0,0,0;
+%      0,1,0,0,0,0;
+%      0,0,1,0,0,0;
+%      0,0,0,2,0,0;
+%      0,0,0,0,1,0;
+%      0,0,0,0,0,1]; % 跟随者能接受到的领导者信息总和
+% 
+% A_LF = [0,0,0,0,0,0;
+%          0,1,0,0,0,0;
+%          0,0,1,0,0,0;
+%          1,0,0,1,0,0;
+%          0,0,0,0,1,0;
+%          0,0,0,0,0,1]; % 领导者和跟随者的耦合邻接矩阵
 L = -A_F;
 for i = 1:num_follower
     L(i,i) = sum(A_F(i,:));
@@ -102,7 +102,7 @@ L2 = -A_LF;
 xishu = inv(L1) * L2;
 
 % 时延设置
-tau_actual = [1, 1, 2, 3, 4, 5]; % 根据实际情况填充
+tau_actual = [1, 1, 2, 1, 1, 1]; % 根据实际情况填充
 tau = repmat(tau_actual, num_follower, 1) / 1000; % 初始化时延
 d = floor(tau / T);
 dmax = max(max(d));
@@ -166,23 +166,23 @@ for k = 1:iter
 
         end
         for j = 1:num_leader
-            hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx(j));
-            hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry(j));
-            % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j));
-            % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j));
+            % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx(j));
+            % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry(j));
+            hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j));
+            hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j));
             % 都有时延，包括自身
             % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x_history(end - d(i, j) + 1, i) - rx_history(end - d(i, j) + 1, j));
             % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y_history(end - d(i, j) + 1, i) - ry_history(end - d(i, j) + 1, j));
             % 用计算的位置来代替现在的位置
             % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j) - dot_rx(j) * d(i, j) * T);
             % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j) - dot_ry(j) * d(i, j) * T);
-            dot_dx(i) = dot_dx(i) + A_LF(i, j) * dot_rx(j);
-            dot_dy(i) = dot_dy(i) + A_LF(i, j) * dot_ry(j);
+            % dot_dx(i) = dot_dx(i) + A_LF(i, j) * dot_rx(j);
+            % dot_dy(i) = dot_dy(i) + A_LF(i, j) * dot_ry(j);
         end
-        hat_ex(i) = 1/sum(A_F(i, :)) * hat_ex(i);
-        hat_ey(i) = 1/sum(A_F(i, :)) * hat_ey(i);
-        % dot_dx(i) = mean(dot_rx);
-        % dot_dy(i) = mean(dot_ry);
+        % hat_ex(i) = 1/sum(A_F(i, :)) * hat_ex(i);
+        % hat_ey(i) = 1/sum(A_F(i, :)) * hat_ey(i);
+        dot_dx(i) = mean(dot_rx);
+        dot_dy(i) = mean(dot_ry);
         % if B(i,i) ~= 0
         %     dot_dx(i) = 1/B(i,i)* dot_dx(i);
         %     dot_dy(i) = 1/B(i,i)* dot_dy(i);
@@ -194,7 +194,7 @@ for k = 1:iter
 
         theta_d(i) = atan2(uy(i), ux(i));
 
-        if k == 0
+        if k == 1
             theta_d1(i) = theta_d(i);
             kk(i) = 0;
         end

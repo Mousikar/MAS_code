@@ -22,8 +22,8 @@ hat_ex_history = double(hat_ex_history);
 hat_ey_history = double(hat_ey_history);
 errx_actual_history = double(errx_actual_history);
 erry_actual_history = double(erry_actual_history);
-hat_evx_history = double(hat_ex_history);
-hat_evy_history = double(hat_ey_history);
+hat_evx_history = double(hat_evx_history);
+hat_evy_history = double(hat_evy_history);
 
 figure;
 set(gcf,'Position',[100,100,2000,1200]); % 设置图形大小
