@@ -1,14 +1,15 @@
 % linear system
 clear
 % 随机种子
-rng(88);
+rng(87);
 
 % 迭代设置
-t_sum = 10;
-T = 0.001;
+t_sum = 2;
+T = 0.0001;
 iter = floor(t_sum / T);
 num_follower = 6;
 num_leader = 4;
+num_leader = 6;
 
 % 初值
 x = zeros(1, num_follower) + 2 * rand(1, num_follower);
@@ -17,8 +18,8 @@ theta = -pi + 2 * pi * rand(1, num_follower);
 
 rx = 1 + 2 * rand(1, num_leader);
 ry = 1 + 2 * rand(1, num_leader);
-dot_rx = 5 * (1 / T / iter) * ones(1, num_leader);
-dot_ry = 5 * (1 / T / iter) * ones(1, num_leader);
+dot_rx = 0.25 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
+dot_ry = 0.25 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
 
 % 系数
 k1 = 3.8;
@@ -26,27 +27,48 @@ k2 = 3.8;
 k3 = 0.12;
 R = 100;
 
-% 网络拓扑
-A_F = [0,1,0,0,0,0;
-       0,0,0,0,0,0;
-       0,0,0,0,0,0;
-       0,1,0,0,0,0;
-       1,0,0,0,0,1;
+% % 网络拓扑
+% A_F = [0,1,0,0,0,0;
+%        0,0,0,0,0,0;
+%        0,0,0,0,0,0;
+%        0,1,0,0,0,0;
+%        1,0,0,0,0,1;
+%        0,0,1,0,1,0]; % 跟随者邻接矩阵
+% 
+% B = [1,0,0,0,0,0;
+%      0,2,0,0,0,0;
+%      0,0,1,0,0,0;
+%      0,0,0,1,0,0;
+%      0,0,0,0,1,0;
+%      0,0,0,0,0,0]; % 跟随者能接受到的领导者信息总和
+% 
+% A_LF = [1,0,0,0;
+%          0,1,1,0;
+%          0,0,0,1;
+%          1,0,0,0;
+%          0,1,0,0;
+%          0,0,0,0]; % 领导者和跟随者的耦合邻接矩阵
+A_F = [0,1,0,1,0,0;
+       1,0,1,0,0,0;
+       0,1,0,0,0,1;
+       1,0,0,0,1,0;
+       0,0,0,1,0,1;
        0,0,1,0,1,0]; % 跟随者邻接矩阵
 
 B = [1,0,0,0,0,0;
-     0,2,0,0,0,0;
+     0,1,0,0,0,0;
      0,0,1,0,0,0;
      0,0,0,1,0,0;
      0,0,0,0,1,0;
-     0,0,0,0,0,0]; % 跟随者能接受到的领导者信息总和
+     0,0,0,0,0,1]; % 跟随者能接受到的领导者信息总和
 
-A_LF = [1,0,0,0;
-         0,1,1,0;
-         0,0,0,1;
-         1,0,0,0;
-         0,1,0,0;
-         0,0,0,0]; % 领导者和跟随者的耦合邻接矩阵
+A_LF = [1,0,0,0,0,0;
+         0,1,0,0,0,0;
+         0,0,1,0,0,0;
+         0,0,0,1,0,0;
+         0,0,0,0,1,0;
+         0,0,0,0,0,1]; % 领导者和跟随者的耦合邻接矩阵
+
 
 L = -A_F;
 for i = 1:num_follower
@@ -58,7 +80,7 @@ L2 = -A_LF;
 xishu = inv(L1) * L2;
 
 % 时延设置
-tau_actual = [1, 1, 2, 1, 1, 1]; % 根据实际情况填充
+tau_actual = [10, 10, 10, 10, 10, 10]; % 根据实际情况填充
 tau = repmat(tau_actual, num_follower, 1) / 1000; % 初始化时延
 d = floor(tau / T);
 dmax = max(max(d));
@@ -107,21 +129,27 @@ for k = 1:iter
         for j = 1:num_follower
             % hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x(j));
             % hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y(j));
-            % hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j));
-            % hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j));
-            hat_ex(i) = hat_ex(i) - A_F(i, j) * (x_history(end - d(i, j) + 1, i) - x_history(end - d(i, j) + 1, j));
-            hat_ey(i) = hat_ey(i) - A_F(i, j) * (y_history(end - d(i, j) + 1, i) - y_history(end - d(i, j) + 1, j));
+            hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j));
+            hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j));
+            % hat_ex(i) = hat_ex(i) - A_F(i, j) * (x_history(end - d(i, j) + 1, i) - x_history(end - d(i, j) + 1, j));
+            % hat_ey(i) = hat_ey(i) - A_F(i, j) * (y_history(end - d(i, j) + 1, i) - y_history(end - d(i, j) + 1, j));
         end
         for j = 1:num_leader
-            % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx(j));
-            % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry(j));
+            hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx(j));
+            hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry(j));
             % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j));
             % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j));
-            hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x_history(end - d(i, j) + 1, i) - rx_history(end - d(i, j) + 1, j));
-            hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y_history(end - d(i, j) + 1, i) - ry_history(end - d(i, j) + 1, j));
+            % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x_history(end - d(i, j) + 1, i) - rx_history(end - d(i, j) + 1, j));
+            % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y_history(end - d(i, j) + 1, i) - ry_history(end - d(i, j) + 1, j));
+            dot_dx(i) = dot_dx(i) + A_LF(i, j) * dot_rx(1);
+            dot_dy(i) = dot_dy(i) + A_LF(i, j) * dot_ry(1);
         end
-        dot_dx(i) = dot_rx(1);
-        dot_dy(i) = dot_ry(1);
+        % dot_dx(i) = dot_rx(1);
+        % dot_dy(i) = dot_ry(1);
+        if B(i,i) ~= 0
+            dot_dx(i) = 1/B(i,i)* dot_rx(1);
+            dot_dy(i) = 1/B(i,i)* dot_ry(1);
+        end
         hat_evx(i) = dot_rx(1) - v(i) * sin(theta(i));
         hat_evy(i) = dot_ry(1) - v(i) * cos(theta(i));
         ux(i) = dot_dx(i) + k1 * hat_ex(i);
@@ -148,5 +176,13 @@ for k = 1:iter
     erry_actual = [erry_actual_history; erry_actual'];
     hat_evx_history = [hat_evx_history; hat_evx];
     hat_evy_history = [hat_evy_history; hat_evy];
+
+
+    if mod(k,1000)==0
+        % 计算进度
+        progress = k / iter * 100;    
+        % 打印进度信息
+        fprintf('进度：%0.2f%%\n', progress);
+    end
 end
 

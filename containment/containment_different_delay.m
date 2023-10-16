@@ -74,10 +74,11 @@ leader_positions = zeros(num_leaders, 2) + 4 * rand(num_leaders, 2);
 follower_positions = 10 * rand(num_followers, 2);
 follower_positions = 4 * ones(num_leaders, 2) + 6 * rand(num_leaders, 2);
 
-t_sum = 20; % seconds
+t_sum = 40; % seconds
 % dmax = [0.1, 0.02, 0.3, 0.02, 0.3, 0.1];
 % dmax = [0.4, 0.02, 0.4, 0.02, 0.4, 0.1];
-dmax = [0.1, 0.1, 0.4, 0.1, 0.1, 0.1];
+dmax = [0.1, 0.1, 0.3, 0.1, 0.3, 0.1];
+dmax = [0.01, 0.01, 0.01, 0.01, 0.01, 0.01];
 t_span = [0, t_sum]; % Time span
 t = linspace(0, t_sum, num_iterations); % Time points for plotting
 
