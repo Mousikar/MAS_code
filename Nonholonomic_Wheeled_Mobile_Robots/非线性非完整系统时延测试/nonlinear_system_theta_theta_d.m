@@ -4,7 +4,7 @@ clear
 rng(88);
 
 % 迭代设置
-t_sum = 50;
+t_sum = 20;
 T = 0.001;
 iter = floor(t_sum / T);
 num_follower = 6;
@@ -114,6 +114,8 @@ dmax = max(max(d));
 ux = zeros(1, num_follower);
 uy = zeros(1, num_follower);
 theta_d = zeros(1, num_follower);
+theta_d1 = zeros(1, num_follower);
+kk = zeros(1, num_follower);
 v = zeros(1, num_follower);
 omega = zeros(1, num_follower);
 dot_hat_theta_d = zeros(1, num_follower);
@@ -143,7 +145,7 @@ for i = 1:dmax
     ry_history(i, :) = ry;
 end
 
-for k = 1:iter/2
+for k = 1:iter%/2
     hat_ex = zeros(1, num_follower);
     hat_ey = zeros(1, num_follower);
     dot_dx = zeros(1, num_follower);
@@ -192,28 +194,32 @@ for k = 1:iter/2
         % end
         hat_evx(i) = dot_rx(1) - v(i) * sin(theta(i));
         hat_evy(i) = dot_ry(1) - v(i) * cos(theta(i));
-        ux(i) = dot_dx(i) + k1 * hat_ex(i);
-        uy(i) = dot_dy(i) + k2 * hat_ey(i);
+        % ux(i) = dot_dx(i) + k1 * hat_ex(i);
+        % uy(i) = dot_dy(i) + k2 * hat_ey(i);
+        int_x = sum(hat_ex_history);
+        int_y = sum(hat_ey_history);
+        ux(i) = dot_dx(i) + k1 * hat_ex(i) - 0.001 * int_x(i);
+        uy(i) = dot_dy(i) + k2 * hat_ey(i) - 0.001 * int_y(i);
 
         theta_d(i) = atan2(uy(i), ux(i));
 
-        % if k == 1
-        %     theta_d1(i) = theta_d(i);
-        %     kk(i) = 0;
-        % end
-        % 
-        % delta = - 0.9 * pi^2;
-        % 
-        % if theta_d(i) * theta_d1(i) < delta
-        %     if theta_d(i) < 0
-        %         kk(i) = kk(i) + 1;
-        %     else
-        %         kk(i) = kk(i) - 1;
-        %     end
-        % end
-        % 
-        % theta_d1(i) = theta_d(i);
-        % theta_d(i) = theta_d(i) + 2 * pi * kk(i);
+        if k == 1
+            theta_d1(i) = theta_d(i);
+            kk(i) = 0;
+        end
+
+        delta = - 0.9 * pi^2;
+
+        if theta_d(i) * theta_d1(i) < delta
+            if theta_d(i) < 0
+                kk(i) = kk(i) + 1;
+            else
+                kk(i) = kk(i) - 1;
+            end
+        end
+
+        theta_d1(i) = theta_d(i);
+        theta_d(i) = theta_d(i) + 2 * pi * kk(i);
         
         v(i) = sqrt(uy(i)^2 + ux(i)^2);
 
@@ -231,11 +237,11 @@ for k = 1:iter/2
 
     % 系统方程
     for i = 1:num_follower
+        theta(i) = theta(i) + omega(i) * T;
         x(i) = x(i) + v(i) * T * cos(theta(i));    % v和x是N个智能体的速度和x坐标
         y(i) = y(i) + v(i) * T * sin(theta(i));    % y是N个智能体的y坐标
         dot_x(i) = v(i) * cos(theta(i));
         dot_y(i) = v(i) * sin(theta(i));
-        theta(i) = theta(i) + omega(i) * T;
     end
     for i = 1:num_leader
         rx(i) = rx(i) + dot_rx(i) * T;
