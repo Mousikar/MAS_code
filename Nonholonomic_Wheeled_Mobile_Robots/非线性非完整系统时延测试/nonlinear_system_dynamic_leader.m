@@ -140,13 +140,19 @@ for k = 1:iter
             % 用计算的位置来代替现在的位置
             % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j) - dot_rx(j) * d(i, j) * T);
             % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j) - dot_ry(j) * d(i, j) * T);
+            dot_dx(i) = dot_dx(i) + A_LF(i, j) * dot_rx(j);
+            dot_dy(i) = dot_dy(i) + A_LF(i, j) * dot_ry(j);        
         end
-        dot_dx(i) = mean(dot_rx);
-        dot_dy(i) = mean(dot_ry);
+        % dot_dx(i) = mean(dot_rx);
+        % dot_dy(i) = mean(dot_ry);
         hat_evx(i) = mean(dot_rx) - v(i) * sin(theta(i));
         hat_evy(i) = mean(dot_ry) - v(i) * cos(theta(i));
-        ux(i) = dot_dx(i) + k1 * hat_ex(i);
-        uy(i) = dot_dy(i) + k2 * hat_ey(i);
+        % ux(i) = dot_dx(i) + k1 * hat_ex(i);
+        % uy(i) = dot_dy(i) + k2 * hat_ey(i);
+        int_x = sum(hat_ex_history);
+        int_y = sum(hat_ey_history);
+        ux(i) = dot_dx(i) + k1 * hat_ex(i) - T * int_x(i);
+        uy(i) = dot_dy(i) + k2 * hat_ey(i) - T * int_y(i);
 
         theta_d(i) = atan2(uy(i), ux(i));
 

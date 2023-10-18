@@ -181,8 +181,8 @@ for k = 1:iter%/2
             % 用计算的位置来代替现在的位置
             % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j) - dot_rx(j) * d(i, j) * T);
             % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j) - dot_ry(j) * d(i, j) * T);
-            dot_dx(i) = dot_dx(i) + A_LF(i, j) * dot_rx(j);
-            dot_dy(i) = dot_dy(i) + A_LF(i, j) * dot_ry(j);
+            % dot_dx(i) = dot_dx(i) + A_LF(i, j) * dot_rx(j);
+            % dot_dy(i) = dot_dy(i) + A_LF(i, j) * dot_ry(j);
         end
         % hat_ex(i) = 1/sum(A_F(i, :)) * hat_ex(i);
         % hat_ey(i) = 1/sum(A_F(i, :)) * hat_ey(i);
@@ -198,8 +198,10 @@ for k = 1:iter%/2
         % uy(i) = dot_dy(i) + k2 * hat_ey(i);
         int_x = sum(hat_ex_history);
         int_y = sum(hat_ey_history);
-        ux(i) = dot_dx(i) + k1 * hat_ex(i) - 0.001 * int_x(i);
-        uy(i) = dot_dy(i) + k2 * hat_ey(i) - 0.001 * int_y(i);
+        % ux(i) = dot_dx(i) + k1 * hat_ex(i) - T * int_x(i);
+        % uy(i) = dot_dy(i) + k2 * hat_ey(i) - T * int_y(i);
+        ux(i) = k1 * hat_ex(i) + T * int_x(i);
+        uy(i) = k2 * hat_ey(i) + T * int_y(i);
 
         theta_d(i) = atan2(uy(i), ux(i));
 
@@ -227,9 +229,19 @@ for k = 1:iter%/2
         dot_hat_theta_d(i) = dot_hat_theta_d(i) + ddot_hat_theta_d(i) * T;
         hat_theta_d(i) = hat_theta_d(i) + dot_hat_theta_d(i) * T;
         
-        omega(i) = dot_hat_theta_d(i) + k3 * (theta_d(i) - theta(i));  % 暂时不加上饱和函数
+        % omega(i) = dot_hat_theta_d(i) + k3 * (theta_d(i) - theta(i));  % 暂时不加上饱和函数
 
-                
+        % --------------------------------加上饱和函数-----------------------------------------
+        de = 0.1;
+        kkk = 1/de;
+        if abs(theta(i) - theta_d(i))>de
+           sats = sign(theta(i) - theta_d(i));
+        else
+           sats = kkk * (theta(i) - theta_d(i));
+        end
+        omega(i) = dot_hat_theta_d(i) - k3 * (theta(i) - theta_d(i)) - 0.01 * sats;      % 加上饱和函数
+
+
     end
 
     errx_actual = L1 * x' + L2 * rx';
@@ -257,8 +269,8 @@ for k = 1:iter%/2
     ry_history(k+dmax,:) = ry;
     v_history(k,:) = v;
     omega_history(k,:) = omega;
-    hat_ex_history(k,:) = -hat_ex;
-    hat_ey_history(k,:) = -hat_ey;
+    hat_ex_history(k,:) = hat_ex;
+    hat_ey_history(k,:) = hat_ey;
     errx_actual_history(k,:) = errx_actual';
     erry_actual_history(k,:) = erry_actual';
     hat_evx_history(k,:) = hat_evx;
