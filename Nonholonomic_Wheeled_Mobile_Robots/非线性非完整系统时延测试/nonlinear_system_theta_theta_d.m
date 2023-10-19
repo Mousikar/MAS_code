@@ -4,7 +4,7 @@ clear
 rng(88);
 
 % 迭代设置
-t_sum = 20;
+t_sum = 50;
 T = 0.001;
 iter = floor(t_sum / T);
 num_follower = 6;
@@ -229,24 +229,41 @@ for k = 1:iter%/2
         dot_hat_theta_d(i) = dot_hat_theta_d(i) + ddot_hat_theta_d(i) * T;
         hat_theta_d(i) = hat_theta_d(i) + dot_hat_theta_d(i) * T;
         
-        % omega(i) = dot_hat_theta_d(i) + k3 * (theta_d(i) - theta(i));  % 暂时不加上饱和函数
+        omega(i) = dot_hat_theta_d(i) + k3 * (theta_d(i) - theta(i));  % 暂时不加上饱和函数
 
         % --------------------------------加上饱和函数-----------------------------------------
-        de = 0.1;
-        kkk = 1/de;
-        if abs(theta(i) - theta_d(i))>de
-           sats = sign(theta(i) - theta_d(i));
-        else
-           sats = kkk * (theta(i) - theta_d(i));
-        end
-        omega(i) = dot_hat_theta_d(i) - k3 * (theta(i) - theta_d(i)) - 0.01 * sats;      % 加上饱和函数
-
-
+        % de = 0.1;
+        % kkk = 1/de;
+        % temp = theta(i) - theta_d(i);
+        % temp = nthroot(temp^2,3);
+        % if abs(temp)>de
+        %    sats = sign(temp);
+        % else
+        %    sats = kkk * (temp);
+        % end
+        % omega(i) = dot_hat_theta_d(i) - k3 * sign(theta(i) - theta_d(i))*norm(theta(i) - theta_d(i))^(2/3); %- 0.01 * sats;      % 加上饱和函数
     end
 
-    errx_actual = L1 * x' + L2 * rx';
-    erry_actual = L1 * y' + L2 * ry';
-
+    % errx_actual = L1 * x' + L2 * rx';
+    % erry_actual = L1 * y' + L2 * ry';
+    errx_actual = x' + xishu * rx';
+    erry_actual = y' + xishu * ry';
+    dot_errx_actual = zeros(1, num_follower);
+    dot_erry_actual = zeros(1, num_follower);
+    for i = 1:num_follower
+        for j = 1:num_follower
+            dot_errx_actual(i) = dot_errx_actual(i) - A_F(i, j) * (ux(i) - ux(j));
+            dot_erry_actual(i) = dot_erry_actual(i) - A_F(i, j) * (uy(i) - uy(j));
+        end
+        for j = 1:num_leader
+            dot_errx_actual(i) = dot_errx_actual(i) - A_LF(i, j) * (ux(i) - dot_rx(j));
+            dot_erry_actual(i) = dot_erry_actual(i) - A_LF(i, j) * (uy(i) - dot_ry(j));
+        end
+    end
+    lyax(k) = errx_actual' * errx_actual + dmax*T*sum(sum(errx_actual_history(end - dmax + 1:end,:).^6));
+    lyay(k) = errx_actual' * erry_actual + dmax*T*sum(sum(erry_actual_history(end - dmax + 1:end,:).^2));
+    dotlyax(k) = dot_errx_actual * errx_actual;
+    dotlyay(k) = dot_erry_actual * erry_actual;
     % 系统方程
     for i = 1:num_follower
         theta(i) = theta(i) + omega(i) * T;
