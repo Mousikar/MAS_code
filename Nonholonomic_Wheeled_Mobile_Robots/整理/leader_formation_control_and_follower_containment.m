@@ -43,7 +43,7 @@ theta_d = zeros(1, num_follower);
 ux = zeros(1,num_follower);
 uy = zeros(1,num_follower);
 % 时延
-tau_F = [1, 4, 2, 3, 5, 6]; % 根据实际情况填充
+tau_F = [10, 40, 20, 30, 50, 60]; % 根据实际情况填充
 tau = repmat(tau_F, num_follower, 1) / 1000; % 初始化时延
 d_F = floor(tau / T);
 d_Fmax = max(max(d_F));
@@ -54,6 +54,7 @@ dot_rx_star_his = zeros(iter+d_Fmax,num_leader);
 dot_ry_star_his = zeros(iter+d_Fmax,num_leader);
 rx_his = zeros(iter+d_Fmax,num_leader);
 ry_his = zeros(iter+d_Fmax,num_leader);
+rtheta_his = zeros(iter+d_Fmax,num_leader);
 dot_rx_his = zeros(iter+d_Fmax,num_leader);
 dot_ry_his = zeros(iter+d_Fmax,num_leader);
 u_rx_his = zeros(iter+d_Fmax,num_leader);
@@ -65,6 +66,7 @@ errory_L_his = zeros(iter+d_Fmax,num_leader);
 
 x_his = zeros(iter+d_Fmax,num_follower);
 y_his = zeros(iter+d_Fmax,num_follower);
+theta_his = zeros(iter+d_Fmax,num_follower);
 v_his = zeros(iter+d_Fmax,num_follower);
 omega_his = zeros(iter+d_Fmax,num_follower);
 errorx_F_his = zeros(iter+d_Fmax,num_follower);
@@ -270,12 +272,14 @@ for k = 1 + d_Fmax:iter + d_Fmax
     % 记录历史变量
     rx_his(k,:) = rx;
     ry_his(k,:) = ry;
+    rtheta_his(k,:) = rtheta;
     v_L_his(k,:) = v_L;
     omega_L_his(k,:) = omega_L;
     errorx_L_his(k,:) = errorx_L;
     errory_L_his(k,:) = errory_L;
     x_his(k,:) = x;
     y_his(k,:) = y;
+    theta_his(k,:) = theta;
     v_his(k,:) = v;
     omega_his(k,:) = omega;
     errorx_F_his(k,:) = errorx_F;
@@ -293,5 +297,4 @@ plot(rx_star_his,ry_star_his,'r-')
 hold on
 plot(rx_his,ry_his,'b--')
 plot(x_his,y_his,'g--')
-legend('期望位置','')
 axis equal
