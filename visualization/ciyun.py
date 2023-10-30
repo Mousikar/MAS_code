@@ -10,7 +10,7 @@ fontprop = FontProperties(fname=font_path)
 text = "这是一段文本，用来生成词云图。词云图可以将文本中的单词按照出现频率生成可视化效果。"
 
 # 从文本文件中读取文字
-with open('ciyun.txt', 'r', encoding='utf-8') as file:
+with open('ciyun1.txt', 'r', encoding='utf-8') as file:
     text = file.read()
 
 # 合并文本为一行

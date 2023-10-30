@@ -1,0 +1,256 @@
+Distributed Non-Convex Input-Constrained Consensus Problem for High-Order Discrete-Time Multi-Agent Systems Subject to Switching Topologies, and Time Delays
+Time-Varying Formation Control for Second-Order Discrete-Time Multi-Agent Systems With Directed Topology and Communication Delay
+New Results on Consensus of Multi-Agent Systems With Time-Varying Delays: A Cyclic Switching Technique
+Time-Varying Formation Control For Second-Order Discrete-Time Multi- Agent Systems With Switching Topologies and Nonuniform Communication Delays
+Consensus of Multi-Agent Systems in Directed Networks With Nonuniform Time-Varying Delays
+Consensus of Multi-Agent Systems With Unbounded Time-Varying Delays
+Weighted Group Consensus for Discrete-Time Heterogeneous Multi-Agent Systems in the Cooperative-Competitive Network With Time Delays
+Distributed Fault Detection for Second-Order Delayed Multi-Agent Systems With Adversaries
+Bipartite Consensus for Multi-Agent Systems With Time-Varying Delays Based on Method of Delay Partitioning
+Containment Control for High-Order Multi-Agent Systems With Nonuniform Communication Delays and Switching Topologies
+Sampled-Data Consensus for Multiagent Systems With Time Delays and Packet Losses
+Quasi-Consensus Control for a Class of Time-Varying Stochastic Nonlinear Time-Delay Multiagent Systems Subject to Deception Attacks
+Containment Control of Fractional-Order Networked Systems With Time-Varying Communication Delays: A Positive System Viewpoint
+Robust  ${H_\infty}$  Guaranteed Cost Time-Varying Formation Tracking for High-Order Multiagent Systems With Time-Varying Delays
+A Dynamic Periodic Event-Triggered Approach to Consensus of Heterogeneous Linear Multiagent Systems With Time-Varying Communication Delays
+A Consensus Control for a Multi-Agent System With Unknown Time-Varying Communication Delays
+Time-Varying Trajectory Tracking Formation H鈭?Control for Multiagent Systems With Communication Delays and External Disturbances
+Consensus of Multiagent Systems With Time-Varying Input Delay via Truncated Predictor Feedback
+Robust Containment Control of Uncertain Multi-Agent Systems With Time-Delay and Heterogeneous Lipschitz Nonlinearity
+Second-Order Consensus for Multi-Agent Systems With Time-Varying Delays Based on Delay-Partitioning
+Consensus for Linear Multiagent Systems With Time-Varying Delays: A Frequency Domain Perspective
+Containment Control for Discrete-Time Multiagent Systems With Communication Delays and Switching Topologies
+Consensus of Discrete-Time Linear Multiagent Systems With Communication, Input and Output Delays
+Consensus Tracking Control of Uncertain Multiagent Systems With Sampled Data and Time-Varying Delay
+Consensus of Continuous-Time Multiagent Systems via Delayed Output Feedback: Delay Versus Connectivity
+Consensus of Discrete-Time Multiagent Systems With State, Input, and Communication Delays
+Predefined-Time Consensus of Nonlinear Multi-Agent Input Delay/Dynamic Event-Triggered Under Switching Topology
+Robust Stability of a Multi-Agent System Under Arbitrary and Time-Varying Communication Topologies and Communication Delays
+Nonfragile Memory-Based PD-Like Sampled-Data Consensus Control for Nonlinear Multiagent Systems With Time-Varying Communication Delays
+Consensus of Multiagent Systems With Delayed Node Dynamics and Time-Varying Coupling
+Consensus Control of Fractional-Order Multi-Agent Systems With Time Delays via Fractional-Order Iterative Learning Control
+Neural-Network-Based Distributed Adaptive Robust Control for a Class of Nonlinear Multiagent Systems With Time Delays and External Noises
+A PD-Like Protocol With a Time Delay to Average Consensus Control for Multi-Agent Systems Under an Arbitrarily Fast Switching Topology
+A Dynamic Gain Approach to Consensus Control of Nonlinear Multiagent Systems With Time Delays
+Distributed Output-Feedback Tracking for Stochastic Nonlinear Multiagent Systems With Time-Varying Delays
+Distributed Optimization for Multi-Agent Systems With Time Delay
+Synchronous Hybrid Event- and Time-Driven Consensus in Multiagent Networks With Time Delays
+Stochastic Consentability of Linear Systems With Time Delays and Multiplicative Noises
+A Descriptor Approach to Robust Leader-Following Output Consensus of Uncertain Multi-Agent Systems With Delay
+Stability Analysis of Stochastic Delayed Systems With an Application to Multi-Agent Systems
+Event-Triggered Consensus of Linear Multiagent Systems With Time-Varying Communication Delays
+Leader-Following Consensus of Heterogeneous Linear Multiagent Systems With Communication Time-Delays via Adaptive Distributed Observers
+Consensus of Multiagent Systems With Time-Varying Input Delay and Relative State Saturation Constraints
+Group Leader-Following Consensus Control for Heterogeneous Multi-Agent Systems With Time Delays
+Distributed Optimal Consensus Control for Multiagent Systems With Input Delay
+Distributed Optimization Based on a Multiagent System in the Presence of Communication Delays
+Finite-Time Observer-Based Leader-Following Consensus for Nonlinear Multiagent Systems With Input Delays
+Leaderless Consensus Control of Nonlinear PIDE-Type Multi-Agent Systems With Time Delays
+Discrete-Time Predictor Feedback for Consensus of Multiagent Systems With Delays
+Guaranteed-Cost Consensus Control for High-Dimensional Multi-Agent Systems With Input Delays and Parameter Uncertainties
+Dynamic Consensus of Second-Order Networked Multiagent Systems With Switching Topology and Time-Varying Delays
+Fixed-Time Average Consensus of Nonlinear Delayed MASs Under Switching Topologies: An Event-Based Triggering Approach
+Local Consensus of Nonlinear Multiagent Systems With Varying Delay Coupling
+Event-Triggered Consensus of Multiagent Systems With Time-Varying Communication Delay
+Observer-Based Dynamic Event-Triggered Control for Multiagent Systems With Time-Varying Delay
+Observer-Based Fuzzy Adaptive Finite-Time Containment Control of Nonlinear Multiagent Systems With Input Delay
+Distributed Consensus Control of Networked Robotic Systems With Dynamic Leader Under Time-Varying Delays and Denial-of-Service Attacks
+Leader-Following Formation Control and Collision Avoidance of Second-Order Multi-Agent Systems With Time Delay
+Distributed Consensus of Stochastic Delayed Multi-agent Systems Under Asynchronous Switching
+Distributed Coordinated Tracking Control for Multiple Uncertain Euler鈥揕agrange Systems With Time-Varying Communication Delays
+Event-Triggered Consensus Control for Second-Order Multi-Agent Systems With/Without Input Time Delay
+Dynamic Event-Triggered Leader鈥揊ollower Control for Multiagent Systems Subject to Input Time Delay
+Distributed Model-Free Sliding-Mode Predictive Control of Discrete-Time Second-Order Nonlinear Multiagent Systems With Delays
+Distributed Consensus Control Protocols for Heterogeneous Multi-Agent Systems With Time-Varying Topologies
+Reduced-Order Observer-Based Consensus for Multi-Agent Systems With Time Delay and Event Trigger Strategy
+Distributed Velocity-Constrained Consensus of Discrete-Time Multi-Agent Systems With Nonconvex Constraints, Switching Topologies, and Delays
+Sampled-Data $\mathcal {L}_{2}-\mathcal {L}_{\infty }$ Consensus Control of Nonlinear Multi-Agent Systems
+Consensus Control of Second-Order Time-Delayed Multiagent Systems in Noisy Environments Using Absolute Velocity and Relative Position Measurements
+Consensus in Multi-Agent Systems With Coupling Delays and Switching Topology
+Random Time Delay Effect on Out-of-Sequence Measurements
+Synchronization of Coupled Dynamical Systems: Tolerance to Weak Connectivity and Arbitrarily Bounded Time-Varying Delays
+Leader-Following Consensus for a Class of Nonlinear Strick-Feedback Multiagent Systems With State Time-Delays
+Group Consensus for Heterogeneous Multiagent Systems With Time Delays Based on Frequency Domain Approach
+Distributed Model Predictive Control for Tracking Consensus of Linear Multiagent Systems With Additive Disturbances and Time-Varying Communication Delays
+Bipartite Consensus on Coopetition Networks With Time-Varying Delays
+Event-Based Leader-following Consensus of Multi-Agent Systems with Input Time Delay
+MAS Consensus and Delay Limits Under Delayed Output Feedback
+Distributed Coordination of Dynamical Multi-Agent Systems Under Directed Graphs and Constrained Information Exchange
+Consensus Switching of Second-Order Multiagent Systems With Time Delay
+An Event-Based Interaction Sampled-Control for Consensus of Multi-Agents With Multiple Time-Varying Delays
+Secure Control Design for Networked Control Systems With Nonlinear Dynamics Under Time-Delay-Switch Attacks
+Consensusability of Discrete-Time Multiagent Systems With Communication Delay and Packet Dropouts
+Couple-Group Secure Consensus and Detection for a Kind of Heterogeneous Multi-Agent Systems With Time Delay and Cooperative-Competitive Relations Under Malicious Attacks
+Group Consensus of Mixed-Order Multi-Agent Systems With Fixed and Directed Interactive Topology
+Local Pinning of Networks of Multi-Agent Systems With Transmission and Pinning Delays
+Robustness Analysis of Asynchronous Sampled-Data Multiagent Networks With Time-Varying Delays
+Delay Range for Consensus Achievable by Proportional and PD Feedback Protocols With Time-Varying Delays
+Quasisynchronization of Heterogeneous Neural Networks With Time-Varying Delays via Event-Triggered Impulsive Controls
+Finite-Time Average Consensus Control of Multi-Agent Systems Based on the Aperiodically Intermittent Control
+Distributed Event-Triggered Consensus of Multiagent Systems With Communication Delays: A Hybrid System Approach
+Finite-Horizon Optimal Consensus Control for Unknown Multiagent State-Delay Systems
+Connectivity Preserving Formation Stabilization in an Obstacle-Cluttered Environment in the Presence of Time-Varying Communication Delays
+Distributed Robust Finite-Time Secondary Control for Stand-Alone Microgrids With Time-Varying Communication Delays
+Consensus Control of Multiple AUVs Recovery System Under Switching Topologies and Time Delays
+Optimal Consensus Control Design for Multiagent Systems With Multiple Time Delay Using Adaptive Dynamic Programming
+Consensus of a Class of Second-Order Multi-Agent Systems With Time-Delay and Jointly-Connected Topologies
+Consensus of Discrete-Time Linear Networked Multi-Agent Systems With Communication Delays
+Asynchronous Quasi-Consensus of Heterogeneous Multiagent Systems With Nonuniform Input Delays
+Rendezvous of Heterogeneous Multiagent Systems With Nonuniform Time-Varying Information Delays: An Adaptive Approach
+Group Consensus for Heterogeneous Multiagent Systems in the Competition Networks With Input Time Delays
+Relay Tracking Controller Design for Multiagent Systems With Varying Number of Agents
+Guaranteed Synchronization Performance Control of Nonlinear Time-Delay MIMO Multiagent Systems With Actuator Faults
+Scaled Consensus of Second-Order Nonlinear Multiagent Systems With Time-Varying Delays via Aperiodically Intermittent Control
+Consensus of Discrete-Time Multiagent Systems With Input Delays by Truncated Pseudo-Predictor Feedback
+Distributed Adaptive Fault-Tolerant Control for Heterogeneous Multiagent Systems With Time-Varying Communication Delays
+Asynchronous Periodic Edge-Event Triggered Control for Double-Integrator Networks With Communication Time Delays
+Event-Triggered Privacy-Preserving Average Consensus for Multiagent Networks With Time Delay: An Output Mask Approach
+Distributed Voltage Regulation for Cyber-Physical Microgrids With Coupling Delays and Slow Switching Topologies
+Consensus of Heterogeneous Linear Multiagent Systems With Communication Time-Delays
+Distributed Multi-Robot Formation Control Based on Bipartite Consensus With Time-Varying Delays
+Distributed Time-Varying Quadratic Optimal Resource Allocation Subject to Nonidentical Time-Varying Hessians With Application to Multiquadrotor Hose Transportation
+Periodic Event-Triggered Synchronization of Linear Multi-Agent Systems With Communication Delays
+Velocity-Free Event-Triggered Control for Multiple Euler鈥揕agrange Systems With Communication Time Delays
+A Zeno-Free Self-Triggered Approach to Practical Fixed-Time Consensus Tracking With Input Delay
+Predictor-Based Extended-State-Observer Design for Consensus of MASs With Delays and Disturbances
+New Criteria on $p$th Moment Input-to-State Stability of Impulsive Stochastic Delayed Differential Systems
+Adaptive NN Cooperative Control of Unknown Nonlinear Multiagent Systems With Communication Delays
+Delayed Impulsive Control for Consensus of Multiagent Systems With Switching Communication Graphs
+Stability Analysis for Impulsive Stochastic Time-Varying Systems
+Delay-Induced Containment Control of Second-Order Multi-Agent Systems With Intermittent Sampled Position Data
+Input Time Delay Margin in Event-Triggered Consensus of Multiagent Systems
+Output Synchronization on Strongly Connected Graphs
+ $H_\infty$  Consensus for Linear Heterogeneous Discrete-Time Multiagent Systems With Output Feedback Control
+Delay Consensus Margin of First-Order Multiagent Systems With Undirected Graphs and PD Protocols
+Consensus of Discrete-Time Nonlinear Multiagent Systems Using Sliding Mode Control Based on Optimal Control
+Cooperative Containment Control of Multiagent Systems Based on Follower Observers With Time Delay
+A Sufficient Condition for Convergence of Sampled-Data Consensus for Double-Integrator Dynamics With Nonuniform and Time-Varying Communication Delays
+Robust Weighted-Average Continuous-Time Consensus With Communication Time Delay
+Distributed Position-Based Consensus of Second-Order Multiagent Systems With Continuous/Intermittent Communication
+Products of Generalized Stochastic Matrices With Applications to Consensus Analysis in Networks of Multiagents With Delays
+MAS-Based Distributed Resilient Control for a Class of Cyber-Physical Systems With Communication Delays Under DoS Attacks
+Consensus of Multiagent Systems Using Aperiodic Sampled-Data Control
+Reverse Group Consensus of Second-Order Multi-Agent Systems With Delayed Nonlinear Dynamics in the Cooperation鈥揅ompetition Networks
+Finite-Horizon H鈭?Fault-Tolerant Constrained Consensus for Multiagent Systems With Communication Delays
+Exponential Consensus Analysis for Multiagent Networks Based on Time-Delay Impulsive Systems
+Event-Triggered Control for Guaranteed-Cost Bipartite Formation of Multi-Agent Systems
+Multiple Intentional Delays Can Facilitate Fast Consensus and Noise Reduction in a Multiagent System
+Bipartite Synchronization of Multi-Agent Systems With Signed Graph Under Deception Attacks and Application in Speech Communication
+Leader-Following Consensus of Multiple Uncertain Euler鈥揕agrange Systems Subject to Communication Delays and Switching Networks
+The Weighted Couple-Group Consensus for a Kind of Continuous Heterogeneous Multi-Agent Systems Based on Self-Adaptive and Cooperative-Competitive Mechanism
+Consensus of Heterogeneous Linear Multiagent Systems Subject to Aperiodic Sampled-Data and DoS Attack
+Input-to-State Stability of Time-Varying Switched Systems With Time Delays
+Consensus of Heterogeneous Second-Order Nonlinear Uncertain Multiagent Systems Under Switching Networks
+Robust Formation Control Based on Leader-Following Consensus in Multi-Agent Systems With Faults in the Information Exchange: Application in a Fleet of Unmanned Aerial Vehicles
+Output Synchronization of Networked Passive Systems With Event-Driven Communication
+Synchronization of the Delayed Vicsek Model
+Bounds on Delay Consensus Margin of Second-Order Multiagent Systems With Robust Position and Velocity Feedback Protocol
+Output Containment Control of Heterogeneous Linear Multiagent Systems With Unbounded Distributed Transmission Delays
+Consensus for Second-Order Discrete-Time Agents With Position Constraints and Delays
+Consensusability of Multiagent Systems With Delay and Packet Dropout Under Predictor-Like Protocols
+Leader-Following Mean-Square Consensus of Stochastic Multiagent Systems With ROUs and RONs via Distributed Event-Triggered Impulsive Control
+Dissipativity-Based Consensus Tracking of Singular Multiagent Systems With Switching Topologies and Communication Delays
+Role of Integral Control for Enlarging Second-Order Delay Consensus Margin Under PID Protocols: None
+Event-Triggered Consensus Control for Multi-Agent Systems Against False Data-Injection Attacks
+Leader鈥揊ollower Consensus of Multiagent Systems With Time Delays Over Finite Fields
+Bit-Rate Conditions for the Consensus of Quantized Multiagent Systems With Network-Induced Delays Based on Event Triggering
+Delay-Dependent Stability Analysis of Modular Microgrid With Distributed Battery Power and SoC Consensus Tracking
+Bipartite Containment Control for Delayed Multiagent Systems With Markovian Switching Topologies Under Impulsive Attacks
+Second-Order Consensus for Multiagent Systems via Intermittent Sampled Data Control
+Consensus of Continuous-Time Linear Multiagent Systems With Discrete Measurements
+Asynchronous Impulsive Protocols With Asymmetric Feedback Saturation on Leader-Based Formation Control of Multiagent Systems
+Distributed Feedforward Approach to Cooperative Output Regulation Subject to Communication Delays and Switching Networks
+Consensus Tracking of Heterogeneous Discrete-Time Networked Multiagent Systems Based on the Networked Predictive Control Scheme
+Event-Based Consensus Tracking for Nonlinear Multi-Agent Systems Under Semi-Markov Jump Topology
+Passivity-Based Output Synchronization With Switching Graphs and Transmission Delays
+Push-Sum Distributed Dual Averaging for Convex Optimization in Multiagent Systems With Communication Delays
+Distributed Output-Feedback Control of Nonlinear Multi-Agent Systems
+Distributed Active Fault-Tolerant Cooperative Control for Multiagent Systems With Communication Delays and External Disturbances
+Fixed-Time Event-Triggered Consensus for Nonlinear Multiagent Systems Without Continuous Communications
+Distributed Adaptive Consensus of Nonlinear Heterogeneous Agents With Delayed and Sampled Neighbor Measurements
+Interval Bipartite Synchronization of Delayed Nonlinear Neural Networks With Signed Graphs
+Distributed Output-Feedback Bipartite Consensus for Stochastic Nonlinear Multiagent Systems Under Directed Switching Networks
+Constrained Consensus in Unbalanced Networks With Communication Delays
+Containment Problem for Multiagent Systems With Nonconvex Velocity Constraints
+Second-Order Consensus of Hybrid Multiagent Systems
+Distributed Finite-Time Secondary Frequency and Voltage Control for Islanded Microgrids With Communication Delays and Switching Topologies
+Predictive Control of Networked Nonlinear Multiagent Systems With Communication Constraints
+Robust Synchronization of Multiple Marine Vessels With Time-Variant Disturbance and Communication Delays
+Team-Triggered Coordination for Real-Time Control of Networked Cyber-Physical Systems
+Effects of Edge Elimination on the Delay Margin of a Class of LTI Consensus Dynamics
+Asynchronous Consensus Dynamics for Group of High-Order Agents Under Switching Topologies and Time-Varying Delays
+Leader-Following Consensus Control for Multiple Fixed-Wing UAVs鈥?Attitude System With Time Delays and External Disturbances
+H鈭?Consensus of Homogeneous Vehicular Platooning Systems With Packet Dropout and Communication Delay
+Effect of Asynchronous Communications on Stationary Solutions for Discrete-Time Multiagent Systems
+Necessary and Sufficient Conditions for Containment in Fractional-Order Multiagent Systems via Sampled Data
+Cooperative Constrained Control of Distributed Agents With Nonlinear Dynamics and Delayed Information Exchange: A Stabilizing Receding-Horizon Approach
+Digital Implementation of Derivative-Dependent Control by Using Delays for Stochastic Multiagents
+Resilient Randomized Quantized Consensus
+Distributed Optimal Energy Management for Microgrids in the Presence of Time-Varying Communication Delays
+Robust Quantized Consensus of Discrete Multi-Agent Systems in the Input-to-State Sense
+Finite-Time Consensus for Singularity-Perturbed Multiagent System via Memory Output Sliding-Mode Control
+Sliding-Mode-Based Admissible Consensus Tracking of Nonlinear Singular Multiagent Systems Under Jointly Connected Topologies
+A Scalable Approach for Consensus Stability Analysis of a Large-Scale Multiagent System With Single Delay
+Adaptive Observer-Based Output Regulation of Multiagent Systems With Communication Constraints
+Consensus Analysis of Second-Order Multi-Agent Networks With Sampled Data and Packet Losses
+Event-Triggered Consensus Seeking of Heterogeneous First-Order Agents With Input Delay
+Nonfragile Consensus of Multiagent Systems Based on Memory Sampled-Data Control
+Robust Consensus Controller Design for Nonlinear Relative Degree Two Multi-Agent Systems With Communication Constraints
+Observer-Based Consensus for Multiagent Systems Under Stochastic Sampling Mechanism
+Event-Triggered Guaranteed Cost Leader-Following Consensus Control of Second-Order Nonlinear Multiagent Systems
+A Nonlinear Transformation for Reaching Dynamic Consensus in Multi-Agent Systems
+Observer-Based Adaptive Scaled Tracking Control for Nonlinear MASs via Command-Filtered Backstepping
+Consensus Seeking in Multiagent Systems With Markovian Switching Topology Under Aperiodic Sampled Data
+Distributed Synchronization Control With Signal Transmission Delay and Its Applications to Genetic Regulatory Networks
+UAVs鈥?Formation Keeping Control Based on Multi鈥揂gent System Consensus
+Distributed Consensus of Second-Order Multiagent Systems With Nonconvex Velocity and Control Input Constraints
+Distributed Asynchronous Consensus Control for Nonlinear Multiagent Systems Under Switching Topologies
+Inverse-Optimal Consensus Control of Fractional-Order Multiagent Systems
+Mean-Square Consentability of Multiagent Systems With Nonidential Channel Fading
+Finite-Time Event-Triggered Output Consensus of Heterogeneous Fractional-Order Multiagent Systems With Intermittent Communication
+Distributed Optimization for Uncertain High-Order Nonlinear Multiagent Systems via Dynamic Gain Approach
+Consensus Control for Looper Tension Control System Using Subspace Identification Method
+p Components of Cluster-Lag Consensus for Second-Order Multiagent Systems With Adaptive Controller on Cooperative鈥揅ompetitive Networks
+Delay and Packet-Drop Tolerant Multistage Distributed Average Tracking in Mean Square
+A Unifying Framework for Robust Synchronization of Heterogeneous Networks via Integral Quadratic Constraints
+Cluster Lag Consensus for Second-Order Multiagent Systems with Nonlinear Dynamics and Switching Topologies
+Observer and Stochastic Faulty Actuator-Based Reliable Consensus Protocol for Multiagent System
+Consensus-Based Delay-Tolerant Distributed Secondary Control Strategy for Droop Controlled AC Microgrids
+Second-Order Consensus for Multiagent Systems via Intermittent Sampled Position Data Control
+Couple-Group Consensus of Heterogeneous Multi-Agents Systems With Markov Switching and Cooperative-Competitive Interaction
+Optimal Consensus via OCPI Regulation for Unknown Pure-Feedback Agents With Disturbances and State Delays
+Optimization Over Time-Varying Networks and Unbounded Information Delays
+ $H_\infty$  Consensus for Linear Heterogeneous Multiagent Systems Based on Event-Triggered Output Feedback Control Scheme
+$H_{2}$ Optimal Coordination of Homogeneous Agents Subject to Limited Information Exchange
+Distributed Virtual Network Embedding for Software-Defined Networks Using Multiagent Systems
+Resilient Distributed Multiagent Control for AC Microgrid Networks Subject to Disturbances
+Decentralized Online Convex Optimization With Feedback Delays
+Distributed Event-Triggered Control for Multi-Agent Systems
+Network Aggregative Game in Unknown Dynamic Environment With Myopic Agents and Delay
+Resilient Delayed Impulsive Control for Consensus of Multiagent Networks Subject to Malicious Agents
+Distributed Event-Triggered Control for Multiagent Systems Under Denial-of-Service Attacked Topology: Secure Mode Strategy
+A MARL Approach for Optimizing Positions of VANET Aerial Base-Stations on a Sparse Highway
+Gauss's Principle With Inequality Constraints for Multiagent Navigation and Control
+Finite-Time Convergence Rates of Decentralized Stochastic Approximation With Applications in Multi-Agent and Multi-Task Learning
+Betweenness Centrality-Based Consensus Protocol for Second-Order Multiagent Systems With Sampled-Data
+Scaled Group Consensus in Multiagent Systems With First/Second-Order Continuous Dynamics
+Leader鈥揊ollower Flocking for Discrete-Time Cucker鈥揝male Models With Lossy Links and General Weight Functions
+Joint Optimization of Caching and Computation in Multi-Server NOMA-MEC System via Reinforcement Learning
+Stability analysis of swarms
+Asynchronous Distributed Algorithms for Solving Linear Algebraic Equations
+Sandsbots: Robots That Sync and Swarm
+Loose Coupling: An Invisible Thread in the History of Technology
+An Improved Droop Control for Balancing State of Charge of Battery Energy Storage Systems in AC Microgrid
+Asynchronous Multiagent Primal-Dual Optimization
+Multi-Agent Reinforcement Learning-Based Resource Management for End-to-End Network Slicing
+Privacy Masking Stochastic Subgradient-Push Algorithm for Distributed Online Optimization
+Distributed Adaptive Containment Control for Coupled Reaction-Diffusion Neural Networks With Directed Topology
+Reinforcement Learning Models and Algorithms for Diabetes Management
+MARLA-SG: Multi-Agent Reinforcement Learning Algorithm for Efficient Demand Response in Smart Grid
+Transmission Control in NB-IoT With Model-Based Reinforcement Learning
+A Distributed Algorithm for Solving a Linear Algebraic Equation
+Toward Packet Routing With Fully Distributed Multiagent Deep Reinforcement Learning
+Decentralized Edge-to-Cloud Load Balancing: Service Placement for the Internet of Things
+Achieving Linear Convergence in Distributed Asynchronous Multiagent Optimization
+payGo: Incentive-Comparable Payment Routing Based on Contract Theory
+Methods for Accelerating the Airplane Boarding Process in the Presence of Apron Buses
