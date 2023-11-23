@@ -28,11 +28,11 @@ class SwarmRobot:
         pose_cur[0] = trans[0]
         pose_cur[1] = trans[1]
         pose_cur[2] = yaw
-        rospy.loginfo("Get pose of robot_{}: x={} y={} theta={}".format(
-            self.swarm_robot_id[index],
-            pose_cur[0],
-            pose_cur[1],
-            pose_cur[2]))
+        # rospy.loginfo("Get pose of robot_{}: x={} y={} theta={}".format(
+        #     self.swarm_robot_id[index],
+        #     pose_cur[0],
+        #     pose_cur[1],
+        #     pose_cur[2]))
         return True, pose_cur
 
     def get_robot_poses(self):
@@ -49,7 +49,7 @@ class SwarmRobot:
                     current_robot_pose.append(pose_robot)
                     self.flag_pose[i] = True
 
-        rospy.loginfo("Succeed getting pose!")
+        # rospy.loginfo("Succeed getting pose!")
         return current_robot_pose
 
     def move_robot(self, index, v, w):
@@ -59,11 +59,11 @@ class SwarmRobot:
         # for i in range(20):
         self.rate.sleep()
         self.cmd_vel_pub[index].publish(vel_msg)
-        rospy.loginfo("Move robot_{} with v={} w={}".format(
-            self.swarm_robot_id[index],
-            v,
-            w
-        ))
+        # rospy.loginfo("Move robot_{} with v={} w={}".format(
+        #     self.swarm_robot_id[index],
+        #     v,
+        #     w
+        # ))
         return True
 
     def move_robots(self, speed):
