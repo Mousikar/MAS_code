@@ -69,6 +69,7 @@ roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch
 - gazebo_swarm_robot_8.launch：8个差速轮小车
 - comtainment_test.launch：位置稍微摆了一下，让小车相互之间不发生碰撞
 
+最后rosrun gazebo_swarm_robot_tb3 + 下面的文件就行
 
 ### 各个文件说明
 **头文件：**
@@ -85,7 +86,8 @@ roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch
 - leader_follower.py：领航者-跟随者协调测试
 - containment_l.py：采用拉普拉斯矩阵计算
 - containment_l_save_data.py：采用拉普拉斯矩阵计算，并保存位置速度信息
-- containment_test.py：测试文件
+- containment_test.py：测试文件，**没有使用拉普拉斯矩阵**
+- containment_test_save_data.py：测试文件，**没有使用拉普拉斯矩阵**,并保存位置,速度信息,比上一个文件更好一点
 - 1to0.py：查询相对坐标
 
 **leader移动：**
