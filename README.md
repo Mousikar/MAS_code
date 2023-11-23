@@ -46,6 +46,51 @@ simulink仿真文件
 ## turtlebot3
 合围仿真文件
 
+### 运行说明
+进入/MAS_code/turtlebot3文件夹
+
+先source一下：
+
+```
+source devel/setup.bash
+```
+然后开一个gazebo环境，例如：
+```
+roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch 
+```
+也可以是其他的：
+
+- one.launch：1个差速轮小车
+- two.launch：2个差速轮小车
+- three.launch：3个差速轮小车
+- four.launch：4个差速轮小车 (哈哈哈,懒得一个一个修改，就弄了这么多launch)
+- gazebo_swarm_robot_5.launch：5个差速轮小车
+- gazebo_swarm_robot_6.launch：6个差速轮小车
+- gazebo_swarm_robot_8.launch：8个差速轮小车
+- comtainment_test.launch：位置稍微摆了一下，让小车相互之间不发生碰撞
+
+
+### 各个文件说明
+**头文件：**
+- swarm_robot_control_h.py：没写完的头文件
+- swarm_robot_control_new.py：可以用的头文件
+
+**测试文件：**
+- test.py：测试写的头文件
+- test_new.py：测试写的头文件，测试机器人移动
+- main_test.py：角度一致性文件
+
+**leader静止：**
+- init.py：随机初始化小车位置
+- leader_follower.py：领航者-跟随者协调测试
+- containment_l.py：采用拉普拉斯矩阵计算
+- containment_l_save_data.py：采用拉普拉斯矩阵计算，并保存位置速度信息
+- containment_test.py：测试文件
+- 1to0.py：查询相对坐标
+
+**leader移动：**
+- 01leadermove.py：
+
 gazebo环境
 
 ## visualization
