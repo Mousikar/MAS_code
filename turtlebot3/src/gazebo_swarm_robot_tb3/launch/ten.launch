@@ -47,25 +47,25 @@
   <arg name="robot_6_z_pos" default=" 0.0"/>
   <arg name="robot_6_yaw"   default=" 1.2354436898907468"/>
 
-  <arg name="robot_7_x_pos" default=" 2.3226665517276967"/>
-  <arg name="robot_7_y_pos" default=" 2.3580415785153365"/>
+  <arg name="robot_7_x_pos" default=" 2.0226665517276967"/>
+  <arg name="robot_7_y_pos" default=" 2.0580415785153365"/>
   <arg name="robot_7_z_pos" default=" 0.0"/>
-  <arg name="robot_7_yaw"   default=" 0.0"/>
+  <arg name="robot_7_yaw"   default=" 0.60"/>
 
-  <arg name="robot_8_x_pos" default=" 2.7206481479519168"/>
-  <arg name="robot_8_y_pos" default=" 2.438738110314806"/>
+  <arg name="robot_8_x_pos" default=" 3.9206481479519168"/>
+  <arg name="robot_8_y_pos" default=" 2.038738110314806"/>
   <arg name="robot_8_z_pos" default=" 0.0"/>
-  <arg name="robot_8_yaw"   default=" 0.0"/>
+  <arg name="robot_8_yaw"   default=" 0.60"/>
 
-  <arg name="robot_9_x_pos" default=" 2.8050626657514415"/>
-  <arg name="robot_9_y_pos" default=" 2.8396083267771886"/>
+  <arg name="robot_9_x_pos" default=" 3.9050626657514415"/>
+  <arg name="robot_9_y_pos" default=" 3.9396083267771886"/>
   <arg name="robot_9_z_pos" default=" 0.0"/>
-  <arg name="robot_9_yaw"   default=" 0.0"/>
+  <arg name="robot_9_yaw"   default=" 0.60"/>
 
-  <arg name="robot_10_x_pos" default=" 2.2949144042014761"/>
-  <arg name="robot_10_y_pos" default=" 2.975531939197893"/>
+  <arg name="robot_10_x_pos" default=" 2.0949144042014761"/>
+  <arg name="robot_10_y_pos" default=" 3.975531939197893"/>
   <arg name="robot_10_z_pos" default=" 0.0"/>
-  <arg name="robot_10_yaw"   default=" 0.0"/>
+  <arg name="robot_10_yaw"   default=" 0.60"/>
 
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">

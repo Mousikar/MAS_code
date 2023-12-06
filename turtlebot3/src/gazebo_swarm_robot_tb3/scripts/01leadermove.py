@@ -24,12 +24,12 @@ def main():
     # Initialize swarm robot
     swarm_robot = SwarmRobot(swarm_robot_id)
     r_star = np.array([[2, 2], 
-                       [3, 2], 
-                       [3, 3],
-                       [2, 3]])
+                       [4, 2], 
+                       [4, 4],
+                       [2, 4]])
 
     # Convergence threshold
-    t_sum = 60
+    t_sum = 6
     dT = 0.001
     iter = int(t_sum / dT)
 
@@ -45,35 +45,35 @@ def main():
     hat_theta_d  = [0,0,0,0,0,0,0,0,0,0]
     # leader期望轨迹，在20——25秒有个变化，队形缩小，在40转弯
     for k in range(iter):
-        if k <= iter/3:
-            dot_r_star = np.array([ [0.1, 0.15], 
-                                    [0.1, 0.15],
-                                    [0.1, 0.15], 
-                                    [0.1, 0.15]])
-            r_star = r_star + dot_r_star * dT
-        if k > iter/3  & k<= iter/3+int(5/dT):
-            dot_r_star = np.array([ [0.1, 0.15], 
-                                    [0.1, 0.15],
-                                    [0.1, 0.15], 
-                                    [0.1, 0.15]]) + np.array([
-                [-0.1, -0.1],
-                [0.1, -0.1],
-                [0.1, 0.1],
-                [-0.1,0.1]
-            ])
-            r_star = r_star + dot_r_star * dT
-        if k > iter/3+int(5/dT) & k<= iter/3*2:
-            dot_r_star = np.array([ [0.1, 0.15], 
-                                    [0.1, 0.15],
-                                    [0.1, 0.15], 
-                                    [0.1, 0.15]])
-            r_star = r_star + dot_r_star * dT
-        if k > iter/3*2:
-            dot_r_star = np.array([ [0.1, 0.15], 
-                                    [0.1, 0.15],
-                                    [0.1, 0.15], 
-                                    [0.1, 0.15]])
-            r_star = r_star + dot_r_star * dT
+        # if k <= iter/3:
+        dot_r_star = 4*np.array([ [0.0, 0.15], 
+                                [0.1, 0.15],
+                                [0.1, 0.15], 
+                                [0.1, 0.15]])
+        r_star = r_star + dot_r_star * dT
+        # if k > iter/3  & k<= iter/3+int(5/dT):
+        #     dot_r_star = 1.5*np.array([ [0.1, 0.15], 
+        #                             [0.1, 0.15],
+        #                             [0.1, 0.15], 
+        #                             [0.1, 0.15]]) + np.array([
+        #         [-0.1, -0.1],
+        #         [0.1, -0.1],
+        #         [0.1, 0.1],
+        #         [-0.1,0.1]
+        #     ])
+        #     r_star = r_star + dot_r_star * dT
+        # if k > iter/3+int(5/dT) & k<= iter/3*2:
+        #     dot_r_star = 1.5*np.array([ [0.1, 0.15], 
+        #                             [0.1, 0.15],
+        #                             [0.1, 0.15], 
+        #                             [0.1, 0.15]])
+        #     r_star = r_star + dot_r_star * dT
+        # if k > iter/3*2:
+        #     dot_r_star = 1.5*np.array([ [0.1, 0.15], 
+        #                             [0.1, 0.15],
+        #                             [0.1, 0.15], 
+        #                             [0.1, 0.15]])
+        #     r_star = r_star + dot_r_star * dT
         r_star_his.append(r_star)
         dot_r_star_his.append(dot_r_star)
 
@@ -83,8 +83,8 @@ def main():
     MAX_V = 0.3     # Maximum linear velocity(m/s)
     MIN_V = 0.00000000000001    # Minimum linear velocity(m/s)
     k_v = 0.005       # Scale of linear velocity
-    k_w = 2       # Scale of angle velocity
-    k_L = 0.5
+    k_w = 0.5       # Scale of angle velocity
+    k_L = 0.1
     # 指定保存的文件名
     file_name = "leadermove.txt"
 
@@ -151,35 +151,49 @@ def main():
             # file.write("\n")
 
             for i in [6,7,8,9]:
-                u_r = dot_r_star_his[k][i-6] - k_L * ( points[i] - r_star_his[k][i-6] )
+                if i ==5:
+                    u_r = dot_r_star_his[k][i-6] - k_L * ( points[i] - r_star_his[k][i-6] )
 
-                theta_d[i] = math.atan2(u_r[1], u_r[0])
-                # -------------------------------保证theta_d在0和2 * pi之间---------------------------------------
-                if k == 0:
+                    theta_d[i] = math.atan2(u_r[1], u_r[0])
+                    # -------------------------------保证theta_d在0和2 * pi之间---------------------------------------
+                    if k == 0:
+                        theta_d1[i] = theta_d[i]
+                        kk[i] = 0
+                    delta = - 0.7 * np.pi ** 2
+                    if theta_d[i] * theta_d1[i] < delta:
+                        if theta_d[i] < 0:
+                            kk[i] = kk[i] + 1
+                        else:
+                            kk[i] = kk[i] - 1
                     theta_d1[i] = theta_d[i]
-                    kk[i] = 0
-                delta = - 0.7 * np.pi ** 2
-                if theta_d[i] * theta_d1[i] < delta:
-                    if theta_d[i] < 0:
-                        kk[i] = kk[i] + 1
+                    theta_d[i] = theta_d[i] + 2 * np.pi * kk[i]
+                    # -------------------------------保证theta_d在0和2 * pi之间---------------------------------------
+
+                    v = math.sqrt(u_r[0]**2 + u_r[1]**2)
+
+                    ddot_hat_theta_d[i] = - R**2 * (hat_theta_d[i] - theta_d[i]) - 2 * R * dot_hat_theta_d[i]        # 线性二阶微分器
+                    dot_hat_theta_d[i] = dot_hat_theta_d[i] + ddot_hat_theta_d[i] * dT
+                    hat_theta_d[i] = hat_theta_d[i] + dot_hat_theta_d[i] * dT
+                    
+                    # w = dot_hat_theta_d[i] + k_w * (theta_d[i] - current_robot_pose[i][2])      # 暂时不加上饱和函数
+                    # --------------------------------加上饱和函数-----------------------------------------
+                    de = 0.1
+                    kkk = 1/de
+                    temp = current_robot_pose[i][2] - theta_d[i]
+                    temp = temp**(2/3)
+                    if abs(temp)>de:
+                       sats = np.sign(temp)
                     else:
-                        kk[i] = kk[i] - 1
-                theta_d1[i] = theta_d[i]
-                theta_d[i] = theta_d[i] + 2 * np.pi * kk[i]
-                # -------------------------------保证theta_d在0和2 * pi之间---------------------------------------
+                       sats = kkk * (temp)
+                    w = dot_hat_theta_d[i] - k_w * np.sign(current_robot_pose[i][2] - theta_d[i])*np.abs(current_robot_pose[i][2] - theta_d[i])**(2/3)- 0.01 * sats      # 加上饱和函数
 
-                v = math.sqrt(u_r[0]**2 + u_r[1]**2)
-
-                ddot_hat_theta_d[i] = - R**2 * (hat_theta_d[i] - theta_d[i]) - 2 * R * dot_hat_theta_d[i]        # 线性二阶微分器
-                dot_hat_theta_d[i] = dot_hat_theta_d[i] + ddot_hat_theta_d[i] * dT
-                hat_theta_d[i] = hat_theta_d[i] + dot_hat_theta_d[i] * dT
-                
-                w = dot_hat_theta_d[i] + k_w * (theta_d[i] - current_robot_pose[i][2])      # 暂时不加上饱和函数
-                      
-                # v=math.sqrt(math.pow(k_L*u_r[0],2)+math.pow(k_L*u_r[1],2))
-                v = swarm_robot.check_vel(v, MAX_V, MIN_V)
-                # w=math.atan2(u_r[1], u_r[0])-current_robot_pose[i][2]
-                w = swarm_robot.check_vel(w, MAX_W, MIN_W)
+                    # v=math.sqrt(math.pow(k_L*u_r[0],2)+math.pow(k_L*u_r[1],2))
+                    v = swarm_robot.check_vel(v, MAX_V, MIN_V)
+                    # w=math.atan2(u_r[1], u_r[0])-current_robot_pose[i][2]
+                    w = swarm_robot.check_vel(w, MAX_W, MIN_W)
+                else:
+                    v=0.01
+                    w=0
                 speed.append([v,w])
             # 移动机器人
             rate.sleep()
