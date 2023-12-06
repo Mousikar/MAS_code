@@ -4,27 +4,37 @@ import matplotlib.pyplot as plt
 
 # Define the number of followers
 num_followers = 12
+num_followers = 10
 
 # Define the communication topology for followers
-follower_topology = {0: [6], 
-                     1: [7], 
-                     2: [8], 
-                     3: [9], 
-                     4: [10], 
-                     5: [11],
-                     6: [7, 9],
-                     7: [6, 8],
-                     8: [7],
-                     9: [6, 10],
-                     10:[9,11],
-                     11:[10]}
-
+# follower_topology = {0: [6], 
+#                      1: [7], 
+#                      2: [8], 
+#                      3: [9], 
+#                      4: [10], 
+#                      5: [11],
+#                      6: [7, 9],
+#                      7: [6, 8],
+#                      8: [7],
+#                      9: [6, 10],
+#                      10:[9,11],
+#                      11:[10]}
+follower_topology = {0: [1], 
+                     1: [2,4], 
+                     2: [5], 
+                     3: [2], 
+                     4: [5], 
+                     5: [],
+                     6: [0],
+                     7: [1, 3],
+                     8: [2,4],
+                     9: [0, 3]}
 # Create the communication topology matrix
 communication_topology = np.zeros((num_followers, num_followers))
 for i in range(num_followers):
     neighbors = follower_topology[i]
     for neighbor in neighbors:
-        communication_topology[i, neighbor] = 1
+        communication_topology[neighbor, i] = 1
 
 # Compute the Laplacian matrix
 degree_matrix = np.diag(np.sum(communication_topology, axis=1))

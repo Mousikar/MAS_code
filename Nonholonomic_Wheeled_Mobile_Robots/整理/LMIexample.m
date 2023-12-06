@@ -77,26 +77,26 @@ for i = 1:d
     lmiterm([1 5+i 5+i S], 1/d, 1, 's')
 end
 
-% lmiterm([-2,1,1,P],1,1)
-% lmiterm([2,1,1,0],1)
-% 
-% lmiterm([-3,1,1,Q1],1,1)
-% lmiterm([3,1,1,0],1)
-% 
-% lmiterm([-4,1,1,Q2],1,1)
-% lmiterm([4,1,1,0],1)
-% 
-% lmiterm([-5,1,1,R1],1,1)
-% lmiterm([5,1,1,0],1)
-% 
-% lmiterm([-6,1,1,R2],1,1)
-% lmiterm([6,1,1,0],1)
-% 
-% lmiterm([-7,1,1,R2],1,1)
-% lmiterm([-7,2,2,R2],1,1)
-% lmiterm([-7,1,2,S'],1,1)
-% lmiterm([-7,2,1,S],1,1)
-% lmiterm([7,0,0,0],0)
+lmiterm([-2,1,1,P],1,1)
+lmiterm([2,1,1,0],0)
+
+lmiterm([-3,1,1,Q1],1,1)
+lmiterm([3,1,1,0],0)
+
+lmiterm([-4,1,1,Q2],1,1)
+lmiterm([4,1,1,0],0)
+
+lmiterm([-5,1,1,R1],1,1)
+lmiterm([5,1,1,0],0)
+
+lmiterm([-6,1,1,R2],1,1)
+lmiterm([6,1,1,0],0)
+
+lmiterm([-7,1,1,R2],1,1)
+lmiterm([-7,2,2,R2],1,1)
+lmiterm([-7,1,2,S'],1,1)
+lmiterm([-7,2,1,S],1,1)
+lmiterm([7,0,0,0],0)
 
 lmis = getlmis;
 [tmin, xfeas] = feasp(lmis,[0,0,0,0,0],-1);
