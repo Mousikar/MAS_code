@@ -18,10 +18,10 @@ def main():
     num_leader = 4
     num_follower = 6
     swarm_robot_id = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    follower_topology = {0: [1, 3], 1: [0, 2], 2: [1], 3: [0, 4], 4: [3, 5], 5: [4]}
-    leader_topology = {0: [6], 1: [], 2: [7], 3: [8], 4: [], 5: [9]}
-    # follower_topology = {0: [], 1: [1], 2: [2,3], 3: [], 4: [1], 5: [2,4]}
-    # leader_topology = {0: [6,9], 1: [7], 2: [8], 3: [7,9], 4: [1,8], 5: []}
+    # follower_topology = {0: [1, 3], 1: [0, 2], 2: [1], 3: [0, 4], 4: [3, 5], 5: [4]}
+    # leader_topology = {0: [6], 1: [], 2: [7], 3: [8], 4: [], 5: [9]}
+    follower_topology = {0: [], 1: [0], 2: [1,3], 3: [], 4: [1], 5: [2,4]}
+    leader_topology = {0: [6,9], 1: [7], 2: [8], 3: [7,9], 4: [8], 5: []}
 
     # Initialize swarm robot
     swarm_robot = SwarmRobot(swarm_robot_id)
