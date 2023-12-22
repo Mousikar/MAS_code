@@ -27,6 +27,12 @@ ry = [2 2 4 4];
 dot_rx = 0.25 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
 dot_ry = 0.25 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
 
+% leader静止
+dot_rx = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
+dot_ry = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
+x = zeros(1, num_follower) + 4 * rand(1, num_follower);
+y = zeros(1, num_follower) + 4 * rand(1, num_follower);
+
 % 系数
 k1 = 1;
 k2 = 1;
