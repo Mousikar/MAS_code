@@ -28,8 +28,8 @@ dot_rx = 0.25 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
 dot_ry = 0.25 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
 
 % leader静止
-dot_rx = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
-dot_ry = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
+% dot_rx = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
+% dot_ry = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
 x = zeros(1, num_follower) + 4 * rand(1, num_follower);
 y = zeros(1, num_follower) + 4 * rand(1, num_follower);
 
@@ -54,83 +54,9 @@ L2 =[ -1,  0,  0, -1;
         0,  0, -1,  0;
         0,  0,  0,  0];
 A_LF = -L2;
-% 网络拓扑
-% A_F = [0,1,0,0,0,0;
-%        0,0,0,0,0,0;
-%        0,0,0,0,0,0;
-%        0,1,0,0,0,0;
-%        1,0,0,0,0,1;
-%        0,0,1,0,1,0]; % 跟随者邻接矩阵
-
-% B = [1,0,0,0,0,0;
-%      0,2,0,0,0,0;
-%      0,0,1,0,0,0;
-%      0,0,0,1,0,0;
-%      0,0,0,0,1,0;
-%      0,0,0,0,0,0]; % 跟随者能接受到的领导者信息总和
-
-% A_LF = [1,0,0,0;
-%          0,1,1,0;
-%          0,0,0,1;
-%          1,0,0,0;
-%          0,1,0,0;
-%          0,0,0,0]; % 领导者和跟随者的耦合邻接矩阵
-% 网络拓扑
-% A_F = [0,1,0,1,0,0;
-%        1,0,1,0,0,0;
-%        0,1,0,0,0,0;
-%        1,0,0,0,1,0;
-%        0,0,0,1,0,1;
-%        0,0,0,0,1,0]; % 跟随者邻接矩阵
-% 
-% B = [1,0,0,0,0,0;
-%      0,1,0,0,0,0;
-%      0,0,1,0,0,0;
-%      0,0,0,1,0,0;
-%      0,0,0,0,1,0;
-%      0,0,0,0,0,1]; % 跟随者能接受到的领导者信息总和
-% 
-% A_LF = [1,0,0,0,0,0;
-%          0,1,0,0,0,0;
-%          0,0,1,0,0,0;
-%          0,0,0,1,0,0;
-%          0,0,0,0,1,0;
-%          0,0,0,0,0,1]; % 领导者和跟随者的耦合邻接矩阵
-
-% A_F = [0,1,0,1,0,0;
-%        1,0,1,0,0,0;
-%        0,1,0,0,0,0;
-%        1,0,0,0,1,0;
-%        0,0,0,1,0,1;
-%        0,0,0,0,1,0]; % 跟随者邻接矩阵
-% 
-% B = [0,0,0,0,0,0;
-%      0,1,0,0,0,0;
-%      0,0,1,0,0,0;
-%      0,0,0,2,0,0;
-%      0,0,0,0,1,0;
-%      0,0,0,0,0,1]; % 跟随者能接受到的领导者信息总和
-% 
-% A_LF = [0,0,0,0,0,0;
-%          0,1,0,0,0,0;
-%          0,0,1,0,0,0;
-%          1,0,0,1,0,0;
-%          0,0,0,0,1,0;
-%          0,0,0,0,0,1]; % 领导者和跟随者的耦合邻接矩阵
-
-% L = -A_F;
-% for i = 1:num_follower
-%     L(i,i) = sum(A_F(i,:));
-% end
-% 
-% L1 = L + B;
-% L2 = -A_LF;
 xishu = inv(L1) * L2;
 %%
 % 时延设置
-tau_actual = [1, 1, 2, 3, 4, 5]; % 根据实际情况填充
-tau = repmat(tau_actual, num_follower, 1) / 1000; % 初始化时延
-d = floor(tau / T);
 dmax = 500;
 
 % 初始化变量
@@ -184,16 +110,16 @@ for k = 1:iter%/2
             % hat_ex(i) = hat_ex(i) + A_F(i, j)/L1(i,i) * (x(i) - x_history(end - d(i, j) + 1, j));
             % hat_ey(i) = hat_ey(i) + A_F(i, j)/L1(i,i) * (y(i) - y_history(end - d(i, j) + 1, j));
             % 都有时延，包括自身
-            hat_ex(i) = hat_ex(i) + A_F(i, j)/L1(i,i) * (x_history(end - d(i, j) + 1, i) - x_history(end - d(i, j) + 1, j));
-            hat_ey(i) = hat_ey(i) + A_F(i, j)/L1(i,i) * (y_history(end - d(i, j) + 1, i) - y_history(end - d(i, j) + 1, j));
+            hat_ex(i) = hat_ex(i) + A_F(i, j)/L1(i,i) * (x_history(end - timedelay(i,j,k,'F') + 1, i) - x_history(end - timedelay(i,j,k,'F') + 1, j));
+            hat_ey(i) = hat_ey(i) + A_F(i, j)/L1(i,i) * (y_history(end - timedelay(i,j,k,'F') + 1, i) - y_history(end - timedelay(i,j,k,'F') + 1, j));
             % 用计算的位置来代替现在的位置
             % hat_ex(i) = hat_ex(i) - A_F(i, j) * (x(i) - x_history(end - d(i, j) + 1, j) - ...
             %     v_history(end - d(i, j) + 1, j) * cos(theta_history(end - d(i, j) + 1, j)) * d(i, j) * T);
             % hat_ey(i) = hat_ey(i) - A_F(i, j) * (y(i) - y_history(end - d(i, j) + 1, j) - ...
             %     v_history(end - d(i, j) + 1, j) * sin(theta_history(end - d(i, j) + 1, j)) * d(i, j) * T);
 
-            dot_dx(i) = dot_dx(i) + A_F(i, j)/L1(i,i) * dot_x_history(end - d(i, j) + 1, j);
-            dot_dy(i) = dot_dy(i) + A_F(i, j)/L1(i,i) * dot_y_history(end - d(i, j) + 1, j);
+            dot_dx(i) = dot_dx(i) + A_F(i, j)/L1(i,i) * dot_x_history(end - timedelay(i,j,k,'F') + 1, j);
+            dot_dy(i) = dot_dy(i) + A_F(i, j)/L1(i,i) * dot_y_history(end - timedelay(i,j,k,'F') + 1, j);
         end
         for j = 1:num_leader
             % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx(j));
@@ -201,8 +127,8 @@ for k = 1:iter%/2
             % hat_ex(i) = hat_ex(i) + A_LF(i, j)/L1(i,i) * (x(i) - rx_history(end - d(i, j) + 1, j));
             % hat_ey(i) = hat_ey(i) + A_LF(i, j)/L1(i,i) * (y(i) - ry_history(end - d(i, j) + 1, j));
             % 都有时延，包括自身
-            hat_ex(i) = hat_ex(i) + A_LF(i, j)/L1(i,i) * (x_history(end - d(i, j) + 1, i) - rx_history(end - d(i, j) + 1, j));
-            hat_ey(i) = hat_ey(i) + A_LF(i, j)/L1(i,i) * (y_history(end - d(i, j) + 1, i) - ry_history(end - d(i, j) + 1, j));
+            hat_ex(i) = hat_ex(i) + A_LF(i, j)/L1(i,i) * (x_history(end - timedelay(i,j,k,'F') + 1, i) - rx_history(end - timedelay(i,j,k,'F') + 1, j));
+            hat_ey(i) = hat_ey(i) + A_LF(i, j)/L1(i,i) * (y_history(end - timedelay(i,j,k,'F') + 1, i) - ry_history(end - timedelay(i,j,k,'F') + 1, j));
             % 用计算的位置来代替现在的位置
             % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j) - dot_rx(j) * d(i, j) * T);
             % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j) - dot_ry(j) * d(i, j) * T);
@@ -325,50 +251,108 @@ for k = 1:iter%/2
         fprintf('进度：%0.2f%%\n', progress);
     end
 end
-%% 函数时滞
+%% test
+ timedelay(i,j,k,'F')
+% %% 函数时滞
+% function result = timedelay(i,j,k,ForL)
+%     t=k*0.001;
+%     result=0.001;
+%     if ForL=='L'
+%         j=j+6;
+%     end
+%     if i==1 && j==7
+%         result = 0.5 * abs(sin(t));
+%     end
+%     if i==2 && j==8
+%         result = 0.5 * abs(sin(t));
+%     end
+%     if i==1 && j==10
+%         result = exp(-1-t);
+%     end
+%     if i==2 && j==1
+%         result = exp(-1-t);
+%     end
+%     if i==3 && j==9
+%         result = 0.5/(1+t);
+%     end
+%     if i==4 && j==10
+%         result = 0.5/(1+t);
+%     end
+%     if i==3 && j==2
+%         result = 0.4 * abs(cos(t));
+%     end
+%     if i==3 && j==4
+%         result = 0.4 * abs(cos(t));
+%     end
+%     if i==5 && j==2
+%         result = 0.3/(1+t^2);
+%     end
+%     if i==6 && j==5
+%         result = 0.3/(1+t^2);
+%     end
+%     if i==4 && j==8
+%         result = 0.2/(1+log(1+t));
+%     end
+%     if i==5 && j==9
+%         result = 0.2/(1+log(1+t));
+%     end
+%     if i==6 && j==3
+%         result = 0.2/(1+log(1+t));
+%     end
+%     result = floor(result / 0.001);
+%     if result==0
+%         result=1;
+%     end
+% end
+
+% 均匀时滞 
 function result = timedelay(i,j,k,ForL)
     t=k*0.001;
+    result=0.001;
     if ForL=='L'
         j=j+6;
     end
     if i==1 && j==7
-        result = 0.5 * abs(sin(t));
+        result = 0.3 * abs(cos(t));
     end
     if i==2 && j==8
-        result = 0.5 * abs(sin(t));
+        result = 0.3 * abs(cos(t));
     end
     if i==1 && j==10
-        result = exp(-1-t);
+        result = 0.3 * abs(cos(t));
     end
     if i==2 && j==1
-        result = exp(-1-t);
+        result = 0.3 * abs(cos(t));
     end
     if i==3 && j==9
-        result = 0.5/(1+t);
+        result = 0.3 * abs(cos(t));
     end
     if i==4 && j==10
-        result = 0.5/(1+t);
+        result = 0.3 * abs(cos(t));
     end
     if i==3 && j==2
-        result = 0.4 * abs(cos(t));
+        result = 0.3 * abs(cos(t));
     end
     if i==3 && j==4
-        result = 0.4 * abs(cos(t));
+        result = 0.3 * abs(cos(t));
     end
     if i==5 && j==2
-        result = 0.3/(1+t^2);
+        result = 0.3 * abs(cos(t));
     end
     if i==6 && j==5
-        result = 0.3/(1+t^2);
+        result = 0.3 * abs(cos(t));
     end
     if i==4 && j==8
-        result = 0.2/(1+log(1+t));
+        result = 0.3 * abs(cos(t));
     end
     if i==5 && j==9
-        result = 0.2/(1+log(1+t));
+        result = 0.3 * abs(cos(t));
     end
     if i==6 && j==3
-        result = 0.2/(1+log(1+t));
+        result = 0.3 * abs(cos(t));
     end
     result = floor(result / 0.001);
+    if result==0
+        result=1;
+    end
 end
