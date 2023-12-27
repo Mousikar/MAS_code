@@ -3,7 +3,7 @@ clear;clc
 
 n = 6;
 tau_l = 0.002;
-tau_u = 0.03;
+tau_u = 0.5;%0.5 0.03
 K = 3*eye(6);%diag([-0.3,-0.3,-0.3,-0.3,-0.3,-0.3]);
 
 % follower不会和leader碰撞的网络拓扑
@@ -156,12 +156,12 @@ lmiterm([6,1,1,0],0)
 lmis = getlmis;
 [tmin, xfeas] = feasp(lmis);%,[0,0,0,0,0],-10^(-10)
 %% 结果验证
-PP = dec2mat(lmis, xfeas, P)
-QQ1 = dec2mat(lmis, xfeas, Q1)
-QQ2 = dec2mat(lmis, xfeas, Q2)
-RR1 = dec2mat(lmis, xfeas, R1)
-RR2 = dec2mat(lmis, xfeas, R2)
-SS = dec2mat(lmis, xfeas, S)
+PP = dec2mat(lmis, xfeas, P);PP*1000
+QQ1 = dec2mat(lmis, xfeas, Q1);QQ1*1000
+QQ2 = dec2mat(lmis, xfeas, Q2);QQ2*1000
+RR1 = dec2mat(lmis, xfeas, R1);RR1*1000
+RR2 = dec2mat(lmis, xfeas, R2);RR2*1000
+SS = dec2mat(lmis, xfeas, S);SS*1000
 eig(PP)
 eig(QQ1)
 eig(QQ2)
