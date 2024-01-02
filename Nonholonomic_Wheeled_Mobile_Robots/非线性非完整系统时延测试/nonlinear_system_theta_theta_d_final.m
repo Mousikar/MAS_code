@@ -249,6 +249,7 @@ for k = 1:iter%/2
         progress = k / iter * 100;    
         % 打印进度信息
         fprintf('进度：%0.2f%%\n', progress);
+        disp(timedelay(1,7,k,'F'))
     end
 end
 %% test
@@ -313,43 +314,43 @@ function result = timedelay(i,j,k,ForL)
         j=j+6;
     end
     if i==1 && j==7
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==2 && j==8
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==1 && j==10
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==2 && j==1
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==3 && j==9
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==4 && j==10
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==3 && j==2
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==3 && j==4
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==5 && j==2
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==6 && j==5
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==4 && j==8
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==5 && j==9
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     if i==6 && j==3
-        result = 0.3 * abs(cos(t));
+        result = 0.5 * abs(cos(t));
     end
     result = floor(result / 0.001);
     if result==0
