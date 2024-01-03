@@ -151,7 +151,7 @@ def main():
             # file.write("\n")
 
             for i in [6,7,8,9]:
-                if i ==5:
+                if i ==6:
                     u_r = dot_r_star_his[k][i-6] - k_L * ( points[i] - r_star_his[k][i-6] )
 
                     theta_d[i] = math.atan2(u_r[1], u_r[0])

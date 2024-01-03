@@ -291,7 +291,7 @@
 
 
     <model name="SJTU">
-      <pose>-5.0 1.0 0.25 0 0 1.57</pose>
+      <pose>-2.0 1.0 0.25 0 0 1.57</pose>
       <static>true</static>
       <link name="link">
         <collision name="collision">

@@ -73,6 +73,31 @@ roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch
 - ten_env.launch：加上环境
 
 
+            r_star_his = np.array([[-7+1, -2-0.5], 
+                                    [-4+1, -2-0.5], 
+                                    [-4+1, 1-0.5],
+                                    [-7+1, 1-0.5]])
+            if points[9][0]>-7.0:
+                r_star_his = np.array([[-4+0.75, -2], 
+                                        [-2+0.5, -2], 
+                                        [-2+0.5, 0-0.25],
+                                        [-4+0.75, 0-0.25]])
+            if points[9][0]>-4.0:
+                r_star_his = np.array([[-1.5+0.5, -1+0.2], 
+                                        [0+0.4, -1+0.2], 
+                                        [0+0.4, 0.5+0.1],
+                                        [-1.5+0.5, 0.5+0.1]])
+            if points[9][0]>-1.50:
+                r_star_his = np.array([[-1+0.5, -1], 
+                                        [1+2, -1], 
+                                        [1+2, 1+0.5],
+                                        [-1+0.5, 1+0.5]])
+            if points[9][0]>-1.00:
+                r_star_his = np.array([[4, -1], 
+                                        [6, -1], 
+                                        [6, 1],
+                                        [4, 1]])
+
 最后rosrun gazebo_swarm_robot_tb3 + 下面的文件就行
 
 ### 各个文件说明
