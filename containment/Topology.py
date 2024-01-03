@@ -19,15 +19,25 @@ num_followers = 10
 #                      9: [6, 10],
 #                      10:[9,11],
 #                      11:[10]}
-follower_topology = {0: [1], 
+# follower_topology = {0: [1], 
+#                      1: [2,4], 
+#                      2: [5], 
+#                      3: [2], 
+#                      4: [5], 
+#                      5: [],
+#                      6: [0],
+#                      7: [1, 3],
+#                      8: [2,4],
+#                      9: [0, 3]}
+follower_topology = {0: [1,5], 
                      1: [2,4], 
                      2: [5], 
                      3: [2], 
-                     4: [5], 
+                     4: [], 
                      5: [],
-                     6: [0],
-                     7: [1, 3],
-                     8: [2,4],
+                     6: [0,4],
+                     7: [1],
+                     8: [2,3],
                      9: [0, 3]}
 # Create the communication topology matrix
 communication_topology = np.zeros((num_followers, num_followers))

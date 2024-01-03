@@ -68,6 +68,10 @@ roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch
 - gazebo_swarm_robot_6.launch：6个差速轮小车
 - gazebo_swarm_robot_8.launch：8个差速轮小车
 - comtainment_test.launch：位置稍微摆了一下，让小车相互之间不发生碰撞
+- ten.launch：有六个跟随者和四个领航者，论文中的拓扑
+- ten_copy.launch：和上面的数字不一样，用的拓扑也不一样，这个是好看的那个拓扑
+- ten_env.launch：加上环境
+
 
 最后rosrun gazebo_swarm_robot_tb3 + 下面的文件就行
 
@@ -92,6 +96,7 @@ roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch
 
 **leader移动：**
 - 01leadermove.py：只有leaders移动
+- 02followermove.py：跟随者也移动
 
 gazebo环境
 
