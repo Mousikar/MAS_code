@@ -21,9 +21,12 @@ def main():
     # follower_topology = {0: [1, 3], 1: [0, 2], 2: [1], 3: [0, 4], 4: [3, 5], 5: [4]}
     # leader_topology = {0: [6], 1: [], 2: [7], 3: [8], 4: [], 5: [9]}
 
+    # 这个拓扑有些拥挤
     # follower_topology = {0: [], 1: [0], 2: [1,3], 3: [], 4: [1], 5: [2,4]}
-    follower_topology = {0: [], 1: [0], 2: [3], 3: [], 4: [1], 5: [2,4]}
-    leader_topology = {0: [6,9], 1: [7], 2: [8], 3: [8,9], 4: [8], 5: []}
+    # leader_topology = {0: [6,9], 1: [7], 2: [8], 3: [8,9], 4: [8], 5: []}
+
+    follower_topology = {0: [], 1: [0], 2: [1,3], 3: [], 4: [1], 5: [0,2]}
+    leader_topology = {0: [6,9], 1: [7], 2: [8], 3: [8,9], 4: [6], 5: []}
 
     # Initialize swarm robot
     swarm_robot = SwarmRobot(swarm_robot_id)
