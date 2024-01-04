@@ -36,7 +36,7 @@ def main():
                        [2, 5]])
 
     # Convergence threshold
-    t_sum = 6*2
+    t_sum = 15
     dT = 0.001
     iter = int(t_sum / dT)
 
@@ -58,7 +58,7 @@ def main():
     MIN_V = 0.00000000000001    # Minimum linear velocity(m/s)
     k_v = 0.05       # Scale of linear velocity 0.01
     k_w = 0.5       # Scale of angle velocity
-    k_L = 0.02
+    k_L = 0.01
     # 指定保存的文件名
     file_name = "env.txt"
 

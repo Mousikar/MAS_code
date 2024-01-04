@@ -72,6 +72,7 @@ roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch
 - ten_copy.launch：和上面的数字不一样，用的拓扑也不一样，这个是好看的那个拓扑
 - ten_env.launch：加上环境
 - ten_evn_waffle：leader变成华夫饼
+- ten_waffle：静止的在运行一次，没有环境
 
 
             r_star_his = np.array([[-7+1, -2-0.5], 
@@ -123,6 +124,8 @@ roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch
 **leader移动：**
 - 01leadermove.py：只有leaders移动
 - 02followermove.py：跟随者也移动
+- 03evn：加入了环境
+- 04evnleaderstatic：重新运行leader静止
 
 gazebo环境
 
