@@ -21,12 +21,12 @@ figure;
 hold on;
 leader_scatter = scatter(rx, ry, 50, 'r', 'filled', 'DisplayName', 'Leaders');
 plot(x_history,y_history)
-legend("Leaders","Follower 1","Follower 2","Follower 3","Follower 4","Follower 5","Follower 6","Location","best")
+legend("Leaders","Follower 1","Follower 2","Follower 3","Follower 4","Follower 5","Follower 6","Location","best",'FontName','Times New Roman','FontSize',12)
 follower_scatter = scatter(x, y, 50, 'b', 'filled');
 hull = convhull(rx, ry);
 hull_line = plot(rx(hull), ry(hull), 'r', 'LineWidth', 2, 'DisplayName', 'Convex Hull');
-xlabel('X/(m)');
-ylabel('Y/(m)');
+xlabel('x/(m)','FontName','Times New Roman','FontSize',12);
+ylabel('y/(m)','FontName','Times New Roman','FontSize',12);
 fig = gcf;
 fig.PaperPositionMode = 'auto';
 fig_pos = fig.PaperPosition;
@@ -126,7 +126,7 @@ scatter3([0,0,0,0], rxc, ryc, 'r', 'filled', 'DisplayName', 'Leaders');
 plot3(uijmvz(1:jpqu), x_history(1:jpqu,:),y_history(1:jpqu,:),'-','LineWidth',1)
 plot3(uijmvz(1:jpqu), rx_history(1:jpqu,:),ry_history(1:jpqu,:),'r--','LineWidth',1)
 
-legend("Leaders","Follower 1","Follower 2","Follower 3","Follower 4","Follower 5","Follower 6","Location","southeast")
+legend("Leaders","Follower 1","Follower 2","Follower 3","Follower 4","Follower 5","Follower 6",'FontName','Times New Roman','FontSize',12,"Location","southeast")
 follower_scatter = scatter3(jpqu/1000*ones(1,6),x_history(jpqu,:), y_history(jpqu,:), 'b', 'filled');
 follower_scatter = scatter3(jpqu/1000*zeros(1,6),x_history(1,:), y_history(1,:), 'b', 'filled');
 hull = convhull(rxc, ryc);
@@ -138,9 +138,9 @@ ryt=ry_history(jpqu,:);
 leader_scatter = scatter3(jpqu/1000*ones(1,4), rxt, ryt, 'r', 'filled', 'DisplayName', 'Leaders');
 hull_line = plot3(jpqu/1000*ones(1,5), rxt(hull), ryt(hull), 'r', 'LineWidth', 1, 'DisplayName', 'Convex Hull');
 
-xlabel('t/(s)');
-ylabel('x/(m)');
-zlabel('y/(m)')
+xlabel('t/(s)','FontName','Times New Roman','FontSize',12);
+ylabel('x/(m)','FontName','Times New Roman','FontSize',12);
+zlabel('y/(m)','FontName','Times New Roman','FontSize',12)
 view([-0.3,-1,0.5])
 
 fig = gcf;
