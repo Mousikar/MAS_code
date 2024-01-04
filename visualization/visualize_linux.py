@@ -7,14 +7,14 @@ font_path = "/usr/share/fonts/myfontdir/SimHei.ttf"  # 替换为你的中文字�
 fontprop = FontProperties(fname=font_path)
 
 # # 读取原始文本文件的内容
-# with open("followermove-2.txt", "r") as file:
+# with open("env20240104_1.txt", "r") as file:
 #     lines = file.readlines()
 
 # # 去掉每行末尾的空格和逗号
 # cleaned_lines = [line.strip(", \n") + "\n" for line in lines]
 
 # # 保存处理后的数据为新的文件
-# new_file_name = "followermove-2clean.txt"
+# new_file_name = "env20240104_1clean.txt"
 # with open(new_file_name, "w") as new_file:
 #     new_file.writelines(cleaned_lines)
 
@@ -22,7 +22,7 @@ fontprop = FontProperties(fname=font_path)
 
 # '''
 # 从文本文件读取数据，使用逗号作为分隔符
-data = np.loadtxt("followermove-2clean.txt", delimiter=",")
+data = np.loadtxt("env20240104_1clean.txt", delimiter=",")
 
 # 提取每列数据
 num_columns = data.shape[1]  # 获取数据列数

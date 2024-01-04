@@ -71,6 +71,7 @@ roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch
 - ten.launch：有六个跟随者和四个领航者，论文中的拓扑
 - ten_copy.launch：和上面的数字不一样，用的拓扑也不一样，这个是好看的那个拓扑
 - ten_env.launch：加上环境
+- ten_evn_waffle：leader变成华夫饼
 
 
             r_star_his = np.array([[-7+1, -2-0.5], 

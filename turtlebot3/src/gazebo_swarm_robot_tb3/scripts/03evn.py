@@ -58,7 +58,7 @@ def main():
     MIN_V = 0.00000000000001    # Minimum linear velocity(m/s)
     k_v = 0.05       # Scale of linear velocity 0.01
     k_w = 0.5       # Scale of angle velocity
-    k_L = 0.01
+    k_L = 0.02
     # 指定保存的文件名
     file_name = "env.txt"
 
@@ -84,8 +84,7 @@ def main():
         for k in range(iter):
             # if k > iter/12:
             #     k_v = 0.05
-            if k%100==0:
-                print(k/float(iter))
+
             # print('----------------------------------------------')
             current_robot_pose = swarm_robot.get_robot_poses()
             points = [x[0:2] for x in current_robot_pose]
@@ -152,40 +151,49 @@ def main():
             #         k_v=0.005
                 file.write("%.12f, %.12f, %.12f, %.12f, %.12f, " % (current_robot_pose[i][0], current_robot_pose[i][1], current_robot_pose[i][2], v, w))
             
-            print(points[9][0])
 
             r_star_his = np.array([[-7, -2], 
                                     [-4, -2], 
                                     [-4, 1],
                                     [-7, 1]])
-            if points[9][0]>-7.30:
+            if points[9][0]>-7.2:
                 r_star_his = np.array([[-4, -2], 
                                         [-2, -2], 
                                         [-2, 0],
                                         [-4, 0]])
-            if points[9][0]>-4.30:
+            if points[9][0]>-4.2:
                 r_star_his = np.array([[-1.5, -1], 
                                         [0, -1], 
                                         [0, 0.5],
                                         [-1.5, 0.5]])
-            if points[9][0]>-1.90:
+            if points[9][0]>-1.6:
                 r_star_his = np.array([[-1, -1], 
                                         [1, -1], 
                                         [1, 1],
                                         [-1, 1]])
-            if points[9][0]>-1.10:
+            if points[9][0]>-1.1:
                 r_star_his = np.array([[4, -1], 
                                         [6, -1], 
                                         [6, 1],
                                         [4, 1]])
             for i in [6,7,8,9]:
                 d_err = points[i] - r_star_his[i-6]
-                # u_r = - k_L / math.sqrt(d_err[0]**2 + d_err[1]**2) * d_err
+                # print(math.sqrt(d_err[0]**2 + d_err[1]**2))
+                # if math.sqrt(d_err[0]**2 + d_err[1]**2)>1:
                 u_r = - k_L * d_err
+                # else:
+                    # u_r = - 0.05 / math.exp(math.sqrt(d_err[0]**2 + d_err[1]**2)) * d_err
+
                 theta_d = math.atan2(u_r[1], u_r[0])
                 v = math.sqrt(u_r[0]**2 + u_r[1]**2)
+                # v = 0.05
                 v = swarm_robot.check_vel(v, MAX_V, MIN_V)
+
+                # if math.sqrt(d_err[0]**2 + d_err[1]**2)>1:
                 w= - k_w * (current_robot_pose[i][2]-theta_d)
+                # else:
+                    # w= - k_w / math.exp(math.sqrt(d_err[0]**2 + d_err[1]**2)) * (current_robot_pose[i][2]-theta_d)
+
                 w = swarm_robot.check_vel(w, MAX_W, MIN_W)
                 # v=0.01
                 # w=0
@@ -195,6 +203,9 @@ def main():
                 speed[i][1]=w
                 file.write("%.12f, %.12f, %.12f, %.12f, %.12f, " % (current_robot_pose[i][0], current_robot_pose[i][1], current_robot_pose[i][2], v, w))
 
+            if k%100==0:
+                print(k/float(iter))
+                print(points[9][0])
             file.write("\n")
 
             # 移动机器人
