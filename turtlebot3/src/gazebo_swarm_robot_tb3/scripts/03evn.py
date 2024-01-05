@@ -36,7 +36,7 @@ def main():
                        [2, 5]])
 
     # Convergence threshold
-    t_sum = 15
+    t_sum = 8
     dT = 0.001
     iter = int(t_sum / dT)
 
@@ -56,8 +56,8 @@ def main():
     MIN_W = 0.00000000000000000005    # Minimum angle velocity(rad/s)
     MAX_V = 0.3     # Maximum linear velocity(m/s)
     MIN_V = 0.00000000000001    # Minimum linear velocity(m/s)
-    k_v = 0.05       # Scale of linear velocity 0.01
-    k_w = 0.5       # Scale of angle velocity
+    k_v = 0.02       # Scale of linear velocity 0.05 0.01
+    k_w = 0.2       # Scale of angle velocity  0.2   0.5
     k_L = 0.01
     # 指定保存的文件名
     file_name = "env.txt"
@@ -118,7 +118,7 @@ def main():
 
 
                 # 角度相减去 
-                v_leadermean = 1.0 / lii * np.sum(follower_velocity, axis=0)+np.sum(leader_velocity, axis=0)
+                v_leadermean = 1.0 / lii * np.sum(follower_velocity, axis=0) + 1.0 / lii * np.sum(leader_velocity, axis=0)
                 # print(v_leadermean)
                 velocity = v_leadermean - k_v*([x * len(neighbors) for x in current_robot_pose[i]] - np.sum(neighbor_positions, axis=0)) 
                 velocity = velocity - k_v*([x * len(leaders) for x in current_robot_pose[i]] - np.sum(leader_positions, axis=0))
@@ -156,31 +156,46 @@ def main():
                                     [-4, -2], 
                                     [-4, 1],
                                     [-7, 1]])
-            if points[9][0]>-7.4: #2
+            if points[9][0]>-7.2: #2
                 r_star_his = np.array([[-4, -2], 
                                         [-2, -2], 
                                         [-2, 0],
                                         [-4, 0]])
-            if points[9][0]>-4.4: #2
+            if points[9][0]>-4.2: #2
                 r_star_his = np.array([[-1.5, -1], 
                                         [0, -1], 
                                         [0, 0.5],
                                         [-1.5, 0.5]])
-            if points[9][0]>-1.9: #1
-                r_star_his = np.array([[-1, -1], 
-                                        [1, -1], 
-                                        [1, 1],
+            if points[9][0]>-1.6: #6
+                r_star_his = np.array([[-1, -0.5], 
+                                        [0.5, -0.5], 
+                                        [0.5, 1],
                                         [-1, 1]])
-            if points[9][0]>-1.2: #1
+            if points[9][0]>-1.1: #1
+            #     r_star_his = np.array([[1.5, -1], 
+            #                             [3.5, -1], 
+            #                             [3.5, 1],
+            #                             [1.5, 1]])
+            # if points[9][0]>1.4: #1
                 r_star_his = np.array([[4, -1], 
                                         [6, -1], 
                                         [6, 1],
                                         [4, 1]])
             for i in [6,7,8,9]:
                 d_err = points[i] - r_star_his[i-6]
+                if i == 6:
+                    yivi = 3 * (points[i] - r_star_his[i-6]) - (points[7] - r_star_his[7-6]) - (points[8] - r_star_his[8-6]) - (points[9] - r_star_his[9-6])
+                if i == 7:
+                    yivi = 3 * (points[i] - r_star_his[i-6]) - (points[6] - r_star_his[6-6]) - (points[8] - r_star_his[8-6]) - (points[9] - r_star_his[9-6])
+                if i == 8:
+                    yivi = 3 * (points[i] - r_star_his[i-6]) - (points[6] - r_star_his[6-6]) - (points[7] - r_star_his[7-6]) - (points[9] - r_star_his[9-6])
+                if i == 9:
+                    yivi = 3 * (points[i] - r_star_his[i-6]) - (points[6] - r_star_his[6-6]) - (points[7] - r_star_his[7-6]) - (points[8] - r_star_his[8-6])
+                if points[9][0]>-1.1:
+                    yivi = 0
                 # print(math.sqrt(d_err[0]**2 + d_err[1]**2))
                 # if math.sqrt(d_err[0]**2 + d_err[1]**2)>1:
-                u_r = - k_L * d_err
+                u_r = - k_v * d_err - k_v * yivi # 0.01
                 # else:
                     # u_r = - 0.05 / math.exp(math.sqrt(d_err[0]**2 + d_err[1]**2)) * d_err
 
@@ -188,9 +203,10 @@ def main():
                 v = math.sqrt(u_r[0]**2 + u_r[1]**2)
                 # v = 0.05
                 v = swarm_robot.check_vel(v, MAX_V, MIN_V)
+                rospy.get_time()
 
                 # if math.sqrt(d_err[0]**2 + d_err[1]**2)>1:
-                w= - k_w * (current_robot_pose[i][2]-theta_d)
+                w= - 0.08 * (current_robot_pose[i][2]-theta_d) # 0.08
                 # else:
                     # w= - k_w / math.exp(math.sqrt(d_err[0]**2 + d_err[1]**2)) * (current_robot_pose[i][2]-theta_d)
 
