@@ -7,14 +7,14 @@ font_path = "c:\Windows\Fonts\SIMHEI.TTF"  # 替换为你的中文字体文件�
 fontprop = FontProperties(fname=font_path)
 
 # 读取原始文本文件的内容
-with open("stationary20240104_6.txt", "r") as file:
+with open("env20240105_6.txt", "r") as file:
     lines = file.readlines()
 
 # 去掉每行末尾的空格和逗号
 cleaned_lines = [line.strip(", \n") + "\n" for line in lines]
 
 # 保存处理后的数据为新的文件
-new_file_name = "stationary20240104_6clean.txt"
+new_file_name = "env20240105_6clean.txt"
 with open(new_file_name, "w") as new_file:
     new_file.writelines(cleaned_lines)
 
