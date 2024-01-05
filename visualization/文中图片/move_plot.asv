@@ -9,27 +9,47 @@ rx_history = env(:,31:5:50);
 ry_history = env(:,32:5:50);
 theta_history = env(:,3:5:30);
 v_history = env(:,4:5:30);
+rv_history = env(:,34:5:50);
 omega_history = env(:,5:5:30);
 
 %% 轨迹图
 figure;
-set(gcf,'Position',[100,100,800,600]); % 设置图形大小
+set(gcf,'Position',[100,100,1200,600]); % 设置图形大小
 hold on;
-rx=rx_history(1,:);
-ry=ry_history(1,:);
+% 多画几个过程框框
+rx=rx_history(abs(rx_history(:,4)+7)<=0.001,:);
+ry=ry_history(abs(rx_history(:,4)+7)<=0.001,:);
+hull = convhull(rx, ry);
+plot(rx(hull), ry(hull), 'r', 'LineWidth', 2,'HandleVisibility','off');
+
+rx=rx_history(abs(rx_history(:,4)+4)<=0.001,:);
+ry=ry_history(abs(rx_history(:,4)+4)<=0.001,:);
+hull = convhull(rx, ry);
+plot(rx(hull), ry(hull), 'r', 'LineWidth', 2,'HandleVisibility','off');
+
+rx=rx_history(abs(rx_history(:,4)+1.5)<=0.001,:);rx=rx(1,:);
+ry=ry_history(abs(rx_history(:,4)+1.5)<=0.001,:);ry=ry(1,:);
+hull = convhull(rx, ry);
+plot(rx(hull), ry(hull), 'r', 'LineWidth', 2,'HandleVisibility','off');
+
+% rx=rx_history(abs(rx_history(:,4)+1)<=0.01,:);rx=rx(1,:);
+% ry=ry_history(abs(rx_history(:,4)+1)<=0.01,:);ry=ry(1,:);
+% hull = convhull(rx, ry);
+% plot(rx(hull), ry(hull), 'r', 'LineWidth', 2,'HandleVisibility','off');
+
+rx=rx_history(end,:);
+ry=ry_history(end,:);
+hull = convhull(rx, ry);
+plot(rx(hull), ry(hull), 'r', 'LineWidth', 2,'HandleVisibility','off');
+
+%--------------
 x=x_history(end,:);
 y=y_history(end,:);
-leader_scatter = scatter(rx, ry, 50, 'r', 'filled','HandleVisibility','off');
+% leader_scatter = scatter(rx, ry, 50, 'r', 'filled','HandleVisibility','off');
 plot(x_history,y_history,'LineWidth',1)
 plot(rx_history,ry_history,'--', 'LineWidth',1)
-legend("Follower 1","Follower 2","Follower 3","Follower 4","Follower 5","Follower 6","Leader 1","Leader 2","Leader 3","Leader 4","Location","best",'Orientation','horizontal','NumColumns',3,'FontName','Times New Roman','FontSize',12)
+legend("Follower 1","Follower 2","Follower 3","Follower 4","Follower 5","Follower 6","Leader 1","Leader 2","Leader 3","Leader 4","Location","best",'Orientation','horizontal','NumColumns',6,'FontName','Times New Roman','FontSize',12)
 follower_scatter = scatter(x, y, 50, 'b', 'filled','HandleVisibility','off');
-hull = convhull(rx, ry);
-hull_line = plot(rx(hull), ry(hull), 'r', 'LineWidth', 2,'HandleVisibility','off');
-
-% 多画几个过程框框
-rx=rx_history(abs(rx_history(:,4)+7)<=0.001)
-
 
 xlabel('x/(m)','FontName','Times New Roman','FontSize',12);
 ylabel('y/(m)','FontName','Times New Roman','FontSize',12);
@@ -41,4 +61,36 @@ fig = gcf;
 fig.PaperPositionMode = 'auto';
 fig_pos = fig.PaperPosition;
 fig.PaperSize = [fig_pos(3) fig_pos(4)];
-% ylim([-4,8])
+ylim([-4,5])
+
+%% 误差
+L1 = [2,  0,  0,  0,  0,  0;
+     -1,  2,  0,  0,  0,  0;
+      0, -1,  3, -1,  0,  0;
+      0,  0,  0,  2,  0,  0;
+      0, -1,  0,  0,  2,  0;
+      -1,  0, -1,  0, 0,  2 ]; % 跟随者邻接矩阵
+L2 =[ -1,  0,  0, -1;
+		0, -1,  0,  0;
+		0,  0, -1,  0;
+		0,  0,  -1, -1;
+		-1,  0, 0,  0;
+		0,  0,  0,  0];
+errx_history = zeros(length(x_history),6);
+erry_history = zeros(length(x_history),6);
+t=0:0.001:length(x_history)/1000-0.001;
+for i = 1:length(x_history)
+    errx_history(i,:) = L1 * x_history(i,:).' + L2 * rx_history(i,:).';
+    erry_history(i,:) = L1 * y_history(i,:).' + L2 * ry_history(i,:).';
+end    
+figure
+set(gcf,'Position',[100,100,1200,200]); % 设置图形大小
+hold on;
+plot(t,errx_history,'-.','LineWidth',2)
+legend("Follower 1","Follower 2","Follower 3","Follower 4","Follower 5","Follower 6","Leader 1","Leader 2","Leader 3","Leader 4","Location","best",'Orientation','horizontal','NumColumns',6,'FontName','Times New Roman','FontSize',12)
+figure
+set(gcf,'Position',[100,100,1200,200]); % 设置图形大小
+hold on;
+plot(t,erry_history,'--','LineWidth',2)
+%%
+find(abs(rx_history(:,4)+1.5)<=0.001)/15000*23

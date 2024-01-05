@@ -9,6 +9,7 @@ rx_history = env(:,31:5:50);
 ry_history = env(:,32:5:50);
 theta_history = env(:,3:5:30);
 v_history = env(:,4:5:30);
+rv_history = env(:,34:5:50);
 omega_history = env(:,5:5:30);
 
 %% 轨迹图
@@ -62,5 +63,42 @@ fig_pos = fig.PaperPosition;
 fig.PaperSize = [fig_pos(3) fig_pos(4)];
 ylim([-4,5])
 
+%% 误差
+L1 = [2,  0,  0,  0,  0,  0;
+     -1,  2,  0,  0,  0,  0;
+      0, -1,  3, -1,  0,  0;
+      0,  0,  0,  2,  0,  0;
+      0, -1,  0,  0,  2,  0;
+      -1,  0, -1,  0, 0,  2 ]; % 跟随者邻接矩阵
+L2 =[ -1,  0,  0, -1;
+		0, -1,  0,  0;
+		0,  0, -1,  0;
+		0,  0,  -1, -1;
+		-1,  0, 0,  0;
+		0,  0,  0,  0];
+errx_history = zeros(length(x_history),6);
+erry_history = zeros(length(x_history),6);
+t=0:0.001:length(x_history)/1000-0.001;
+for i = 1:length(x_history)
+    errx_history(i,:) = x_history(i,:).' + inv(L1) * L2 * rx_history(i,:).';
+    erry_history(i,:) = y_history(i,:).' + inv(L1) * L2 * ry_history(i,:).';
+end    
+figure
+set(gcf,'Position',[100,100,1200,400]); % 设置图形大小
+subplot(2, 1, 1);
+hold on;
+plot(t,errx_history,'-.','LineWidth',2)
+lgh = legend("$$\xi_1$$","$$\xi_2$$","$$\xi_3$$","$$\xi_4$$","$$\xi_5$$","$$\xi_6$$","Location","best",'Orientation','horizontal','NumColumns',6,'FontName','Times New Roman','FontSize',12);
+set(lgh,'interpreter','latex');
+xlabel('t/(s)','FontName','Times New Roman','FontSize',12);
+ylabel('x/(m)','FontName','Times New Roman','FontSize',12);
+
+subplot(2, 1, 2);
+hold on;
+plot(t,erry_history,'--','LineWidth',2)
+lgh = legend("$$\xi_1$$","$$\xi_2$$","$$\xi_3$$","$$\xi_4$$","$$\xi_5$$","$$\xi_6$$","Location","best",'Orientation','horizontal','NumColumns',6,'FontName','Times New Roman','FontSize',12);
+set(lgh,'interpreter','latex');
+xlabel('t/(s)','FontName','Times New Roman','FontSize',12);
+ylabel('y/(m)','FontName','Times New Roman','FontSize',12);
 %%
 find(abs(rx_history(:,4)+1.5)<=0.001)/15000*23

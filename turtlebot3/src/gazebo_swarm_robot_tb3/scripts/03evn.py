@@ -156,22 +156,22 @@ def main():
                                     [-4, -2], 
                                     [-4, 1],
                                     [-7, 1]])
-            if points[9][0]>-7.2:
+            if points[9][0]>-7.4: #2
                 r_star_his = np.array([[-4, -2], 
                                         [-2, -2], 
                                         [-2, 0],
                                         [-4, 0]])
-            if points[9][0]>-4.2:
+            if points[9][0]>-4.4: #2
                 r_star_his = np.array([[-1.5, -1], 
                                         [0, -1], 
                                         [0, 0.5],
                                         [-1.5, 0.5]])
-            if points[9][0]>-1.6:
+            if points[9][0]>-1.9: #1
                 r_star_his = np.array([[-1, -1], 
                                         [1, -1], 
                                         [1, 1],
                                         [-1, 1]])
-            if points[9][0]>-1.1:
+            if points[9][0]>-1.2: #1
                 r_star_his = np.array([[4, -1], 
                                         [6, -1], 
                                         [6, 1],
