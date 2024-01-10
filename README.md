@@ -73,6 +73,7 @@ roslaunch gazebo_swarm_robot_tb3 comtainment_test.launch
 - ten_env.launch：加上环境
 - ten_evn_waffle：leader变成华夫饼
 - ten_waffle：静止的在运行一次，没有环境
+- real.launch: 模拟真实实验
 
 
             r_star_his = np.array([[-7+1, -2-0.5], 
