@@ -4,7 +4,7 @@ clear
 rng(88);
 
 % 迭代设置
-t_sum = 50;
+t_sum = 10;%50
 T = 0.001;
 iter = floor(t_sum / T);
 num_follower = 6;
@@ -30,8 +30,8 @@ x = zeros(1, num_follower) + 4 * rand(1, num_follower);
 y = zeros(1, num_follower) + 4 * rand(1, num_follower);
 
 % leader静止
-dot_rx = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
-dot_ry = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
+% dot_rx = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
+% dot_ry = 0 * ones(1, num_leader);%5 * (1 / T / iter) * ones(1, num_leader);
 
 % 系数
 k1 = 1;
@@ -139,8 +139,8 @@ for k = 1:iter%/2
             % hat_ex(i) = hat_ex(i) + A_LF(i, j)/L1(i,i) * (x(i) - rx_history(end - d(i, j) + 1, j));
             % hat_ey(i) = hat_ey(i) + A_LF(i, j)/L1(i,i) * (y(i) - ry_history(end - d(i, j) + 1, j));
             % 都有时延，包括自身
-            hat_ex(i) = hat_ex(i) + A_LF(i, j)/L1(i,i) * (x_history(end - timedelay(i,j,k,'F') + 1, i) - rx_history(end - timedelay(i,j,k,'F') + 1, j));
-            hat_ey(i) = hat_ey(i) + A_LF(i, j)/L1(i,i) * (y_history(end - timedelay(i,j,k,'F') + 1, i) - ry_history(end - timedelay(i,j,k,'F') + 1, j));
+            hat_ex(i) = hat_ex(i) + A_LF(i, j)/L1(i,i) * (x_history(end - timedelay(i,j,k,'L') + 1, i) - rx_history(end - timedelay(i,j,k,'L') + 1, j));
+            hat_ey(i) = hat_ey(i) + A_LF(i, j)/L1(i,i) * (y_history(end - timedelay(i,j,k,'L') + 1, i) - ry_history(end - timedelay(i,j,k,'L') + 1, j));
             % 用计算的位置来代替现在的位置
             % hat_ex(i) = hat_ex(i) - A_LF(i, j) * (x(i) - rx_history(end - d(i, j) + 1, j) - dot_rx(j) * d(i, j) * T);
             % hat_ey(i) = hat_ey(i) - A_LF(i, j) * (y(i) - ry_history(end - d(i, j) + 1, j) - dot_ry(j) * d(i, j) * T);
