@@ -15,7 +15,7 @@ errx_actual_history = double(errx_actual_history);
 erry_actual_history = double(erry_actual_history);
 hat_evx_history = double(hat_evx_history);
 hat_evy_history = double(hat_evy_history);
-%% 轨迹图
+% 轨迹图
 figure;
 
 hold on;
@@ -31,7 +31,7 @@ fig = gcf;
 fig.PaperPositionMode = 'auto';
 fig_pos = fig.PaperPosition;
 fig.PaperSize = [fig_pos(3) fig_pos(4)];
-saveas(gcf, [datestr(currentDateTime, 'yyyy_mm_dd_HH_MM_ss') 'turtlebot_trajectories_T' num2str(T) '_iter' num2str(iter) '_k' num2str(k1) num2str(k2) num2str(k3) '.png']);
+% saveas(gcf, [datestr(currentDateTime, 'yyyy_mm_dd_HH_MM_ss') 'turtlebot_trajectories_T' num2str(T) '_iter' num2str(iter) '_k' num2str(k1) num2str(k2) num2str(k3) '.png']);
 
 %% 误差图 位置误差 速度误差
 figure;

@@ -34,9 +34,9 @@ dot_rx = 0 * ones(1, num_leader);
 dot_ry = 0 * ones(1, num_leader);
 
 % 系数
-k1 = 1;
-k2 = 1;
-k3 = 2;
+k1 = 5;
+k2 = 5;
+k3 = 0.001;
 R = 100;
 % follower不会和leader碰撞的网络拓扑
 L1 = [2,  0,  0,  0,  0,  0;
@@ -81,6 +81,8 @@ v_history = zeros(iter, num_follower);
 omega_history = zeros(iter, num_follower);
 rx_history = zeros(dmax, num_leader);
 ry_history = zeros(dmax, num_leader);
+dot_rx_history = zeros(dmax, num_leader);
+dot_ry_history = zeros(dmax, num_leader);
 hat_ex_history = zeros(iter, num_follower);
 hat_ey_history = zeros(iter, num_follower);
 errx_actual_history = zeros(iter, num_follower);
@@ -96,13 +98,13 @@ for i = 1:dmax
     theta_history(i, :) = theta;
     rx_history(i, :) = rx;
     ry_history(i, :) = ry;
+    dot_rx_history(i, :) = dot_rx;
+    dot_ry_history(i, :) = dot_ry;
 end
 
-for k = 1:iter%/2
+for k = 1:iter%/iter
     hat_ex = zeros(1, num_follower);
     hat_ey = zeros(1, num_follower);
-    dot_dx = zeros(1, num_follower);
-    dot_dy = zeros(1, num_follower);
     hat_evx = zeros(1, num_follower);
     hat_evy = zeros(1, num_follower);
 
@@ -128,13 +130,13 @@ for k = 1:iter%/2
                 - rx_history(end - timedelay(i,j,k,'F') + 1, j))...
                  - k1 * A_LF(i, j) * ...
                  (dot_x_history(end - timedelay(i,j,k,'F') + 1, i) ...
-                - dot_x_history(end - timedelay(i,j,k,'F') + 1, j));
+                - dot_rx_history(end - timedelay(i,j,k,'F') + 1, j));
             hat_ey(i) = hat_ey(i) - A_LF(i, j) * ...
                 (y_history(end - timedelay(i,j,k,'F') + 1, i) ...
                 - ry_history(end - timedelay(i,j,k,'F') + 1, j))...
-                 - k1 * A_F(i, j) * ...
+                 - k1 * A_LF(i, j) * ...
                 (dot_y_history(end - timedelay(i,j,k,'F') + 1, i) ...
-                - dot_y_history(end - timedelay(i,j,k,'F') + 1, j));
+                - dot_ry_history(end - timedelay(i,j,k,'F') + 1, j));
         end
         hat_evx(i) = dot_rx(1) - v(i) * sin(theta(i));
         hat_evy(i) = dot_ry(1) - v(i) * cos(theta(i));
@@ -167,7 +169,7 @@ for k = 1:iter%/2
         dot_hat_theta_d(i) = dot_hat_theta_d(i) + ddot_hat_theta_d(i) * T;
         hat_theta_d(i) = hat_theta_d(i) + dot_hat_theta_d(i) * T;
         
-        b(i) = ddot_hat_theta_d(i) - k3 * (omega(i) - dot_hat_theta_d(i)) - theta(i);  % 暂时不加上饱和函数
+        b(i) = ddot_hat_theta_d(i) - k3 * (omega(i) - dot_hat_theta_d(i)) - (theta(i)-theta_d(i));  % 暂时不加上饱和函数
 
         % --------------------------------加上饱和函数-----------------------------------------
         % de = 0.1;
@@ -219,6 +221,8 @@ for k = 1:iter%/2
     y_history(k+dmax,:) = y;
     dot_x_history(k+dmax,:) = dot_x;
     dot_y_history(k+dmax,:) = dot_y;
+    dot_rx_history(k+dmax,:) = dot_rx;
+    dot_ry_history(k+dmax,:) = dot_ry;
     theta_history(k+dmax,:) = theta;
     rx_history(k+dmax,:) = rx;
     ry_history(k+dmax,:) = ry;
@@ -241,6 +245,7 @@ for k = 1:iter%/2
 end
 %% test
  timedelay(i,j,k,'F')
+ dot_rx_history(end - timedelay(i,j,k,'F') + 1, i)
 %% 函数时滞
 function result = timedelay(i,j,k,ForL)
     t=k*0.001;

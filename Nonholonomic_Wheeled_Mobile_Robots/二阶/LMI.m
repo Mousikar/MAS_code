@@ -1,9 +1,10 @@
 % LMI example
-clear;clc
+clear;
+% clc
 tic
 n = 6;
-tau_u = 0.03;
-K = 5*eye(6); % 5*eye(6)
+tau_u = 0.5 %0.03
+K = 0.3*eye(6) % 5*eye(6)
 
 A_F = [      0     0     0     0     0     0
              1     0     0     0     0     0
